@@ -3,7 +3,7 @@ const { dbURL } = require('../config/environment')
 
 const User = require('../models/User')
 const Category = require('../models/Category')
-const Item = require('../models/Item')
+const Item = require('../models/Items')
 const List = require('../models/Lists')
 
 //test data set to pump into your database for dev purposes
