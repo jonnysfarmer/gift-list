@@ -3,7 +3,7 @@ const { dbURL } = require('../config/environment')
 
 const User = require('../models/User')
 const Category = require('../models/Category')
-const Item = require('../models/Items')
+const Item = require('../models/Item')
 const List = require('../models/Lists')
 
 //test data set to pump into your database for dev purposes
@@ -21,8 +21,16 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
       .then(() => {
         return User.create([
           {
-            username: 'DevUser',
+            firstname: 'DevUser',
+            surname: 'world',
             email: 'user@dev.com',
+            password: '12345',
+            passwordConfirmation: '12345'
+          },
+          {
+            firstname: 'Hello',
+            surname: 'Time',
+            email: 'user@time.com',
             password: '12345',
             passwordConfirmation: '12345'
           }
@@ -38,7 +46,22 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
       .then(() => {
         return Item.create([
           {
-            //THINGS GO HERE
+            productName: 'Rubber Chicken',
+            price: '2.99',
+            currenctCode: 'GBP',
+            description: 'One large rubber chicken',
+            src: 'www.rubberchicken.com',
+            listingId: '1234556',
+            imgsrc: 'wwww.rubberchicken.com/pics'
+          },
+          {
+            productName: 'novalty mug',
+            price: '3.99',
+            currenctCode: 'GBP',
+            description: 'One large MUG for muggy people',
+            src: 'www.largemugs.com',
+            listingId: '1234556444',
+            imgsrc: 'www.largemugs.com/pics'
           }
         ])
       })
