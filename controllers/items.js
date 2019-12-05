@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 1. user clicks 'save an item' & client sends post request
 2. function add(req,res) is triggered
-  2b. this calls checkItemDb passing through the store and id (to create listingId) so axios can make a GET call to our item database to see if the listingId exists already
+  2b. this uses axios ctoan make a GET call to our item database to see if the listingId exists already
 3. if axiosGET receives a successful response, then it runs the success scenario - itemExists function
 4. if axiosGET receives an error response, then it runs the getItemFromEtsy(id) function
   4b. then it runs the POST scenario - addItem function
@@ -14,14 +14,14 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 
 //Check our item db to see if item is already in there
-function checkItemDb(body) {
-  axios.get(`/items/${body.src}-${body.id}`)
+function add(req, res) {
+  axios.get(`/items/${req.body.src}-${req.body.id}`)
     .then(res => {
       itemExists(res.data.listingId)
     })
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
     .catch(err => {
-      addItem(body)
+      addItem(req.body)
     })
 
 }
@@ -33,6 +33,9 @@ function itemExists(listingId) {
 }
 
 //If the item is not in our database, get the item details from Etsy
+
+
+//Once we have details from Etsy, post it to our item database
 function addItem(body) {
   console.log('add item', body)
   Item
@@ -40,38 +43,7 @@ function addItem(body) {
     // need to send a valid response back
 }
 
-//Once we have data from Etsy, post it to our database
-
-
-function add(req, res) {
-  checkItemDb(req.body)
-
-}
-
-
-
-
-
-  //call the show function via the router so we can pass the listingId on the url (there must be a better way than this!)
-  // axios.get(`/items/${req.body.store}-${req.body.id}`)
-  //   .then(res => {
-  //     console.log(res.data.listingId)
-  //     console.log(req.body)
-  //     Item
-  //       .create(req.body)
-  //       //send a response back with the result, 201 is creation successful
-  //       .then(item => res.status(201).json(item))
-  //       //catch errors from the post, this just logs them to our console
-  //       .catch(err => res.status(401).json({ status: 401, message: 'Creation failed', error: err }))
-  //   })
-
-  //   //if is error then we'll run our post
-  //   //axios is going to error here if the url is bad, aka the item doesn't exist in the database
-  //   .catch(err => console.log(err))
-
-
-  // .then(res => res.status(200).json(res.data.listingId))
-
+//somehow tell user this is done *thinking*
 
 
 
