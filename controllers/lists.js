@@ -2,9 +2,10 @@ const List = require('../models/List')
 
 
 function index(req, res) {
-  List.find()
+  List
+    .find()
     .populate('user')
-    .then(lists => res.status(200).json(lists))
+    .then(list => res.status(200).json(list))
     .catch(err => res.status(400).json({ message: err }))
 }
 
@@ -84,7 +85,7 @@ function editCustomItems(req, res) {
       if (!list) return res.status(404).json({ message: 'Not Found' })
       // if (!req.currentUser._id.equals(list.user)) return res.status(401).json({ message: 'This is not your List' })
       const item = list.customItem.id(req.params.itemId)
-      list.set(req.body)
+      item.set(req.body)
       return list.save()
     })
     .then(list => res.status(200).json(list))

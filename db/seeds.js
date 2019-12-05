@@ -101,7 +101,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
       })
       .then((users) => {
         return List.create([
-          { //seed with all fields holding a single value
+          { 
             user: users[0],
             listName: 'All fields have single value',
             giftRecipient: 'Bob',
@@ -111,10 +111,10 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             budget: '50',
             listStatus: 'Active',
             subcategory: [ 'art/sculpture', 'accessories' ],
-            keywords: [], //not implemented for MVP
+            keywords: [],
             itemsSaved: [ '1234556','1234556444'],
             customItem: [ ],
-            shareUrl: '' //null until we implement url structures
+            shareUrl: '' 
           },
           { //seed with all fields holding a single value
             user: users[0],

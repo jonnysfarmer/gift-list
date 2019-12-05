@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
-const { secret } = require('../config/enviroment')
+const { secret } = require('../config/environment')
 
 function register(req, res, next) {
   User
@@ -8,7 +8,7 @@ function register(req, res, next) {
     .then(() => res.status(200).json({ message: 'Thank you for registering' })) 
     .catch(next)
 }
-// user log in!
+// user log in! the next is for the error handling message.
 
 function login(req, res) {
   User

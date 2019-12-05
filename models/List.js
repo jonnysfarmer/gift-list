@@ -35,13 +35,8 @@ const listSchema = new mongoose.Schema({
   shareUrl: { type: String }
 },
 {
-  timestamps: true,
-  toJSON: {
-    transform(doc, json) {
-      return { name: json.firstname }
-    }
-  }
+  timestamps: true
 })
 
 
-module.exports = mongoose.model('Lists', listSchema)
+module.exports = mongoose.model('List', listSchema)

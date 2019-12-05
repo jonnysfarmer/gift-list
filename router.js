@@ -16,14 +16,14 @@ router.route('/login')
 //-----LIST routs
 
 router.route('/lists')
-  .get(lists.index)
+  .get(lists.index) // works
 
 router.route('/lists/:userId')
-  .get(lists.userAll)
+  .get(lists.userAll) // works
   .post(lists.create)
 
 router.route('/lists/:userId/:listId')
-  .get(lists.oneList)
+  .get(lists.oneList) // works
   .put(lists.editList)
 
 router.route('/lists/:userId/:listId/customItems')
@@ -34,5 +34,8 @@ router.route('/lists/:userId/:listId/customItems/:itemId')
   .put(lists.editCustomItems)
   .delete(lists.removeCustomItem)
 
-router.route('/lists/:listId')
-  .get(lists.publicList)
+router.route('/lists/public/:listId')
+  .get(lists.publicList) // works
+
+
+module.exports = router
