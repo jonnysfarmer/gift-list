@@ -23,6 +23,6 @@ app.use(cors())
 //this basically allows us to access it from the front end locally even thoughts its on 
 //a different port
 
-app.use('/api', router)
+// app.use('/api', router)
 
 app.listen(port, () => console.log(`Green light on port ${port}`))

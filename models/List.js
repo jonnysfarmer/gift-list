@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 //embedded relationship to link custom items
 const customItemSchema = new mongoose.Schema({
-  note: { type: String, required: true },
+  note: { type: String },
   url: { type: String },
   //link it to the List id
   list: { type: mongoose.Schema.ObjectId, ref: 'List', required: true } 
