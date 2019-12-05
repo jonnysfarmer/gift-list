@@ -76,7 +76,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             currenctCode: 'GBP',
             description: 'One large rubber chicken',
             src: 'www.rubberchicken.com',
-            listingId: '1234556',
+            listingId: 'etsy-1234556',
             imgsrc: 'wwww.rubberchicken.com/pics'
           },
           {
@@ -85,7 +85,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             currenctCode: 'GBP',
             description: 'One large MUG for muggy people',
             src: 'www.largemugs.com',
-            listingId: '1234556444',
+            listingId: 'etsy-1234556444',
             imgsrc: 'www.largemugs.com/pics'
           },
           {
@@ -94,7 +94,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             currenctCode: 'GBP',
             description: 'One large Pen for pen people',
             src: 'www.largepens.com',
-            listingId: '1234556434',
+            listingId: 'etsy-1234556434',
             imgsrc: 'www.largepens.com/pics'
           }
         ])
