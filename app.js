@@ -6,10 +6,11 @@ const router = require('./router')
 const cors = require('cors')
 const errorHandler = require('./lib/errorHandler')
 
+
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndexes: true
 }, () => console.log('Mongo is connected'))
 
 const app = express()
