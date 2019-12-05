@@ -21,7 +21,7 @@ function add(req, res) {
     })
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
     .catch(err => {
-      addItem(req.body)
+      getItemFromSrc(req.body)
     })
 
 }
@@ -33,6 +33,12 @@ function itemExists(listingId) {
 }
 
 //If the item is not in our database, get the item details from Etsy
+function getItemFromSrc(body) {
+  console.log(body.id)
+  addItem(body)
+  //this function should actually be whatever our generic get item from etsy function is, with a callback in it to say 'if post true, then call addItem')
+}
+
 
 
 //Once we have details from Etsy, post it to our item database
@@ -40,7 +46,7 @@ function addItem(body) {
   console.log('add item', body)
   Item
     .create(body)
-    // need to send a valid response back
+    .then(console.log('created'))
 }
 
 //somehow tell user this is done *thinking*
