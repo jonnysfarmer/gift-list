@@ -1,6 +1,14 @@
 
 const mongoose = require('mongoose')
 
+//embedded relationship to link custom items
+const customItemSchema = new mongoose.Schema({
+  note: { type: String, required: true },
+  url: { type: String },
+  //link it to the List id
+  list: { type: mongoose.Schema.ObjectId, ref: 'List', required: true } 
+})
+
 const listSchema = new mongoose.Schema({
   //userId connects us to the USER schema
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
@@ -18,9 +26,11 @@ const listSchema = new mongoose.Schema({
   //CATEGORY (all are subcategories) - subcategoryId connects us to the category schema, we use subcategory here as that's what we'd query from the 
   subcategory: { type: Array, default: [] },
   //we're not implementing keywords in MVP but including in data structure for future
-  keywords: { type: Array, default: [] },
+  keywords: { type: Array, default: [String] },
   //ITEMS saved will be an array of ID's fro our items schema as that is where the item deatils are saved
   itemsSaved: { type: Array, default: [] },
+  //custom items, not required, but you can have many
+  customItem: [ customItemSchema ],
   //shareable url is a url that will show a readonly view of the giftlist saved items
   shareUrl: { type: String }
 })
