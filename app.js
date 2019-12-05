@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const { port, dbURI } = require('./config/environment')
 const router = require('./router')
+const cors = require('cors')
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
@@ -17,6 +18,10 @@ app.use((req, resp, next) => {
   console.log(`${req.method} to ${req.url}`)
   next()
 })
+
+app.use(cors())
+//this basically allows us to access it from the front end locally even thoughts its on 
+//a different port
 
 app.use('/api', router)
 
