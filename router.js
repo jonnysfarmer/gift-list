@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const users = require('./controllers/users')
+const lists = require('./controllers/lists')
 
 
 // --- User Routes
@@ -11,3 +12,27 @@ router.route('/register')
 
 router.route('/login')
   .post(users.login)
+
+//-----LIST routs
+
+router.route('/lists')
+  .get(lists.index)
+
+router.route('/lists/:userId')
+  .get(lists.userAll)
+  .post(lists.create)
+
+router.route('/lists/:userId/:listId')
+  .get(lists.oneList)
+  .put(lists.editList)
+
+router.route('/lists/:userId/:listId/customItems')
+  .get(lists.allCustomItems)
+  .post(lists.addItem)
+
+router.route('/lists/:userId/:listId/customItems/:itemId')
+  .put(lists.editCustomItems)
+  .delete(lists.removeCustomItem)
+
+router.route('/lists/:listId')
+  .get(lists.publicList)

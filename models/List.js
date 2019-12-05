@@ -6,7 +6,7 @@ const customItemSchema = new mongoose.Schema({
   note: { type: String, required: true },
   url: { type: String },
   //link it to the List id
-  list: { type: mongoose.Schema.ObjectId, ref: 'List', required: true } 
+  list: { type: mongoose.Schema.ObjectId, ref: 'List', required: true }
 })
 
 const listSchema = new mongoose.Schema({
@@ -30,9 +30,17 @@ const listSchema = new mongoose.Schema({
   //ITEMS saved will be an array of ID's fro our items schema as that is where the item deatils are saved
   itemsSaved: { type: Array, default: [] },
   //custom items, not required, but you can have many
-  customItem: [ customItemSchema ],
+  customItem: [customItemSchema],
   //shareable url is a url that will show a readonly view of the giftlist saved items
   shareUrl: { type: String }
+},
+{
+  timestamps: true,
+  toJSON: {
+    transform(doc, json) {
+      return { name: json.firstname }
+    }
+  }
 })
 
 
