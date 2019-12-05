@@ -5,10 +5,11 @@ const { port, dbURI } = require('./config/environment')
 const router = require('./router')
 const cors = require('cors')
 
+
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndexes: true
 }, () => console.log('Mongo is connected'))
 
 const app = express()
