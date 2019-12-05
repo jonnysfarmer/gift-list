@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const { port, dbURI } = require('./config/environment')
 const router = require('./router')
 const cors = require('cors')
+const errorHandler = require('./lib/errorHandler')
 
 
 mongoose.connect(dbURI, {
@@ -15,6 +16,7 @@ mongoose.connect(dbURI, {
 const app = express()
 
 app.use(bodyParser.json())
+
 app.use((req, resp, next) => {
   console.log(`${req.method} to ${req.url}`)
   next()
@@ -25,5 +27,7 @@ app.use(cors())
 //a different port
 
 app.use('/api', router)
+
+app.use(errorHandler)
 
 app.listen(port, () => console.log(`Green light on port ${port}`))
