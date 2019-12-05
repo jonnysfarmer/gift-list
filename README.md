@@ -66,6 +66,7 @@ You must:
 **Additional Libraries**
 
 - Bulma : for foundation css
+- ReactRouter : for links
 
 _add link to jump to installation_
 
@@ -94,6 +95,12 @@ _wireframes, sketches, architecture, etc go here too_
 ----
 
 ## Hurdles Overcome & Problems to Solve
+
+### Creating multiple schemas
+
+_**solved**_
+We designed 4 schemas, of which two had subschemas, we were fairly confident of our schema types. When it came to seeding our data, we tried to generate an output from User, Category, and Item, then use that in our List seeds. We started seeing cannot read property 0 of undefined. We worked through our data movement and realised that Category and Item were not intrinsically linked to List, List just holds some words/numbers to let the frontend find the right category information. We updated our seed data accordingly and it 
+
 
 ----
 

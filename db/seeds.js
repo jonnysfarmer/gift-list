@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { dbURL } = require('../config/environment')
+const { dbURI } = require('../config/environment')
 
 const User = require('../models/User')
 const Category = require('../models/Category')
@@ -11,7 +11,7 @@ const List = require('../models/List')
 //this is a stand alone programme, it is not run out of app.js or connected to it!
 
 //connect mongoose to db 
-mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   //this takes error and db params
   (err, db) => {
     //if it errors trying to connected to db, console log the error
@@ -90,6 +90,8 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
           }
         ])
       })
+
+      
       .then((users, categorys, items) => {
         return List.create([
           { //seed with all fields holding a single value
@@ -101,10 +103,10 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: true,
             budget: '50',
             listStatus: 'Active',
-            subcategory: [categorys[0].subcategory[0]],
-            keywords: '', //not implemented for MVP
-            itemsSaved: [items[0]],
-            customItem: '',
+            subcategory: [ ],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [ ],
+            customItem: [ ],
             shareUrl: '' //null until we implement url structures
           },
           { //seed with only required fields
@@ -116,10 +118,10 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: '',
-            keywords: '', //not implemented for MVP
-            itemsSaved: '',
-            customItem: '',
+            subcategory: [],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [],
+            customItem: [],
             shareUrl: '' //null until we implement url structures
           },
           { //seed with multiple subcategories
@@ -131,10 +133,10 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: [ categorys[1].subcategory[0], categorys[0].subcategory[1] ],
-            keywords: '',
-            itemsSaved: '', 
-            customItem: '',
+            subcategory: [],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [],
+            customItem: [],
             shareUrl: '' //null until we implement url structures
           },
           { //seed with multiple items
@@ -146,10 +148,10 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: '',
-            keywords: '', //not implemented for MVP
-            itemsSaved: [items[0], items[1]],
-            customItem: '',
+            subcategory: [],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [],
+            customItem: [],
             shareUrl: '' //null until we implement url structures
           },
           { //seed with multiple items & subcategories
@@ -161,10 +163,10 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: [ categorys[0].subcategory[0], categorys[1].subcategory[1] ],
-            keywords: '', //not implemented for MVP
-            itemsSaved: [items[0], items[1]],
-            customItem: '',
+            subcategory: [],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [],
+            customItem: [],
             shareUrl: '' //null until we implement url structures
           },
           { //seed with custom item
@@ -176,10 +178,10 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: [ categorys[0].subcategory[0], categorys[0].subcategory[1] ],
-            keywords: '', //not implemented for MVP
-            itemsSaved: [items[0], items[1]],
-            customItem: [{ name: 'Custom item one', url: '' }],
+            subcategory: [],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [],
+            customItem: [],
             shareUrl: '' //null until we implement url structures
           }
         ])
