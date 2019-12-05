@@ -87,12 +87,19 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             src: 'www.largemugs.com',
             listingId: '1234556444',
             imgsrc: 'www.largemugs.com/pics'
+          },
+          {
+            productName: 'novalty Pen',
+            price: '1.99',
+            currenctCode: 'GBP',
+            description: 'One large Pen for pen people',
+            src: 'www.largepens.com',
+            listingId: '1234556434',
+            imgsrc: 'www.largepens.com/pics'
           }
         ])
       })
-
-      
-      .then((users, categorys, items) => {
+      .then((users) => {
         return List.create([
           { //seed with all fields holding a single value
             user: users[0],
@@ -103,87 +110,58 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             eventReminder: true,
             budget: '50',
             listStatus: 'Active',
-            subcategory: [ ],
+            subcategory: [ 'art/sculpture', 'accessories' ],
             keywords: [], //not implemented for MVP
-            itemsSaved: [ ],
+            itemsSaved: [ '1234556','1234556444'],
             customItem: [ ],
             shareUrl: '' //null until we implement url structures
           },
-          { //seed with only required fields
+          { //seed with all fields holding a single value
             user: users[0],
-            listName: 'Only required fields',
-            giftRecipient: 'Me',
-            eventName: '',
-            eventDate: '',
-            eventReminder: false,
-            budget: 0,
+            listName: 'Billy!',
+            giftRecipient: 'Bill',
+            eventName: 'Birthday',
+            eventDate: '2020-01-09',
+            eventReminder: true,
+            budget: '10',
             listStatus: 'Active',
-            subcategory: [],
+            subcategory: [ 'accessories/men' ],
             keywords: [], //not implemented for MVP
-            itemsSaved: [],
+            itemsSaved: [ ],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           },
-          { //seed with multiple subcategories
-            user: users[0],
-            listName: 'Subcategories have multiple values',
-            giftRecipient: 'Me',
-            eventName: '',
-            eventDate: '',
-            eventReminder: false,
-            budget: 0,
+          { //seed with all fields holding a single value
+            user: users[1],
+            listName: 'Other User List',
+            giftRecipient: 'BAM',
+            eventName: 'BAM XMAS',
+            eventDate: '2020-12-25',
+            eventReminder: true,
+            budget: '25',
             listStatus: 'Active',
-            subcategory: [],
+            subcategory: [ 'art/painting' ],
             keywords: [], //not implemented for MVP
-            itemsSaved: [],
+            itemsSaved: [ '1234556434' ],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           },
-          { //seed with multiple items
-            user: users[0],
-            listName: 'Items have multiple values',
-            giftRecipient: 'Me',
-            eventName: '',
-            eventDate: '',
-            eventReminder: false,
-            budget: 0,
+          { //seed with all fields holding a single value
+            user: users[1],
+            listName: 'All fields have single value',
+            giftRecipient: 'Timmy',
+            eventName: 'Timmy Birthday',
+            eventDate: '2020-01-07',
+            eventReminder: true,
+            budget: '50',
             listStatus: 'Active',
-            subcategory: [],
+            subcategory: [ 'accessories/men', 'art/painting'],
             keywords: [], //not implemented for MVP
-            itemsSaved: [],
-            customItem: [],
-            shareUrl: '' //null until we implement url structures
-          },
-          { //seed with multiple items & subcategories
-            user: users[0],
-            listName: 'Items have multiple values',
-            giftRecipient: 'Me',
-            eventName: '',
-            eventDate: '',
-            eventReminder: false,
-            budget: 0,
-            listStatus: 'Active',
-            subcategory: [],
-            keywords: [], //not implemented for MVP
-            itemsSaved: [],
-            customItem: [],
-            shareUrl: '' //null until we implement url structures
-          },
-          { //seed with custom item
-            user: users[0],
-            listName: 'Items have multiple values',
-            giftRecipient: 'Me',
-            eventName: '',
-            eventDate: '',
-            eventReminder: false,
-            budget: 0,
-            listStatus: 'Active',
-            subcategory: [],
-            keywords: [], //not implemented for MVP
-            itemsSaved: [],
+            itemsSaved: [ '1234556434', '1234556444' ],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           }
+
         ])
       })
       .catch(err => console.log(err))
