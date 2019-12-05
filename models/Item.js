@@ -1,15 +1,9 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
-const itemSchema = new mongoose.Schema({
-  items: [ productSchema ]  
-},
-{
-  timestamps: true
-})
-// items is an array of onjects
 
-const productSchema = new mongoose.Schema({
+
+const itemSchema = new mongoose.Schema({
 
   productName: { type: String, required: true },
   price: { type: String, required: true },
