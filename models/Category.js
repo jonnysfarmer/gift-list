@@ -8,6 +8,7 @@ const categorySchema = new mongoose.Schema({
 
 module.exports = mongoose.model('Category', categorySchema)
 
+
 const subcategorySchema = new mongoose.Schema({
   subcategoryName: { type: String, required: true },
   etsysubcategoryName: { type: String, required: true },

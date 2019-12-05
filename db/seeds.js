@@ -39,7 +39,32 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
       .then(() => {
         return Category.create([
           {
-            //THINGS GO HERE
+            categoryName: 'Accessories',
+            etsyCategoryName: 'accessories',
+            subcategory: [
+              {
+                subcategoryName: 'Gloves',
+                etsysubcategoryName: 'accessories/gloves'
+              },
+              {
+                subcategoryName: 'Men',
+                etsysubcategoryName: 'accessories/men'
+              }
+            ]
+          },
+          {
+            categoryName: 'Art',
+            etsyCategoryName: 'art',
+            subcategory: [
+              {
+                subcategoryName: 'Sculpture',
+                etsysubcategoryName: 'art/sculpture'
+              },
+              {
+                subcategoryName: 'Painting',
+                etsysubcategoryName: 'art/painting'
+              }
+            ]
           }
         ])
       })
@@ -65,7 +90,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
           }
         ])
       })
-      .then((users, subcategories, items) => {
+      .then((users, categorys, items) => {
         return List.create([
           { //seed with all fields holding a single value
             user: users[0],
@@ -76,7 +101,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: true,
             budget: '50',
             listStatus: 'Active',
-            subcategory: [subcategories[0]],
+            subcategory: [categorys[0].subcategory[0]],
             keywords: '', //not implemented for MVP
             itemsSaved: [items[0]],
             customItem: '',
@@ -106,7 +131,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: [subcategories[0], subcategories[1]],
+            subcategory: [ categorys[1].subcategory[0], categorys[0].subcategory[1] ],
             keywords: '',
             itemsSaved: '', 
             customItem: '',
@@ -136,7 +161,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: [subcategories[0], subcategories[1]],
+            subcategory: [ categorys[0].subcategory[0], categorys[1].subcategory[1] ],
             keywords: '', //not implemented for MVP
             itemsSaved: [items[0], items[1]],
             customItem: '',
@@ -151,7 +176,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
             eventReminder: false,
             budget: 0,
             listStatus: 'Active',
-            subcategory: [subcategories[0], subcategories[1]],
+            subcategory: [ categorys[0].subcategory[0], categorys[0].subcategory[1] ],
             keywords: '', //not implemented for MVP
             itemsSaved: [items[0], items[1]],
             customItem: [{ name: 'Custom item one', url: '' }],
@@ -159,4 +184,6 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true },
           }
         ])
       })
+      .catch(err => console.log(err))
+      .finally(() => mongoose.connection.close())
   })
