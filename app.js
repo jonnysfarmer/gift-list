@@ -16,14 +16,15 @@ mongoose.connect(dbURI, {
 const app = express()
 
 app.use(bodyParser.json())
+
 app.use((req, resp, next) => {
   console.log(`${req.method} to ${req.url}`)
   next()
 })
 
-// app.use(cors())
-// //this basically allows us to access it from the front end locally even thoughts its on 
-// //a different port
+app.use(cors())
+//this basically allows us to access it from the front end locally even thoughts its on 
+//a different port
 
 app.use('/api', router)
 

@@ -20,19 +20,19 @@ router.route('/lists')
 
 router.route('/lists/:userId')
   .get(lists.userAll) // works
-  .post(lists.create)
+  .post(lists.create) // works - had to change List Schema that user wasnt required
 
 router.route('/lists/:userId/:listId')
   .get(lists.oneList) // works
-  .put(lists.editList)
+  .put(lists.editList) // works.  Added extra sub category
 
 router.route('/lists/:userId/:listId/customItems')
-  .get(lists.allCustomItems)
-  .post(lists.addItem)
+  .get(lists.allCustomItems) // works.  Doesnt auto addID
+  .post(lists.addItem) //postd 2, all works well.  
 
 router.route('/lists/:userId/:listId/customItems/:itemId')
-  .put(lists.editCustomItems)
-  .delete(lists.removeCustomItem)
+  .put(lists.editCustomItems) // works
+  .delete(lists.removeCustomItem) // works
 
 router.route('/lists/public/:listId')
   .get(lists.publicList) // works

@@ -6,12 +6,12 @@ const customItemSchema = new mongoose.Schema({
   note: { type: String, required: true },
   url: { type: String },
   //link it to the List id
-  list: { type: mongoose.Schema.ObjectId, ref: 'List', required: true }
+  list: { type: mongoose.Schema.ObjectId, ref: 'List' }
 })
 
 const listSchema = new mongoose.Schema({
   //userId connects us to the USER schema
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   listName: { type: String, required: true },
   //this must be 'me' or anyone else you enter
   giftRecipient: { type: String, required: true },
