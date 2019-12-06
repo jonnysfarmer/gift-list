@@ -34,6 +34,7 @@ function oneList(req, res) {
 }
 //Have temp taken off user varification for Dev purposes
 function editList(req, res) {
+  console.log('editlist', req.body)
   List.findById(req.params.listId)
     .then(list => {
       if (!list) return res.status(404).json({ message: '404 Not found' })
