@@ -6,6 +6,8 @@ const Category = require('../models/Category')
 const Item = require('../models/Item')
 const List = require('../models/List')
 
+const getEtsyCategories = require('../db/categoryseed')
+
 //test data set to pump into your database for dev purposes
 //it will delete anything that is currently in your database
 //this is a stand alone programme, it is not run out of app.js or connected to it!
@@ -36,37 +38,15 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           }
         ])
       })
+      // etsy categories and subcategories get returned from the promise below
       .then(() => {
-        return Category.create([
-          {
-            categoryName: 'Accessories',
-            etsyCategoryName: 'accessories',
-            subcategory: [
-              {
-                subcategoryName: 'Gloves',
-                etsysubcategoryName: 'accessories/gloves'
-              },
-              {
-                subcategoryName: 'Men',
-                etsysubcategoryName: 'accessories/men'
-              }
-            ]
-          },
-          {
-            categoryName: 'Art',
-            etsyCategoryName: 'art',
-            subcategory: [
-              {
-                subcategoryName: 'Sculpture',
-                etsysubcategoryName: 'art/sculpture'
-              },
-              {
-                subcategoryName: 'Painting',
-                etsysubcategoryName: 'art/painting'
-              }
-            ]
-          }
-        ])
+        return getEtsyCategories()
+      })
+      .then(categoryResp => {
+        // console.log(categoryResp)
+        return Category.create(
+          categoryResp
+        )
       })
       .then(() => {
         return Item.create([
@@ -101,7 +81,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
       })
       .then((users) => {
         return List.create([
-          { 
+          {
             user: users[0],
             listName: 'All fields have single value',
             giftRecipient: 'Bob',
@@ -110,11 +90,11 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             eventReminder: true,
             budget: '50',
             listStatus: 'Active',
-            subcategory: [ 'art/sculpture', 'accessories' ],
+            subcategory: ['art/sculpture', 'accessories'],
             keywords: [],
-            itemsSaved: [ '1234556','1234556444'],
-            customItem: [ ],
-            shareUrl: '' 
+            itemsSaved: ['1234556', '1234556444'],
+            customItem: [],
+            shareUrl: ''
           },
           { //seed with all fields holding a single value
             user: users[0],
@@ -125,9 +105,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             eventReminder: true,
             budget: '10',
             listStatus: 'Active',
-            subcategory: [ 'accessories/men' ],
+            subcategory: ['accessories/men'],
             keywords: [], //not implemented for MVP
-            itemsSaved: [ ],
+            itemsSaved: [],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           },
@@ -140,9 +120,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             eventReminder: true,
             budget: '25',
             listStatus: 'Active',
-            subcategory: [ 'art/painting' ],
+            subcategory: ['art/painting'],
             keywords: [], //not implemented for MVP
-            itemsSaved: [ '1234556434' ],
+            itemsSaved: ['1234556434'],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           },
@@ -155,9 +135,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             eventReminder: true,
             budget: '50',
             listStatus: 'Active',
-            subcategory: [ 'accessories/men', 'art/painting'],
+            subcategory: ['accessories/men', 'art/painting'],
             keywords: [], //not implemented for MVP
-            itemsSaved: [ '1234556434', '1234556444' ],
+            itemsSaved: ['1234556434', '1234556444'],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           }
