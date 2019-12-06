@@ -21,7 +21,11 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 //CHECK IF ITEM IN OUR DB
 function add(req, res) {
-  // console.log(`${req.body.src}-${req.body.id}`)
+  //If we are missing user._id, list._id, id (for item), store (always Etsy atm) then we need to return an error for missing data
+  if (!req.body.src || !req.body.id || !req.body.user_id || !req.body.list_id) {
+    return res.send({ status: 400, message: 'missing data, check you are sending src, id, user_id, list_id' })
+  }
+
   const listingId = `${req.body.src}-${req.body.id}`
   //call our item database to see if this listingId already exists
   axios.get(`/items/${listingId}`)
@@ -36,18 +40,18 @@ function add(req, res) {
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
     .catch(err => {
       //if it doesn't exist, then we get the full product details from the store
-      getEtsyListing(req.body.id, 'fromCreateItem')
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
+        .then(getEtsyListing(req.body.id, 'fromCreateItem'))
         .then(res.send({ status: 200, message: 'item saved', listingId: listingId }))
         .catch(err => console.log('put to list error', err))
     })
 }
 
 //Once we have details from Etsy, post it to our item database :: need to pass userid and listid to this somehow
-function addItem(body) {
+function addItem(body, res) {
   Item
     .create(body)
-    .then(console.log('created'))
+    
 }
 
 //somehow tell user this is done *thinking*

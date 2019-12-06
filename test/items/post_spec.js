@@ -3,6 +3,8 @@ const Item = require('../../models/Item')
 const List = require('../../models/List')
 const User = require('../../models/User')
 
+
+
 describe('POST /items/', () => {
 
   beforeEach(done => {
@@ -52,7 +54,7 @@ describe('POST /items/', () => {
   })
 
   it('should return a 200 response', done => {
-    api.post('/api/:userId/:listId/etsy')
+    api.post(`/api/${User._id}/${List._id}/etsy`)
       .end((err, res) => {
         expect(res.status).to.eq(200)
         done()
