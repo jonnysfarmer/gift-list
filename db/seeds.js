@@ -73,35 +73,35 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           {
             productName: 'Rubber Chicken',
             price: '2.99',
-            currenctCode: 'GBP',
+            currencyCode: 'GBP',
             description: 'One large rubber chicken',
             src: 'www.rubberchicken.com',
-            listingId: '1234556',
+            listingId: 'etsy-1234556',
             imgsrc: 'wwww.rubberchicken.com/pics'
           },
           {
             productName: 'novalty mug',
             price: '3.99',
-            currenctCode: 'GBP',
+            currencyCode: 'GBP',
             description: 'One large MUG for muggy people',
             src: 'www.largemugs.com',
-            listingId: '1234556444',
+            listingId: 'etsy-1234556444',
             imgsrc: 'www.largemugs.com/pics'
           },
           {
             productName: 'novalty Pen',
             price: '1.99',
-            currenctCode: 'GBP',
+            currencyCode: 'GBP',
             description: 'One large Pen for pen people',
             src: 'www.largepens.com',
-            listingId: '1234556434',
+            listingId: 'etsy-1234556434',
             imgsrc: 'www.largepens.com/pics'
           }
         ])
       })
       .then((users) => {
         return List.create([
-          { //seed with all fields holding a single value
+          { 
             user: users[0],
             listName: 'All fields have single value',
             giftRecipient: 'Bob',
@@ -111,10 +111,10 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             budget: '50',
             listStatus: 'Active',
             subcategory: [ 'art/sculpture', 'accessories' ],
-            keywords: [], //not implemented for MVP
+            keywords: [],
             itemsSaved: [ '1234556','1234556444'],
             customItem: [ ],
-            shareUrl: '' //null until we implement url structures
+            shareUrl: '' 
           },
           { //seed with all fields holding a single value
             user: users[0],
