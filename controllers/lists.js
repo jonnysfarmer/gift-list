@@ -45,6 +45,20 @@ function editList(req, res) {
     .catch(err => res.status(400).json({ message: err }))
 }
 
+function addEtsyItem(req,res){
+  req.body.user = req.currentUser
+  List.findById(req.params.listId)
+    .then(list => {
+      if (!list) return res.status(404).json({ message: 'Not Found' })
+      list.itemsSaved.push(req.body.item)
+      return list.save()
+    })
+    .then(list => res.status(201).json(list))
+    .catch(err => res.status(404).json({ message: err }))
+}
+
+
+
 function publicList(req, res) {
   List.findById(req.params.listId)
     .then(list => {
@@ -120,7 +134,9 @@ module.exports = {
   addItem,
   allCustomItems,
   editCustomItems,
-  removeCustomItem
+  removeCustomItem,
+  addEtsyItem
+
 
 }
 
