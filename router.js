@@ -40,6 +40,9 @@ router.route('/lists/:userId/:listId')
   .get(lists.oneList) // Shows the specific list via List ID / User ID
   .put(lists.editList) // Allows you to edit specific List
 
+router.route('/lists/:userId/:listId/etsy')
+  .put(lists.addEtsyItem)
+
 router.route('/lists/:userId/:listId/customItems')
   .get(lists.allCustomItems) // Allows you to get all custom added itesm from the speicific list
   .post(lists.addItem) //allows you to add custom items to a speific list
