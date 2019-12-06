@@ -47,6 +47,7 @@ function editList(req, res) {
 }
 
 function addEtsyItem(req,res){
+  console.log(req.body)
   req.body.user = req.currentUser
   List.findById(req.params.listId)
     .then(list => {

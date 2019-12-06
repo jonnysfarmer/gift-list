@@ -20,20 +20,19 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 //CHECK IF ITEM IN OUR DB
 function add(req, res) {
-  //create the listingId
+  console.log(`${req.body.src}-${req.body.id}`)
   const listingId = `${req.body.src}-${req.body.id}`
   //call our item database to see if this listingId already exists
   axios.get(`/items/${listingId}`)
     .then(() => {
       //getting a non error response means it's already in the database, so we don't need to add it again
-      // console.log('item already in database', listingId)
+      console.log('item already in database', listingId)
       //here is where we make a PUT to the listId for this user, passing it the listingId to save
-      axios.put(`/lists/${req.body.user_id}/${req.body.list_id}`, { itemsSaved: listingId })
-        .then(() => ({ message: 'item saved' }))//this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
+      axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
+        .then(res => console.log(res.status, res.statusText, listingId)) //this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
         .catch(err => console.log('itemExists err', err))
     })
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
-    .then(res => res.status(201).json({ message: 'success' }))
     .catch(err => {
       //if it doesn't exist, then we get the full product details from the store
       getItemFromSrc(req.body)
@@ -41,9 +40,11 @@ function add(req, res) {
 }
 
 
+
+
 //If the item is not in our database, get the item details from Etsy
 function getItemFromSrc(body) {
-  // console.log('getfromsrc', body.id)
+  console.log('getfromsrc', body.id)
   //the getEtsyListing is used by all routes that need listing data, hence why we call a seperate function for it
   //the getEtsyListing function knows what to do next based on the second param we give it (eg 'fromCreateItem' tells it to then run addItem)
   getEtsyListing(body.id, 'fromCreateItem')
@@ -56,6 +57,8 @@ function addItem(body) {
   Item
     .create(body)
     .then(console.log('created'))
+    // .then(item => res.status(201).json(item))
+    // .catch(err => res.status(400).json({ message: err }))
 }
 
 //somehow tell user this is done *thinking*
@@ -73,7 +76,7 @@ function getEtsyListing(id, reqFrom) {
   //create our result variable so we can send this data back
   const results = []
   //get the data we need from Etsy
-  axios.get(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
+  axios.get(`${etsyURL}listings/${id}/?region=GB&api_key=${APIKey}`)
     .then(res => {
       console.log(res.data.results[0].title)
       results.push({

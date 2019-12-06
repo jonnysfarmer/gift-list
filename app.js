@@ -8,11 +8,11 @@ const axios = require('axios')
 const categories = require('./controllers/categories')
 const errorHandler = require('./lib/errorHandler')
 
-categories.then((res)=>{
-  const categories = res
-  console.log(categories)
-  // console.log('Categories :', res)
-})
+// categories.then((res)=>{
+//   const categories = res
+//   console.log(categories)
+//   // console.log('Categories :', res)
+// })
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
