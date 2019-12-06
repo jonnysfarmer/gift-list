@@ -73,7 +73,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           {
             productName: 'Rubber Chicken',
             price: '2.99',
-            currenctCode: 'GBP',
+            currencyCode: 'GBP',
             description: 'One large rubber chicken',
             src: 'www.rubberchicken.com',
             listingId: 'etsy-1234556',
@@ -82,7 +82,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           {
             productName: 'novalty mug',
             price: '3.99',
-            currenctCode: 'GBP',
+            currencyCode: 'GBP',
             description: 'One large MUG for muggy people',
             src: 'www.largemugs.com',
             listingId: 'etsy-1234556444',
@@ -91,7 +91,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           {
             productName: 'novalty Pen',
             price: '1.99',
-            currenctCode: 'GBP',
+            currencyCode: 'GBP',
             description: 'One large Pen for pen people',
             src: 'www.largepens.com',
             listingId: 'etsy-1234556434',
