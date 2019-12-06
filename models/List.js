@@ -6,12 +6,12 @@ const customItemSchema = new mongoose.Schema({
   note: { type: String },
   url: { type: String },
   //link it to the List id
-  list: { type: mongoose.Schema.ObjectId, ref: 'List', required: true } 
+  list: { type: mongoose.Schema.ObjectId, ref: 'List' }
 })
 
 const listSchema = new mongoose.Schema({
   //userId connects us to the USER schema
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   listName: { type: String, required: true },
   //this must be 'me' or anyone else you enter
   giftRecipient: { type: String, required: true },
@@ -30,10 +30,13 @@ const listSchema = new mongoose.Schema({
   //ITEMS saved will be an array of ID's fro our items schema as that is where the item deatils are saved
   itemsSaved: { type: Array, default: [] },
   //custom items, not required, but you can have many
-  customItem: [ customItemSchema ],
+  customItem: [customItemSchema],
   //shareable url is a url that will show a readonly view of the giftlist saved items
   shareUrl: { type: String }
+},
+{
+  timestamps: true
 })
 
 
-module.exports = mongoose.model('Lists', listSchema)
+module.exports = mongoose.model('List', listSchema)

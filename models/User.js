@@ -9,12 +9,12 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 }, {
-  timestamps: true,
-  toJSON: {
-    transform(doc, json) {
-      return { name: json.firstname }
-    }
-  }
+  timestamps: true
+  // toJSON: {
+  //   transform(doc, json) {
+  //     return { name: json.firstname }
+  //   }
+  // }
 })
 // returns first name  as the result.  Unique field is email
 
