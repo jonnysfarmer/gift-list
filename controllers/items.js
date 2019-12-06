@@ -1,4 +1,5 @@
 const Item = require('../models/Item')
+const { APIKey } = require('../config/environment')
 // const { getEtsyListing } = require('./stores') :: aim to extract this out but the call to addItem from stores isn't working
 const axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8000/api'
@@ -63,7 +64,7 @@ function addItem(body, res) {
 //the id here being that stores product/listing id for the item we want
 function getEtsyListing(id, reqFrom, req, res) {
 
-  const APIKey = '0b6tytx6ibc1jzi7gd790l0a' //needs to be moved to environments, think Georg is on that
+  
   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
 
   //create our result variable so we can send this data back
