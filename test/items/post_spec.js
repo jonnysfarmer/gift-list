@@ -3,7 +3,7 @@ const Item = require('../../models/Item')
 const List = require('../../models/List')
 const User = require('../../models/User')
 
-describe('POST /items', () => {
+describe('POST /items/', () => {
 
   beforeEach(done => {
     User.create({

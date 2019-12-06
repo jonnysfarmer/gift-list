@@ -103,20 +103,20 @@ We designed 4 schemas, of which two had subschemas, we were fairly confident of 
 
 ### Saving an item to a list in the backend
 
+_**solved**_
 We wanted to store a copy of any item a user saved to our database so we could track them, and so we could serve them up to users more easily. The challenge here was that when a user clicked 'save' and the client made the POST API call, we needed to 
 1. check if that item was already in our database 
   - we do a `GET` request to our `item database` for a single item by its `listingId`. 
-2. if we get a 'success' then we know it exists and we then `POST` the `listingId` to that users `listId` to be stored against the user
+2. if we get a 'success' then we know it exists and we then `PUT` the `listingId` to that users `listId` to be stored against the user
 3. if we get an 'error' then we know it does not yet exist and
   - we make a call to Etsy with the `id` asking for the item data we need (this function is a generic function we use to get any Etsy item)
-  - if we get a sucess, then we `POST` the item to our `item database` & we `POST` the `listingId` to that users `listId`
+  - if we get a sucess, then we `POST` the item to our `item database` & we `PUT` the `listingId` to that users `listId`
   - if we get a fail, then we send an error back to the client and ask them to try again
 
-Some of these items are not yet working:
+Once the basis of that worked, the next challenge was to create success and error messages. After some investigation determined where to add success responses, and while creating tests determined how to handle errors to client.
 
-- POST to listId
-- GET from Etsy
-- POST details from Etsy to ITEM (though we can post made up data)
+It utilises multiple API calls both within our backend and out to the Etsy API.
+
 
 ----
 
