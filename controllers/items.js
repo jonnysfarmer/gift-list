@@ -3,6 +3,8 @@ const Item = require('../models/Item')
 const axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8000/api'
 
+
+//===== CLIENT POSTS AN ITEM TO SAVE =====
 /*These functions work as follows
 
 1. user clicks 'save an item' & client sends post request
@@ -25,7 +27,7 @@ function add(req, res) {
       //getting a non error response means it's already in the database, so we don't need to add it again
       console.log('item already in database', listingId)
       //here is where we make a PUT to the listId for this user, passing it the listingId to save
-      axios.put(`/lists/${req.body.user_id}/${req.body.list_id}`)
+      axios.put(`/lists/${req.body.user_id}/${req.body.list_id}`, { itemsSaved: listingId })
         .then(res => console.log(res.status, res.statusText, listingId)) //this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
         .catch(err => console.log('itemExists err', err))
     })
@@ -33,7 +35,6 @@ function add(req, res) {
     .catch(err => {
       getItemFromSrc(req.body)
     })
-
 }
 
 
@@ -50,6 +51,7 @@ function getItemFromSrc(body) {
 //Once we have details from Etsy, post it to our item database
 function addItem(body) {
   console.log('add item', body)
+  
   Item
     .create(body)
     .then(console.log('created'))
@@ -67,8 +69,7 @@ function getEtsyListing(id, reqFrom) {
   const APIKey = '0b6tytx6ibc1jzi7gd790l0a' //needs to be moved to environments, think Georg is on that
   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
 
-
-  console.log(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
+  // console.log(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
   const results = []
 
 
@@ -81,16 +82,22 @@ function getEtsyListing(id, reqFrom) {
         currencyCode: res.data.results[0].currency_code,
         description: res.data.results[0].description,
         src: 'etsy',
-        listingId: res.data.results[0].listing_id,
+        listingId: 'etsy-' + res.data.results[0].listing_id,
         imgsrc: 'temp',
         subcategories: res.data.results[0].category_path
       })
-      // console.log(results)
-      if (reqFrom === 'fromCreateItem') { 
-        addItem(results) 
-      } else { 
-        console.log('notfromitems', results) 
-      }
+      console.log(results)
+      //get the image url and add that to our results object
+      axios.get(`${etsyURL}/listings/${id}/images?region=GB&api_key=${APIKey}`)
+        .then(res => {
+          results.imgsrc = res.data.results[0].url_570xN
+          //check where request came from and take appropriate next action
+          if (reqFrom === 'fromCreateItem') {
+            addItem(results)
+          } else {
+            console.log('notfromitems', results)
+          }
+        })
     })
     .catch(err => console.log(err))
 
@@ -134,6 +141,6 @@ function show(req, res) {
 module.exports = {
   add,
   index,
-  show, 
+  show,
   addItem
 }
