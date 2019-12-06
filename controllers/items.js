@@ -91,7 +91,11 @@ function getEtsyListing(id, reqFrom, req, res) {
             console.log('not from items, not sure if we can handle respondong here if req from elsewhere')
           }
         })
+<<<<<<< HEAD
+        .catch(err => console.log(err))
+=======
         .catch(err => console.log('getimage', err))
+>>>>>>> development
     })
     .catch(err => console.log('get etsy item', err))
 

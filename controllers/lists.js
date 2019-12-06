@@ -142,10 +142,3 @@ module.exports = {
 
 }
 
-
-
-
-// router.route('/lists/:userId/:listId/customItems')
-//   .put(lists.editCustomItems)
-//   .delete(lists.removeCustomItem)
-

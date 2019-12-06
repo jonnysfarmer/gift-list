@@ -16,7 +16,11 @@
 //     category_name: 'accessories',
 //     short_name: 'Accessories',
 //     long_name: 'Accessories',
+<<<<<<< HEAD
+//     num_children: 27,
+=======
 //     // num_children: 27,
+>>>>>>> development
 //     subCategories: [
 //       'gloves', 'mittens',
 //       'cuff', 'wallet',

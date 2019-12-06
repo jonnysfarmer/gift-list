@@ -41,7 +41,7 @@ router.route('/lists/:userId/:listId')
   .put(lists.editList) // Allows you to edit specific List
 
 router.route('/lists/:userId/:listId/etsy')
-  .put(lists.addEtsyItem)
+  .put(lists.addEtsyItem) //add specific item using { item: itemid} to our saved etsy list
 
 router.route('/lists/:userId/:listId/customItems')
   .get(lists.allCustomItems) // Allows you to get all custom added itesm from the speicific list
