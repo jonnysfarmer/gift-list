@@ -34,6 +34,7 @@ function oneList(req, res) {
 }
 //Have temp taken off user varification for Dev purposes
 function editList(req, res) {
+  console.log('editlist', req.body)
   List.findById(req.params.listId)
     .then(list => {
       if (!list) return res.status(404).json({ message: '404 Not found' })
@@ -44,6 +45,21 @@ function editList(req, res) {
     .then(list => res.status(202).json(list))
     .catch(err => res.status(400).json({ message: err }))
 }
+
+function addEtsyItem(req,res){
+  console.log(req.body)
+  req.body.user = req.currentUser
+  List.findById(req.params.listId)
+    .then(list => {
+      if (!list) return res.status(404).json({ message: 'Not Found' })
+      list.itemsSaved.push(req.body.item)
+      return list.save()
+    })
+    .then(list => res.status(201).json(list))
+    .catch(err => res.status(404).json({ message: err }))
+}
+
+
 
 function publicList(req, res) {
   List.findById(req.params.listId)
@@ -120,14 +136,9 @@ module.exports = {
   addItem,
   allCustomItems,
   editCustomItems,
-  removeCustomItem
+  removeCustomItem,
+  addEtsyItem
+
 
 }
-
-
-
-
-// router.route('/lists/:userId/:listId/customItems')
-//   .put(lists.editCustomItems)
-//   .delete(lists.removeCustomItem)
 

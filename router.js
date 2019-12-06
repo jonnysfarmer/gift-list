@@ -2,7 +2,7 @@ const router = require('express').Router() //just the routing/handling of routes
 const users = require('./controllers/users')
 const lists = require('./controllers/lists')
 const items = require('./controllers/items')
-const secureRoute = require('./lib/secureRoute')
+// const secureRoute = require('./lib/secureRoute')
 
 
 //ITEMS
@@ -39,6 +39,9 @@ router.route('/lists/:userId')
 router.route('/lists/:userId/:listId')
   .get(lists.oneList) // Shows the specific list via List ID / User ID
   .put(lists.editList) // Allows you to edit specific List
+
+router.route('/lists/:userId/:listId/etsy')
+  .put(lists.addEtsyItem) //add specific item using { item: itemid} to our saved etsy list
 
 router.route('/lists/:userId/:listId/customItems')
   .get(lists.allCustomItems) // Allows you to get all custom added itesm from the speicific list
