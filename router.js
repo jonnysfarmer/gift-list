@@ -29,26 +29,26 @@ router.route('/login')
 //-----LIST routs
 
 router.route('/lists')
-  .get(lists.index) // works
+  .get(lists.index) // gives an index for all Lists - for Development
 
 router.route('/lists/:userId')
-  .get(lists.userAll) // works
-  .post(lists.create) // works - had to change List Schema that user wasnt required
+  .get(lists.userAll) // Returns all the users lists
+  .post(lists.create) // Creates a New List
 
 router.route('/lists/:userId/:listId')
-  .get(lists.oneList) // works
-  .put(lists.editList) // works.  Added extra sub category
+  .get(lists.oneList) // Shows the specific list via List ID / User ID
+  .put(lists.editList) // Allows you to edit specific List
 
 router.route('/lists/:userId/:listId/customItems')
-  .get(lists.allCustomItems) // works.  Doesnt auto addID
-  .post(lists.addItem) //postd 2, all works well.  
+  .get(lists.allCustomItems) // Allows you to get all custom added itesm from the speicific list
+  .post(lists.addItem) //allows you to add custom items to a speific list
 
 router.route('/lists/:userId/:listId/customItems/:itemId')
-  .put(lists.editCustomItems) // works
-  .delete(lists.removeCustomItem) // works
+  .put(lists.editCustomItems) // allows you to edit custom items from a speicific list
+  .delete(lists.removeCustomItem) // Allows you to remove custom item from specific list
 
 router.route('/lists/public/:listId')
-  .get(lists.publicList) // works
+  .get(lists.publicList) // Shows speicifc list, for Public sharing
 
 
 module.exports = router
