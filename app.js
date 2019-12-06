@@ -4,8 +4,8 @@ const bodyParser = require('body-parser')
 const { port, dbURI } = require('./config/environment')
 const router = require('./router')
 const cors = require('cors')
-const axios = require('axios')
-const categories = require('./controllers/categories')
+// const axios = require('axios')
+// const categories = require('./controllers/categories')
 const errorHandler = require('./lib/errorHandler')
 
 // categories.then((res)=>{

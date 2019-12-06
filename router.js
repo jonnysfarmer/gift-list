@@ -2,7 +2,7 @@ const router = require('express').Router() //just the routing/handling of routes
 const users = require('./controllers/users')
 const lists = require('./controllers/lists')
 const items = require('./controllers/items')
-const secureRoute = require('./lib/secureRoute')
+// const secureRoute = require('./lib/secureRoute')
 
 
 //ITEMS
