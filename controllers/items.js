@@ -9,8 +9,8 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 1. user clicks 'save an item' & client sends post request
 2. function add(req,res) is triggered
-  2b. this uses axios ctoan make a GET call to our item database to see if the listingId exists already
-3. if axiosGET receives a successful response, then it runs the success scenario - itemExists function
+  2b. this uses axios to make a GET call to our item database to see if the listingId exists already
+3. if axiosGET receives a successful response, then it runs the success scenario - PUT to add the listingId to itemsSave for that list on our list db
 4. if axiosGET receives an error response, then it runs the getItemFromEtsy(id) function
   4b. then it runs the POST scenario - addItem function
 */
@@ -18,21 +18,24 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 //client needs to pass us the userId, listId, the store, and the itemId - which should all be available already for them
 
 
-//Check our item db to see if item is already in there
+//CHECK IF ITEM IN OUR DB
 function add(req, res) {
-  console.log(`${req.body.src}-${req.body.id}`)
+  //create the listingId
   const listingId = `${req.body.src}-${req.body.id}`
+  //call our item database to see if this listingId already exists
   axios.get(`/items/${listingId}`)
     .then(() => {
       //getting a non error response means it's already in the database, so we don't need to add it again
-      console.log('item already in database', listingId)
+      // console.log('item already in database', listingId)
       //here is where we make a PUT to the listId for this user, passing it the listingId to save
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}`, { itemsSaved: listingId })
-        .then(res => console.log(res.status, res.statusText, listingId)) //this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
+        .then(() => ({ message: 'item saved' }))//this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
         .catch(err => console.log('itemExists err', err))
     })
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
+    .then(res => res.status(201).json({ message: 'success' }))
     .catch(err => {
+      //if it doesn't exist, then we get the full product details from the store
       getItemFromSrc(req.body)
     })
 }
@@ -40,18 +43,16 @@ function add(req, res) {
 
 //If the item is not in our database, get the item details from Etsy
 function getItemFromSrc(body) {
-  console.log('getfromsrc', body.id)
+  // console.log('getfromsrc', body.id)
+  //the getEtsyListing is used by all routes that need listing data, hence why we call a seperate function for it
+  //the getEtsyListing function knows what to do next based on the second param we give it (eg 'fromCreateItem' tells it to then run addItem)
   getEtsyListing(body.id, 'fromCreateItem')
-  // addItem(body)
-  //this function should actually be whatever our generic get item from etsy function is, with a callback in it to say 'if post true, then call addItem')
 }
-
 
 
 //Once we have details from Etsy, post it to our item database
 function addItem(body) {
-  console.log('add item', body)
-  
+  // console.log('add item', body)
   Item
     .create(body)
     .then(console.log('created'))
@@ -69,10 +70,9 @@ function getEtsyListing(id, reqFrom) {
   const APIKey = '0b6tytx6ibc1jzi7gd790l0a' //needs to be moved to environments, think Georg is on that
   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
 
-  // console.log(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
+  //create our result variable so we can send this data back
   const results = []
-
-
+  //get the data we need from Etsy
   axios.get(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
     .then(res => {
       console.log(res.data.results[0].title)
@@ -86,11 +86,12 @@ function getEtsyListing(id, reqFrom) {
         imgsrc: 'temp',
         subcategories: res.data.results[0].category_path
       })
-      console.log(results)
       //get the image url and add that to our results object
       axios.get(`${etsyURL}/listings/${id}/images?region=GB&api_key=${APIKey}`)
         .then(res => {
           results.imgsrc = res.data.results[0].url_570xN
+        })
+        .then(() => {
           //check where request came from and take appropriate next action
           if (reqFrom === 'fromCreateItem') {
             addItem(results)
@@ -98,6 +99,7 @@ function getEtsyListing(id, reqFrom) {
             console.log('notfromitems', results)
           }
         })
+        .catch(err => console.log('getimage', err))
     })
     .catch(err => console.log(err))
 
