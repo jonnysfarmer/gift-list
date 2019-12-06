@@ -98,6 +98,7 @@ function getEtsyListing(id, reqFrom) {
             console.log('notfromitems', results)
           }
         })
+        .catch(err => console.log(err))
     })
     .catch(err => console.log(err))
 

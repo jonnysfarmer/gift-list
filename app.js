@@ -8,11 +8,11 @@ const axios = require('axios')
 const categories = require('./controllers/categories')
 const errorHandler = require('./lib/errorHandler')
 
-categories.then((res)=>{
-  const categories = res
-  console.log(categories)
-  // console.log('Categories :', res)
-})
+// categories.then((res)=>{
+//   const categories = res
+//   console.log(categories)
+//   // console.log('Categories :', res)
+// })
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
@@ -39,6 +39,7 @@ app.use(errorHandler)
 
 
 
+
 // export this to categories later and hide api key
 // axios.get('https://openapi.etsy.com/v2/taxonomy/categories/?api_key=0b6tytx6ibc1jzi7gd790l0a')
 //   .then(res => {
@@ -55,3 +56,5 @@ app.use(errorHandler)
 //   })
 
 app.listen(port, () => console.log(`Green light on port ${port}`))
+
+module.exports = app
