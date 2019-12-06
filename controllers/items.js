@@ -10,8 +10,8 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 1. user clicks 'save an item' & client sends post request
 2. function add(req,res) is triggered
   2b. this uses axios to make a GET call to our item database to see if the listingId exists already
-3. if axiosGET receives a successful response, then it runs the success scenario - PUT to add the listingId to itemsSave for that list on our list db
-4. if axiosGET receives an error response, then it runs the getItemFromEtsy(id) function
+  2c. if axiosGET receives a successful response, then it runs the success scenario - PUT to add the listingId to itemsSave for that list on our list db
+4. if axiosGET receives an error response, then it does a GET to get the item info from the store (getEtsyListing)
   4b. then it runs the POST scenario - addItem function
 */
 
@@ -35,30 +35,18 @@ function add(req, res) {
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
     .catch(err => {
       //if it doesn't exist, then we get the full product details from the store
-      getItemFromSrc(req.body)
+      getEtsyListing(req.body.id, 'fromCreateItem')
+      axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
+        .then(res => console.log(res.status, res.statusText, listingId)) //this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
+        .catch(err => console.log('create put', err))
     })
 }
 
-
-
-
-//If the item is not in our database, get the item details from Etsy
-function getItemFromSrc(body) {
-  console.log('getfromsrc', body.id)
-  //the getEtsyListing is used by all routes that need listing data, hence why we call a seperate function for it
-  //the getEtsyListing function knows what to do next based on the second param we give it (eg 'fromCreateItem' tells it to then run addItem)
-  getEtsyListing(body.id, 'fromCreateItem')
-}
-
-
-//Once we have details from Etsy, post it to our item database
+//Once we have details from Etsy, post it to our item database :: need to pass userid and listid to this somehow
 function addItem(body) {
-  // console.log('add item', body)
   Item
     .create(body)
     .then(console.log('created'))
-    // .then(item => res.status(201).json(item))
-    // .catch(err => res.status(400).json({ message: err }))
 }
 
 //somehow tell user this is done *thinking*
@@ -78,7 +66,7 @@ function getEtsyListing(id, reqFrom) {
   //get the data we need from Etsy
   axios.get(`${etsyURL}listings/${id}/?region=GB&api_key=${APIKey}`)
     .then(res => {
-      console.log(res.data.results[0].title)
+      // console.log(res.data.results[0].title)
       results.push({
         productName: res.data.results[0].title,
         price: res.data.results[0].price,
