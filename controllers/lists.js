@@ -4,7 +4,7 @@ const List = require('../models/List')
 function index(req, res) {
   List
     .find()
-    .populate('user')
+    // .populate('user')
     .then(list => res.status(200).json(list))
     .catch(err => res.status(400).json({ message: err }))
 }
@@ -49,7 +49,7 @@ function publicList(req, res) {
   List.findById(req.params.listId)
     .then(list => {
       if (!list) res.status(404).json({ message: '404 Not found' })
-      else res.status(200).json(list)
+      else res.status(200).json(list.user)
     })
     .catch(err => res.status(400).json({ message: err }))
 }
