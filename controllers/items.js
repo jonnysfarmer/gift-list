@@ -1,4 +1,5 @@
 const Item = require('../models/Item')
+// const { getEtsyListing } = require('./stores') :: aim to extract this out but the call to addItem from stores isn't working
 const axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8000/api'
 
@@ -39,7 +40,8 @@ function add(req, res) {
 //If the item is not in our database, get the item details from Etsy
 function getItemFromSrc(body) {
   console.log('getfromsrc', body.id)
-  addItem(body)
+  getEtsyListing(body.id, 'fromCreateItem')
+  // addItem(body)
   //this function should actually be whatever our generic get item from etsy function is, with a callback in it to say 'if post true, then call addItem')
 }
 
@@ -56,7 +58,44 @@ function addItem(body) {
 //somehow tell user this is done *thinking*
 
 
+//===== ETSY =====
 
+//needs to call etsy and return the item info we want
+//the id here being that stores product/listing id for the item we want
+function getEtsyListing(id, reqFrom) {
+
+  const APIKey = '0b6tytx6ibc1jzi7gd790l0a' //needs to be moved to environments, think Georg is on that
+  const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
+
+
+  console.log(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
+  const results = []
+
+
+  axios.get(`${etsyURL}/listings/${id}/?region=GB&api_key=${APIKey}`)
+    .then(res => {
+      console.log(res.data.results[0].title)
+      results.push({
+        productName: res.data.results[0].title,
+        price: res.data.results[0].price,
+        currencyCode: res.data.results[0].currency_code,
+        description: res.data.results[0].description,
+        src: 'etsy',
+        listingId: res.data.results[0].listing_id,
+        imgsrc: 'temp',
+        subcategories: res.data.results[0].category_path
+      })
+      // console.log(results)
+      if (reqFrom === 'fromCreateItem') { 
+        addItem(results) 
+      } else { 
+        console.log('notfromitems', results) 
+      }
+    })
+    .catch(err => console.log(err))
+
+  return results
+}
 
 
 
@@ -68,7 +107,7 @@ function index(req, res) {
     .catch(err => console.log(err))
 }
 
-//===== GET SPECIFIC ITEM =====
+//===== GET SPECIFIC ITEM FROM OUR ITEMdB =====
 function show(req, res) {
   // console.log(listingId)
   //turn listing id into an obj so we can use find
@@ -95,5 +134,6 @@ function show(req, res) {
 module.exports = {
   add,
   index,
-  show
+  show, 
+  addItem
 }
