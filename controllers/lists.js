@@ -47,6 +47,7 @@ function editList(req, res) {
 }
 
 function addEtsyItem(req,res){
+  console.log(req.body)
   req.body.user = req.currentUser
   List.findById(req.params.listId)
     .then(list => {
@@ -140,11 +141,4 @@ module.exports = {
 
 
 }
-
-
-
-
-// router.route('/lists/:userId/:listId/customItems')
-//   .put(lists.editCustomItems)
-//   .delete(lists.removeCustomItem)
 
