@@ -8,6 +8,9 @@ import 'bulma/css/bulma.css'
 import './styles/main.scss'
 
 // import SecureRoute from './components/secureRoute'
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Browse from './components/Browse'
 import Register from './components/Register'
 import Login from './components/Login'
 import auth from './lib/auth'
@@ -28,13 +31,13 @@ function App() {
 
   //this hook gets the user Info
   const userlistHook = () => {
-      //we need userID = props.params.match.id
-      axios.get(`http://localhost:8000/api/lists/${userID}`)
-        .then(response => {
-          setListInfo(response.data)
-        })
-        .catch(err => setErrors(err))
-    }
+    //we need userID = props.params.match.id
+    axios.get(`http://localhost:8000/api/lists/${userID}`)
+      .then(response => {
+        setListInfo(response.data)
+      })
+      .catch(err => setErrors(err))
+  }
   const userInfoHook = () => {
     //we need userID = props.params.match.id
     axios.get(`http://localhost:8000/api/user/${userID}`)
@@ -45,23 +48,24 @@ function App() {
   }
 
 
-      useEffect(userlistHook, [])
-      useEffect(userInfoHook, [])
-      // console.log(listInfo[0].user.firstname)
-    
-      console.log(listInfo)
-      console.log(userInfo)
-  
-  
-  if(listInfo === [] || userInfo === {} ) return <div>Loading</div>
+  useEffect(userlistHook, [])
+  useEffect(userInfoHook, [])
+  // console.log(listInfo[0].user.firstname)
+
+  console.log(listInfo)
+  console.log(userInfo)
+
+
+  if (listInfo === [] || userInfo === {}) return <div>Loading</div>
 
   return (
     <div className="App">
 
       <BrowserRouter>
-        {/* <Nav /> */}
-
+        <Navbar />
         <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/browse" component={Browse} />
           {/* <Route exact path='/' component={Home} /> */}
           <Route exact path='/list/create' component={CreateList} />
           <Route path='/register' component={Register} />
@@ -70,8 +74,8 @@ function App() {
       </BrowserRouter>
 
 
-     
-    {/* <section className="section">
+
+      {/* <section className="section">
         <section className="section">
           <div className="container">
             <div className='title'>Welcome back, {userInfo.firstname}</div>

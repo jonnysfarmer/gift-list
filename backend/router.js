@@ -2,10 +2,11 @@ const router = require('express').Router() //just the routing/handling of routes
 const users = require('./controllers/users')
 const lists = require('./controllers/lists')
 const items = require('./controllers/items')
+const categories = require('./controllers/categories')
 const secureRoute = require('./lib/secureRoute')
 
 
-//ITEMS
+//-----ITEMS routes
 router.route('/items/')
   //client requests an item be saved for a list
   .post(items.add)
@@ -30,7 +31,7 @@ router.route('/login')
 router.route('/user/:userId')
   .get(users.getInfo)
 
-//-----LIST routs
+//-----LIST routes
 
 router.route('/lists')
   .get(lists.index) // gives an index for all Lists - for Development
@@ -56,6 +57,11 @@ router.route('/lists/:userId/:listId/customItems/:itemId')
 
 router.route('/lists/public/:listId')
   .get(lists.publicList) // Shows speicifc list, for Public sharing
+
+//-----CATEGORY routes
+
+router.route('/categories')
+  .get(categories.getCategories) 
 
 
 module.exports = router
