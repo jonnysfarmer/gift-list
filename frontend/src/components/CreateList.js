@@ -65,98 +65,95 @@ function CreateList(props) {
 
           <form className='form column' onSubmit={handleSubmit}>
 
-            <div className="field">
-              <label htmlFor="listName" className="label">
+            <div className='field'>
+              <label htmlFor='listName' className='label'>
                 Give your list a name
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="text" className="input" name="listName">
+              <div className='control'>
+                <input onChange={handleChange} type='text' className='input' name='listName'>
                 </input>
               </div>
-              {errors.listName && <small className="help is-danger">{errors.listName}</small>}
+              {errors.listName && <small className='help is-danger'>{errors.listName}</small>}
             </div>
 
             <h2>Who are you saving gifts for?</h2>
-            <div className="field">
-              <label htmlFor="giftRecipient" className="label">
+            <div className='field'>
+              <label htmlFor='giftRecipient' className='label'>
                 Enter a name, or even yourself!
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="text" className="input" name="giftRecipient">
+              <div className='control'>
+                <input onChange={handleChange} type='text' className='input' name='giftRecipient'>
                 </input>
               </div>
-              {errors.giftRecipient && <small className="help is-danger">{errors.giftRecipient}</small>}
+              {errors.giftRecipient && <small className='help is-danger'>{errors.giftRecipient}</small>}
             </div>
 
             <h2>Is it for a special event?</h2>
-            <div className="field">
-              <label htmlFor="eventName" className="label">
+            <div className='field'>
+              <label htmlFor='eventName' className='label'>
                 Event name <span className='optional'>optional</span>
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="text" className="input" name="eventName">
+              <div className='control'>
+                <input onChange={handleChange} type='text' className='input' name='eventName'>
                 </input>
               </div>
-              {errors.eventName && <small className="help is-danger">{errors.eventName}</small>}
+              {errors.eventName && <small className='help is-danger'>{errors.eventName}</small>}
             </div>
-            <div className="field">
-              <label htmlFor="eventDate" className="label">
+            <div className='field'>
+              <label htmlFor='eventDate' className='label'>
                 Event date <span className='optional'>optional</span>
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="date" className="input" name="eventDate">
+              <div className='control'>
+                <input onChange={handleChange} type='date' className='input' name='eventDate'>
                 </input>
               </div>
-              {errors.eventDate && <small className="help is-danger">{errors.eventDate}</small>}
+              {errors.eventDate && <small className='help is-danger'>{errors.eventDate}</small>}
             </div>
-            <div className="field">
-              <label htmlFor="eventReminder" className="label">
+            <div className='field'>
+              <label htmlFor='eventReminder' className='label'>
                 Would you like an email reminder two weeks before? <span className='optional'>optional</span>
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="checkbox" className="checkbox" name="eventReminder">
+              <div className='control'>
+                <input onChange={handleChange} type='checkbox' className='checkbox' name='eventReminder'>
                 </input>
               </div>
-              {errors.eventReminder && <small className="help is-danger">{errors.eventReminder}</small>}
+              {errors.eventReminder && <small className='help is-danger'>{errors.eventReminder}</small>}
             </div>
 
             <h2>Would you like personalised suggestions?</h2>
 
 
-            <div className="field">
-              <label htmlFor="subcategory" className="label">
+            <div className='field'>
+              <label htmlFor='subcategory' className='label'>
                 Select a category <span className='optional'>optional</span>
               </label>
-              <div className="control">
-
-                <select className='select'>
+              <div className='control'>
+                <select className='select' name='subcategory' onChange={handleChange} >
+                  <option>Select a category</option>
                   {
                   addCategories().map((category, i) =>
-                    <option key={i} value={category.categoryName}>{category.categoryName}</option>
+                    <option key={i}>{category.categoryName}</option>
                   )}
                 </select>
-
-                <input onChange={handleChange} type="text" className="input" name="subcategory">
-                </input>
               </div>
-              {errors.subcategory && <small className="help is-danger">{errors.subcategory}</small>}
+              {errors.subcategory && <small className='help is-danger'>{errors.subcategory}</small>}
             </div>
 
 
-            <div className="field">
-              <label htmlFor="budget" className="label">
+            <div className='field'>
+              <label htmlFor='budget' className='label'>
                 Add a budget <span className='optional'>optional</span>
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="text" className="input" name="budget">
-                </input>
+              <div className='control has-static-text'>
+                <input onChange={handleChange} type='text' className='input' name='budget' title='max £' />
+                <span className='static-text'>max &pound;</span>
               </div>
-              {errors.budget && <small className="help is-danger">{errors.budget}</small>}
+              {errors.budget && <small className='help is-danger'>{errors.budget}</small>}
             </div>
 
 
 
-            <button className="button">Create list</button>
+            <button className='button'>Create list</button>
 
           </form>
 

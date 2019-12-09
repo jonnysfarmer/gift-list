@@ -6,9 +6,6 @@
   box-sizing: border-box; 
 }
 
-.my-styles body {
-  background-color: red;
-}
 
 //===================================
 // LAYOUT
@@ -29,12 +26,21 @@
 // FORM & BUTTONS
 //===================================
 
-.my-styles input[name='budget'] {
-  background-color: red;
+input[name='budget'] {
+  max-width: 25%;
+  padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
 
+.has-static-text {
+	position:relative;
+}
 
-
+.static-text {
+	position:absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+	font-weight:bold;
+}
 
 
 //===================================
