@@ -147,10 +147,10 @@ function CreateList(props) {
               <label htmlFor="budget" className="label">
                 Add a budget <span className='optional'>optional</span>
               </label>
-              <div className="control">
-                <input onChange={handleChange} type="text" className="input" name="budget">
-                </input>
-              </div>
+              <div className='control has-static-text'>
+                  <input onChange={handleChange} type='text' className='input' name='budget' title='max £' />
+                  <span className='static-text'>max &pound;</span>
+                </div>
               {errors.budget && <small className="help is-danger">{errors.budget}</small>}
             </div>
 

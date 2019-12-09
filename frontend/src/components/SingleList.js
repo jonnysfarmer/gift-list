@@ -84,27 +84,27 @@ const SingleList = (props) => {
           <div className='column'>
             <div className='container'>
               <div className='title'>
-                <h1>{data.listName} <span className={`edit ${editActive ? '' : 'not-editable'}`} onClick={editField}>edit</span></h1>
+                <h1 className={`${editActive ? '' : 'not-editable'}`}>{data.listName} <span className='edit-link' onClick={editField}>edit</span></h1>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input placeholder={data.listName} name='listName' />
+                  <input className='input' value={data.listName} name='listName' />
                 </div>
               </div>
               <div className='subtitle'>
-                <p>{data.giftRecipient} <span className={`edit ${editActive ? '' : 'not-editable'}`} onClick={editField}>edit</span></p>
+                <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.giftRecipient} <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input placeholder={data.giftRecipient} name='giftRecipient' />
+                  <input className='input' value={data.giftRecipient} name='giftRecipient' />
                 </div>
               </div>
               <div className='subtitle'>
-                <p>{data.eventDate}  <span className={`edit ${editActive ? '' : 'not-editable'}`} onClick={editField}>edit</span></p>
+                <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventDate}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input placeholder={data.eventDate} name='eventDate' />
+                  <input className='input' value={data.eventDate} name='eventDate' />
                 </div>
               </div>
               <div className='subtitle'>
-                <p>{data.eventName}  <span className={`edit ${editActive ? '' : 'not-editable'}`} onClick={editField}>edit</span></p>
+                <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventName}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input placeholder={data.eventName} name='eventDate' />
+                  <input className='input' value={data.eventName} name='eventDate' />
                 </div>
               </div>
             </div>
