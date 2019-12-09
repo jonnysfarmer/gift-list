@@ -2,7 +2,7 @@ const router = require('express').Router() //just the routing/handling of routes
 const users = require('./controllers/users')
 const lists = require('./controllers/lists')
 const items = require('./controllers/items')
-// const secureRoute = require('./lib/secureRoute')
+const secureRoute = require('./lib/secureRoute')
 
 
 //ITEMS
@@ -37,7 +37,7 @@ router.route('/lists')
 
 router.route('/lists/:userId')
   .get(lists.userAll) // Returns all the users lists
-  .post(lists.create) // Creates a New List
+  .post(secureRoute, lists.create) // Creates a New List
 
 router.route('/lists/:userId/:listId')
   .get(lists.oneList) // Shows the specific list via List ID / User ID
