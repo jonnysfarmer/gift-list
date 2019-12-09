@@ -11,7 +11,6 @@ function secureRoute(req, res, next) {
   const token = req.headers.authorization.replace('Bearer ', '') //Removing the word Bearer from the string to leave us just the token. Don't forget the space after bearer, not inclusing it will make the token invalid
 
   jwt.verify(token, secret, (err, payload) => { // using jwt verify method to decode a token, needs the token, the secret used to encode it in the first place, and a call back function to handle error/success of decoding
-    console.log(payload)
     if (err) return res.status(401).json({ message: '1-Unauthorized' }) // if the error object is defined. send back 401 and end the process
     User // otherwise try and find the user in the DB. We do this using the payload object from the succesfully decoded token. The 'payload.sub' key hold the user id that the token was issued too. To see where this was set check out '/controllers/user login route'.
       .findById(payload.sub) // finding that user

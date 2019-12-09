@@ -125,6 +125,7 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 These are items we wish to improve on
 
 - `Suggested Lists` which is just 9 category names that are currently hard coded in the front end. We would like to move to our backend and let the frontend make an API call to populated them.
+- `Categories` currently we create a dataset which has a set of categories with an array of their subcategories and an array of their Etsy subcategory names for making API calls to Etsy. On reflection, we'd like to refactor this to be a set of objects that have subcategory name, Esty name, otherstore name, otherstore name. We've left that on the to do list as it doesn't impact the current features, and only comes into play when we add a second store.
 
 While we are not yet planning to build any of these, we did consider them in the architecture.
 
