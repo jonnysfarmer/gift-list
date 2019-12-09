@@ -38,6 +38,71 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           }
         ])
       })
+      .then(users => {
+        return List.create([
+          {
+            user: users[0],
+            listName: 'All fields have single value',
+            giftRecipient: 'Bob',
+            eventName: 'Bob Birthday',
+            eventDate: '2020-01-07',
+            eventReminder: true,
+            budget: '50',
+            listStatus: 'Active',
+            subcategory: ['art/sculpture', 'accessories'],
+            keywords: [],
+            itemsSaved: ['etsy-1234556', 'etsy-1234556444'],
+            customItem: [],
+            shareUrl: ''
+          },
+          { //seed with all fields holding a single value
+            user: users[0],
+            listName: 'Billy!',
+            giftRecipient: 'Bill',
+            eventName: 'Birthday',
+            eventDate: '2020-01-09',
+            eventReminder: true,
+            budget: '10',
+            listStatus: 'Active',
+            subcategory: ['accessories/men'],
+            keywords: [], //not implemented for MVP
+            itemsSaved: [],
+            customItem: [],
+            shareUrl: '' //null until we implement url structures
+          },
+          { //seed with all fields holding a single value
+            user: users[1],
+            listName: 'Other User List',
+            giftRecipient: 'BAM',
+            eventName: 'BAM XMAS',
+            eventDate: '2020-12-25',
+            eventReminder: true,
+            budget: '25',
+            listStatus: 'Active',
+            subcategory: ['art/painting'],
+            keywords: [], //not implemented for MVP
+            itemsSaved: ['etsy-1234556444'],
+            customItem: [],
+            shareUrl: '' //null until we implement url structures
+          },
+          { //seed with all fields holding a single value
+            user: users[1],
+            listName: 'All fields have single value',
+            giftRecipient: 'Timmy',
+            eventName: 'Timmy Birthday',
+            eventDate: '2020-01-07',
+            eventReminder: true,
+            budget: '50',
+            listStatus: 'Active',
+            subcategory: ['accessories/men', 'art/painting'],
+            keywords: [], //not implemented for MVP
+            itemsSaved: ['etsy-1234556', 'etsy-1234556444'],
+            customItem: [],
+            shareUrl: '' //null until we implement url structures
+          }
+
+        ])
+      })
       // etsy categories and subcategories get returned from the promise below
       .then(() => {
         return getEtsyCategories()
@@ -77,71 +142,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             listingId: 'etsy-1234556434',
             imgsrc: 'www.largepens.com/pics'
           }
-        ])
-      })
-      .then((users) => {
-        return List.create([
-          {
-            user: users[0],
-            listName: 'All fields have single value',
-            giftRecipient: 'Bob',
-            eventName: 'Bob Birthday',
-            eventDate: '2020-01-07',
-            eventReminder: true,
-            budget: '50',
-            listStatus: 'Active',
-            subcategory: ['art/sculpture', 'accessories'],
-            keywords: [],
-            itemsSaved: ['1234556', '1234556444'],
-            customItem: [],
-            shareUrl: ''
-          },
-          { //seed with all fields holding a single value
-            user: users[0],
-            listName: 'Billy!',
-            giftRecipient: 'Bill',
-            eventName: 'Birthday',
-            eventDate: '2020-01-09',
-            eventReminder: true,
-            budget: '10',
-            listStatus: 'Active',
-            subcategory: ['accessories/men'],
-            keywords: [], //not implemented for MVP
-            itemsSaved: [],
-            customItem: [],
-            shareUrl: '' //null until we implement url structures
-          },
-          { //seed with all fields holding a single value
-            user: users[1],
-            listName: 'Other User List',
-            giftRecipient: 'BAM',
-            eventName: 'BAM XMAS',
-            eventDate: '2020-12-25',
-            eventReminder: true,
-            budget: '25',
-            listStatus: 'Active',
-            subcategory: ['art/painting'],
-            keywords: [], //not implemented for MVP
-            itemsSaved: ['1234556434'],
-            customItem: [],
-            shareUrl: '' //null until we implement url structures
-          },
-          { //seed with all fields holding a single value
-            user: users[1],
-            listName: 'All fields have single value',
-            giftRecipient: 'Timmy',
-            eventName: 'Timmy Birthday',
-            eventDate: '2020-01-07',
-            eventReminder: true,
-            budget: '50',
-            listStatus: 'Active',
-            subcategory: ['accessories/men', 'art/painting'],
-            keywords: [], //not implemented for MVP
-            itemsSaved: ['1234556434', '1234556444'],
-            customItem: [],
-            shareUrl: '' //null until we implement url structures
-          }
-
         ])
       })
       .catch(err => console.log(err))

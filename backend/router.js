@@ -27,6 +27,9 @@ router.route('/register')
 router.route('/login')
   .post(users.login)
 
+router.route('/user/:userId')
+  .get(users.getInfo)
+
 //-----LIST routs
 
 router.route('/lists')
