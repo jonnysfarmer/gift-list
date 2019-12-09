@@ -2,6 +2,7 @@ const router = require('express').Router() //just the routing/handling of routes
 const users = require('./controllers/users')
 const lists = require('./controllers/lists')
 const items = require('./controllers/items')
+const categoryList = require('./controllers/categoryList')
 const secureRoute = require('./lib/secureRoute')
 
 
@@ -59,8 +60,8 @@ router.route('/lists/public/:listId')
 
 //-----CATEGORY routes
 
-// router.route('/categories')
-//   .get(categories.getCategories) 
+router.route('/categories')
+  .get(categoryList.allCategories) 
 
 
 module.exports = router

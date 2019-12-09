@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-// import Auth from './lib/auth'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
@@ -15,14 +14,11 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import SingleList from './components/SingleList'
-// import Auth from './lib/auth'
-// import SecureRoute from './components/secureRoute'
 import auth from './lib/auth'
 import CreateList from './components/CreateList'
 
 function App() {
-  //temp so I can make a list easily by putting this in the url
-  console.log(auth.getUserId())
+ 
   //the aside of suggested lists is hardcoded here for now as it was an additional feature we thought of that was simple to implement in this manner
   //we want to extract this out to the backend so that here we just make an API call to get the latest 9 suggestions
 

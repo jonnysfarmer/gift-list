@@ -6,7 +6,9 @@
   box-sizing: border-box; 
 }
 
-
+.my-styles body {
+  background-color: red;
+}
 
 //===================================
 // LAYOUT
@@ -27,6 +29,9 @@
 // FORM & BUTTONS
 //===================================
 
+.my-styles input[name='budget'] {
+  background-color: red;
+}
 
 
 
