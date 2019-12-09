@@ -122,6 +122,10 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 
 ## Future Features
 
+These are items we wish to improve on
+
+- `Suggested Lists` which is just 9 category names that are currently hard coded in the front end. We would like to move to our backend and let the frontend make an API call to populated them.
+
 While we are not yet planning to build any of these, we did consider them in the architecture.
 
 
