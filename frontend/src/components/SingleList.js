@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 // import { useHistory } from 'react-router-dom'
 import Auth from '../lib/auth'
 
@@ -17,13 +18,15 @@ const SingleList = (props) => {
 
   //variables for editing
   const [editActive, setEditState] = useState(true) //set default to true so it's in non-edit mode
+  const [editDate, setDateState] = useState()
   const editList = {
     user: '',
     listName: '',
     giftRecipient: '',
     eventName: '',
     eventDate: '',
-    eventReminder: false, budget: ''
+    eventReminder: false, 
+    budget: ''
   }
 
   //global variables 
@@ -55,20 +58,31 @@ const SingleList = (props) => {
   //the save button calls the PUT, then editField to save the changes and set fields back to 'edit'
   //the cancel button ignores any edits and sets fields back to 'non editable'
   function editField(e) {
-    console.log(e.target)
     setEditState(!editActive)
+  }
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value })
+    setErrors({})
   }
 
   //for putting the edited field back to our database
   function saveEdit(e) {
     e.preventDefault()
-    console.log(`/api/lists/${userID}/${listID}`)
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(console.log('done'))
+      .then( setEditState(!editActive) )
       .catch(err => console.log(err))
   }
+  //for clearing any changes made to the fields
+  function cancelEdit(e) {
+    e.preventDefault()
+    listHook()
+    setEditState(!editActive)
+  }
+
+  
 
   // show 5 
 
@@ -84,32 +98,32 @@ const SingleList = (props) => {
           <div className='column'>
             <div className='container'>
               <div className='title'>
-                <h1 className={`${editActive ? '' : 'not-editable'}`}>{data.listName} <span className='edit-link' onClick={editField}>edit</span></h1>
+                <h1 name='listName' className={`${editActive ? '' : 'not-editable'}`}>{data.listName} <span className='edit-link' onClick={editField}>edit</span></h1>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' value={data.listName} name='listName' />
+                  <input className='input' type='text' name='listName' value={data.listName} onChange={handleChange} />
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.giftRecipient} <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' value={data.giftRecipient} name='giftRecipient' />
+                  <input className='input' type='text'  value={data.giftRecipient} name='giftRecipient'  onChange={handleChange} />
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventDate}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' value={data.eventDate} name='eventDate' />
+                  <input className='input' type='date' value={data.eventDate} name='eventDate'  onChange={handleChange} />
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventName}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' value={data.eventName} name='eventDate' />
+                  <input className='input' type='text'  value={data.eventName} name='eventName'  onChange={handleChange} />
                 </div>
               </div>
             </div>
-            <button onClick={editField}>Save</button>
-            <button onClick={editField}>Cancel</button>
+            <button onClick={saveEdit}>Save</button>
+            <button onClick={cancelEdit}>Cancel</button>
             {/* <div className='container'>
               {etsy.map((ele, i)=>{
                 return (
