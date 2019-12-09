@@ -22,7 +22,7 @@ const createListForm = {
 }
 
 
-function CreateListForm() {
+function CreateListForm(props) {
 
   //get user id
 
@@ -38,7 +38,8 @@ function CreateListForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post('http://localhost:8000/api/lists/:userId', data)
-      .then(() => props.history.push('/lists/:userId/:listId'))
+      .then(() => )//get list id
+      .then(() => props.history.push(`/lists/${userId}/${listId}`))
       .catch((err) => {
         setErrors (err.response.data.errors )
       })
