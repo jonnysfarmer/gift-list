@@ -130,14 +130,13 @@ function CreateList(props) {
               <div className="control">
 
                 <select className='select'>
+                  <option>Select a category</option>
                   {
                   addCategories().map((category, i) =>
                     <option key={i} value={category.categoryName}>{category.categoryName}</option>
                   )}
                 </select>
 
-                <input onChange={handleChange} type="text" className="input" name="subcategory">
-                </input>
               </div>
               {errors.subcategory && <small className="help is-danger">{errors.subcategory}</small>}
             </div>

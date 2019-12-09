@@ -21,6 +21,7 @@ const SingleList = (props) => {
   //variables for editing
   const [editActive, setEditState] = useState(true) //set default to true so it's in non-edit mode
   const [editDate, setDateState] = useState()
+  const [editStatus, setStatusState] = useState()
   const editList = {
     user: '',
     listName: '',
@@ -42,6 +43,7 @@ const SingleList = (props) => {
       .then(response => {
         setData(response.data)
         setCat(response.data.subcategory)
+        setStatusState(response.data.listStatus)
         // etsyHook(response.data.subcategory[0])
       })
       .catch(err => setErrors(err))
@@ -86,8 +88,25 @@ const SingleList = (props) => {
     listHook()
     setEditState(!editActive)
   }
+
+
+//===== USER CAN ARCHIVE LIST ======
+ function archiveList(e) {
+  e.preventDefault()
+  console.log('archive called')
+  axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, {listStatus: 'Archived'}, {
+    headers: { Authorization: `Bearer ${Auth.getToken()}` }
+  })
+    .then(setStatusState('Archived'))
+    .catch(err => console.log(err))
+}
+
+
+
 //===============================================
-  
+  // need to find better way to handle there being no data in optional fields
+  // {data.eventDate && <input className='input' type='date' value={data.eventDate} name='eventDate'  onChange={handleChange} />}
+  // {!data.eventDate && <input className='input' type='date' name='eventDate'  onChange={handleChange} />}
 
   // show 5 
 
@@ -111,19 +130,22 @@ const SingleList = (props) => {
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.giftRecipient} <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' type='text'  value={data.giftRecipient} name='giftRecipient'  onChange={handleChange} />
+                  {data.giftRecipient && <input className='input' type='date' value={data.giftRecipient} name='giftRecipient'  onChange={handleChange} />}
+                  {!data.giftRecipient && <input className='input' type='date' name='giftRecipient'  onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventDate}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' type='date' value={data.eventDate} name='eventDate'  onChange={handleChange} />
+                  {data.eventDate && <input className='input' type='date' value={data.eventDate} name='eventDate'  onChange={handleChange} />}
+                  {!data.eventDate && <input className='input' type='date' name='eventDate'  onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventName}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' type='text'  value={data.eventName} name='eventName'  onChange={handleChange} />
+                  {data.eventName && <input className='input' type='date' value={data.eventName} name='eventName'  onChange={handleChange} />}
+                  {!data.eventName && <input className='input' type='date' name='eventName'  onChange={handleChange} />}
                 </div>
               </div>
             </div>
@@ -131,6 +153,9 @@ const SingleList = (props) => {
               <button onClick={saveEdit}>Save</button>
               <button onClick={cancelEdit}>Cancel</button>
             </div>
+            {editStatus !== 'Archived' && <button className='is-active' onClick={archiveList}>Archive list</button>}
+            {editStatus === 'Archived' && <p className='is-archived'>List is archived</p>}
+           
             {/* <div className='container'>
               {etsy.map((ele, i)=>{
                 return (
