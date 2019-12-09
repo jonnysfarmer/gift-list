@@ -54,110 +54,112 @@ function CreateList(props) {
     return UseAxios('http://localhost:8000/api/categories')
   }
 
-  
 
-  return <>
 
-    <section className='section'>
-      <div className='container'>
-        <h1>Create a list</h1>
-        <div className='container columns'>
+  return (
 
-          <form className='form column' onSubmit={handleSubmit}>
+    <>
 
-            <div className='field'>
-              <label htmlFor='listName' className='label'>
-                Give your list a name
+      <section className='section'>
+        <div className='container'>
+          <h1>Create a list</h1>
+          <div className='container columns'>
+
+            <form className='form column' onSubmit={handleSubmit}>
+
+              <div className='field'>
+                <label htmlFor='listName' className='label'>
+                  Give your list a name
               </label>
-              <div className='control'>
-                <input onChange={handleChange} type='text' className='input' name='listName'>
-                </input>
+                <div className='control'>
+                  <input onChange={handleChange} type='text' className='input' name='listName'>
+                  </input>
+                </div>
+                {errors.listName && <small className='help is-danger'>{errors.listName}</small>}
               </div>
-              {errors.listName && <small className='help is-danger'>{errors.listName}</small>}
-            </div>
 
-            <h2>Who are you saving gifts for?</h2>
-            <div className='field'>
-              <label htmlFor='giftRecipient' className='label'>
-                Enter a name, or even yourself!
+              <h2>Who are you saving gifts for?</h2>
+              <div className='field'>
+                <label htmlFor='giftRecipient' className='label'>
+                  Enter a name, or even yourself!
               </label>
-              <div className='control'>
-                <input onChange={handleChange} type='text' className='input' name='giftRecipient'>
-                </input>
+                <div className='control'>
+                  <input onChange={handleChange} type='text' className='input' name='giftRecipient'>
+                  </input>
+                </div>
+                {errors.giftRecipient && <small className='help is-danger'>{errors.giftRecipient}</small>}
               </div>
-              {errors.giftRecipient && <small className='help is-danger'>{errors.giftRecipient}</small>}
-            </div>
 
-            <h2>Is it for a special event?</h2>
-            <div className='field'>
-              <label htmlFor='eventName' className='label'>
-                Event name <span className='optional'>optional</span>
-              </label>
-              <div className='control'>
-                <input onChange={handleChange} type='text' className='input' name='eventName'>
-                </input>
+              <h2>Is it for a special event?</h2>
+              <div className='field'>
+                <label htmlFor='eventName' className='label'>
+                  Event name <span className='optional'>optional</span>
+                </label>
+                <div className='control'>
+                  <input onChange={handleChange} type='text' className='input' name='eventName'>
+                  </input>
+                </div>
+                {errors.eventName && <small className='help is-danger'>{errors.eventName}</small>}
               </div>
-              {errors.eventName && <small className='help is-danger'>{errors.eventName}</small>}
-            </div>
-            <div className='field'>
-              <label htmlFor='eventDate' className='label'>
-                Event date <span className='optional'>optional</span>
-              </label>
-              <div className='control'>
-                <input onChange={handleChange} type='date' className='input' name='eventDate'>
-                </input>
+              <div className='field'>
+                <label htmlFor='eventDate' className='label'>
+                  Event date <span className='optional'>optional</span>
+                </label>
+                <div className='control'>
+                  <input onChange={handleChange} type='date' className='input' name='eventDate'>
+                  </input>
+                </div>
+                {errors.eventDate && <small className='help is-danger'>{errors.eventDate}</small>}
               </div>
-              {errors.eventDate && <small className='help is-danger'>{errors.eventDate}</small>}
-            </div>
-            <div className='field'>
-              <label htmlFor='eventReminder' className='label'>
-                Would you like an email reminder two weeks before? <span className='optional'>optional</span>
-              </label>
-              <div className='control'>
-                <input onChange={handleChange} type='checkbox' className='checkbox' name='eventReminder'>
-                </input>
+              <div className='field'>
+                <label htmlFor='eventReminder' className='label'>
+                  Would you like an email reminder two weeks before? <span className='optional'>optional</span>
+                </label>
+                <div className='control'>
+                  <input onChange={handleChange} type='checkbox' className='checkbox' name='eventReminder'>
+                  </input>
+                </div>
+                {errors.eventReminder && <small className='help is-danger'>{errors.eventReminder}</small>}
               </div>
-              {errors.eventReminder && <small className='help is-danger'>{errors.eventReminder}</small>}
-            </div>
 
-            <h2>Would you like personalised suggestions?</h2>
+              <h2>Would you like personalised suggestions?</h2>
 
 
-            <div className='field'>
-              <label htmlFor='subcategory' className='label'>
-                Select a category <span className='optional'>optional</span>
-              </label>
-              <div className='control'>
-                <select className='select' name='subcategory' onChange={handleChange} >
-                  <option>Select a category</option>
-                  {
-                  addCategories().map((category, i) =>
-                    <option key={i}>{category.categoryName}</option>
-                  )}
-                </select>
+              <div className='field'>
+                <label htmlFor='subcategory' className='label'>
+                  Select a category <span className='optional'>optional</span>
+                </label>
+                <div className='control'>
+                  <select className='select' name='subcategory' onChange={handleChange} >
+                    <option>Select a category</option>
+                    {
+                      addCategories().map((category, i) =>
+                        <option key={i}>{category.categoryName}</option>
+                      )}
+                  </select>
+                  {errors.subcategory && <small className='help is-danger'>{errors.subcategory}</small>}
+                </div>
               </div>
-              {errors.subcategory && <small className='help is-danger'>{errors.subcategory}</small>}
-            </div>
 
 
-            <div className='field'>
-              <label htmlFor='budget' className='label'>
-                Add a budget <span className='optional'>optional</span>
-              </label>
-              <div className='control has-static-text'>
-                <input onChange={handleChange} type='text' className='input' name='budget' title='max £' />
-                <span className='static-text'>max &pound;</span>
+              <div className='field'>
+                <label htmlFor='budget' className='label'>
+                  Add a budget <span className='optional'>optional</span>
+                </label>
+                <div className='control has-static-text'>
+                  <input onChange={handleChange} type='text' className='input' name='budget' title='max £' />
+                  <span className='static-text'>max &pound;</span>
+                </div>
+                {errors.budget && <small className='help is-danger'>{errors.budget}</small>}
               </div>
-              {errors.budget && <small className='help is-danger'>{errors.budget}</small>}
-            </div>
 
 
 
-            <button className='button'>Create list</button>
+              <button className='button'>Create list</button>
 
-          </form>
+            </form>
 
-          {/* <aside className='aside column columns'>
+            {/* <aside className='aside column columns'>
             <h2>Start with one of our lists</h2>
             <div className='column'>
               <img alt='imageName' />
@@ -195,13 +197,13 @@ function CreateList(props) {
               <img alt='imageName' />
               <span>img above, text over img</span>
             </div>
-          </aside> */}
+                      </aside> */}
 
+          </div>
         </div>
-      </div>
-    </section>
-  </>
-
+      </section>
+    </>
+  )
 }
 
 

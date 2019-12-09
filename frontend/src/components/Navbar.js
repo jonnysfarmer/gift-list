@@ -48,7 +48,7 @@ const Navbar = () => {
               </Link>
           </div>
           <div className="navbar-item">
-            <Link className="navbar-item" to="/create-list"
+            <Link className="navbar-item" to="/list/create"
               onClick={() => toggleNavbar()}
             >
               Create new list
