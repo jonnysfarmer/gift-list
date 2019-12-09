@@ -34,13 +34,16 @@ function add(req, res) {
       //getting a non error response means it's already in the database, so we don't need to add it again
       console.log('item already in database', listingId)
       //here is where we make a PUT to the listId for this user, passing it the listingId to save (this is repeated below, should refactor)
+      // eslint-disable-next-line quotes
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
         .then(res.send({ status: 200, message: 'item saved', listingId: listingId })) //this works as console log, but I can't work out how to send it to client as res.status(201) says syntax error as res.status not a function
         .catch(err => console.log('put to list error', err))
     })
     //axios is going to error here if the url is bad, aka the item doesn't exist in the database
+    // eslint-disable-next-line no-unused-vars
     .catch(err => {
       //if it doesn't exist, then we get the full product details from the store
+      // eslint-disable-next-line quotes
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
         .then(getEtsyListing(req.body.id, 'fromCreateItem'))
         .then(res.send({ status: 200, message: 'item saved', listingId: listingId }))
@@ -49,6 +52,7 @@ function add(req, res) {
 }
 
 //Once we have details from Etsy, post it to our item database :: need to pass userid and listid to this somehow
+// eslint-disable-next-line no-unused-vars
 function addItem(body, res) {
   Item
     .create(body)
@@ -62,6 +66,7 @@ function addItem(body, res) {
 
 //needs to call etsy and return the item info we want
 //the id here being that stores product/listing id for the item we want
+// eslint-disable-next-line no-unused-vars
 function getEtsyListing(id, reqFrom, req, res) {
 
   
