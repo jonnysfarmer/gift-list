@@ -29,6 +29,10 @@ function CreateList(props) {
   //get userId
   const userId = auth.getUserId()
 
+  //get categories for use in select list
+  
+
+
   //handle input values: data, function
   const [data, setData] = useState(createListForm)
   const [errors, setErrors] = useState({})
