@@ -6,7 +6,7 @@ import AllLists from './AllLists'
 
 
 
-function Dashboard() {
+const Dashboard = ( props ) => {
   
   const [userInfo, setUserInfo] = useState({})
   const [listInfo, setListInfo] = useState([])
@@ -14,14 +14,15 @@ function Dashboard() {
 
   // Might need to add a filter for "active" lists
 
+  
 
   
   //temp for devlopment, this needs to be passed via URL
-  const userID = '5dee2efa789b9a57f9799cff'
+  // const userID = '5dee2efa789b9a57f9799cff'
 
   //this hook gets the list Info
   const userlistHook = () => {
-    //we need userID = props.params.match.id
+    const userID = props.match.params.userId
     axios.get(`http://localhost:8000/api/lists/${userID}`)
     .then(response => {
       setListInfo(response.data)
@@ -30,7 +31,7 @@ function Dashboard() {
   }
   //this is a hook for the User info
   const userInfoHook = () => {
-    //we need userID = props.params.match.id
+    const userID = props.match.params.userId
     axios.get(`http://localhost:8000/api/user/${userID}`)
     .then(response => {
       setUserInfo(response.data)
@@ -63,6 +64,7 @@ function Dashboard() {
         </div>
       </section>
     </section>
+  )
 }
 
 export default Dashboard;

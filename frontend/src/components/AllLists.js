@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom"
 
 
 const AllLists = ({ data }) => {
-  //   let history = useHistory()
+    let history = useHistory()
 
-  //  const handleClick = (id) => {
-  //   history.push(`lists/${id}`)
-  //  }
+   const handleClick = (elem) => {
+    history.push(`/lists/${elem.user._id}/${elem._id}`)
+   }
  
 
   console.log(data)
@@ -16,7 +16,7 @@ const AllLists = ({ data }) => {
       {data.map((ele, i) => {
         return (
           <div className = "container" key = {i} 
-          // onClick={() =>handleClick(ele._id)}
+          onClick={() =>handleClick(ele)}
           >
           <div class="columns">
             <div class="column">
