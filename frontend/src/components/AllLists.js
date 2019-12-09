@@ -9,8 +9,8 @@ const AllLists = ({ data }) => {
     history.push(`/lists/${elem.user._id}/${elem._id}`)
    }
  
-
-  console.log(data)
+   //do an on hover funciton on each element.
+  // console.log(data)
   return (
     <section className="section">
       {data.map((ele, i) => {

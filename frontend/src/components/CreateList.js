@@ -129,11 +129,11 @@ function CreateList(props) {
               </label>
               <div className="control">
 
-                <select className='select'>
-                  {/* {UseAxios('/categories').map((category, i) => */}
+                {/* <select className='select'>
+                  {UseAxios('/categories').map((category, i) => 
                     <option value='results.long_name'></option>
                   )}
-                </select>
+                </select>*/}
 
                 <input onChange={handleChange} type="text" className="input" name="subcategory">
                 </input>
