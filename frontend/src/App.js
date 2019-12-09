@@ -1,70 +1,32 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import 'bulma/css/bulma.css'
 import './styles/main.scss'
 
+import Register from './components/Register'
+import Login from './components/Login'
+// import Auth from './lib/auth'
+// import SecureRoute from './components/secureRoute'
+
 function App() {
   //the aside of suggested lists is hardcoded here for now as it was an additional feature we thought of that was simple to implement in this manner
   //we want to extract this out to the backend so that here we just make an API call to get the latest 9 suggestions
-  
+
   return (
     <div className="App">
 
-      <section className='section'>
-        <div className='container'>
-          <h1>Create a list</h1>
-            <div className='container columns'>
+      <BrowserRouter>
+        {/* <Nav /> */}
 
-              <form className='form column'>
-
-              </form>
-
-              <aside className='aside column columns'>
-                <h2>Start with one of our lists</h2>
-
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-                <div className='column'>
-                  <img alt='imageName'/>
-                  <span>img above, text over img</span>
-                </div>
-
-              </aside>
-
-            </div>
-        </div>
-      </section>
-
+        <Switch>
+          {/* <Route exact path='/' component={Home} /> */}
+          {/* <Route exact path='/list/create' component={CreateList} /> */}
+          <Route path='/register' component={Register} />
+          <Route path='/login' component={Login} />
+        </Switch>
+      </BrowserRouter>
 
 
 
