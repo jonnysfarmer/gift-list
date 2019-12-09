@@ -10,11 +10,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }
 }, {
   timestamps: true
-  // toJSON: {
-  //   transform(doc, json) {
-  //     return { name: json.firstname }
-  //   }
-  // }
+
 })
 // returns first name  as the result.  Unique field is email
 

@@ -38,48 +38,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
           }
         ])
       })
-      // etsy categories and subcategories get returned from the promise below
-      .then(() => {
-        return getEtsyCategories()
-      })
-      .then(categoryResp => {
-        // console.log(categoryResp)
-        return Category.create(
-          categoryResp
-        )
-      })
-      .then(() => {
-        return Item.create([
-          {
-            productName: 'Rubber Chicken',
-            price: '2.99',
-            currencyCode: 'GBP',
-            description: 'One large rubber chicken',
-            src: 'www.rubberchicken.com',
-            listingId: 'etsy-1234556',
-            imgsrc: 'wwww.rubberchicken.com/pics'
-          },
-          {
-            productName: 'novalty mug',
-            price: '3.99',
-            currencyCode: 'GBP',
-            description: 'One large MUG for muggy people',
-            src: 'www.largemugs.com',
-            listingId: 'etsy-1234556444',
-            imgsrc: 'www.largemugs.com/pics'
-          },
-          {
-            productName: 'novalty Pen',
-            price: '1.99',
-            currencyCode: 'GBP',
-            description: 'One large Pen for pen people',
-            src: 'www.largepens.com',
-            listingId: 'etsy-1234556434',
-            imgsrc: 'www.largepens.com/pics'
-          }
-        ])
-      })
-      .then((users) => {
+      .then(users => {
         return List.create([
           {
             user: users[0],
@@ -142,6 +101,47 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             shareUrl: '' //null until we implement url structures
           }
 
+        ])
+      })
+      // etsy categories and subcategories get returned from the promise below
+      .then(() => {
+        return getEtsyCategories()
+      })
+      .then(categoryResp => {
+        // console.log(categoryResp)
+        return Category.create(
+          categoryResp
+        )
+      })
+      .then(() => {
+        return Item.create([
+          {
+            productName: 'Rubber Chicken',
+            price: '2.99',
+            currencyCode: 'GBP',
+            description: 'One large rubber chicken',
+            src: 'www.rubberchicken.com',
+            listingId: 'etsy-1234556',
+            imgsrc: 'wwww.rubberchicken.com/pics'
+          },
+          {
+            productName: 'novalty mug',
+            price: '3.99',
+            currencyCode: 'GBP',
+            description: 'One large MUG for muggy people',
+            src: 'www.largemugs.com',
+            listingId: 'etsy-1234556444',
+            imgsrc: 'www.largemugs.com/pics'
+          },
+          {
+            productName: 'novalty Pen',
+            price: '1.99',
+            currencyCode: 'GBP',
+            description: 'One large Pen for pen people',
+            src: 'www.largepens.com',
+            listingId: 'etsy-1234556434',
+            imgsrc: 'www.largepens.com/pics'
+          }
         ])
       })
       .catch(err => console.log(err))

@@ -1,5 +1,7 @@
 
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
+
 
 //embedded relationship to link custom items
 const customItemSchema = new mongoose.Schema({
@@ -11,7 +13,7 @@ const customItemSchema = new mongoose.Schema({
 
 const listSchema = new mongoose.Schema({
   //userId connects us to the USER schema
-  user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' , required: true },
   listName: { type: String, required: true },
   //this must be 'me' or anyone else you enter
   giftRecipient: { type: String, required: true },
@@ -37,6 +39,9 @@ const listSchema = new mongoose.Schema({
 {
   timestamps: true
 })
+
+listSchema.plugin(uniqueValidator)
+
 
 
 module.exports = mongoose.model('List', listSchema)
