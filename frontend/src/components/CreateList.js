@@ -162,7 +162,6 @@ function CreateList(props) {
 
           {/* <aside className='aside column columns'>
             <h2>Start with one of our lists</h2>
-
             <div className='column'>
               <img alt='imageName' />
               <span>img above, text over img</span>
@@ -199,7 +198,6 @@ function CreateList(props) {
               <img alt='imageName' />
               <span>img above, text over img</span>
             </div>
-
           </aside> */}
 
         </div>
@@ -212,4 +210,3 @@ function CreateList(props) {
 
 
 export default CreateList
-
