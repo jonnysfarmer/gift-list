@@ -19,7 +19,8 @@ const SingleList = ( props ) => {
   const [errors, setErrors] = useState([])
   const [cat, setCat] = useState([])
   const [etsy, setEtsy] = useState([])
-
+  const [savedItems, setSavedItems] = useState([])
+  
   const listHook = () => {
     const userID = props.match.params.userId
     const listID = props.match.params.listId
@@ -28,27 +29,40 @@ const SingleList = ( props ) => {
       setData(response.data)
       setCat(response.data.subcategory)
       etsyHook(response.data.subcategory[0])
+      savedItemsHook(response.data.itemsSaved)
     })
 
     .catch(err => setErrors(err))
   }
 
+  //This displays 10 of the first category
+  //when the other categories are clicked, it then does those
   const etsyHook = (cat) => {
-    axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=10&api_key=${etsyKey}`)
-    // axios.get('https://api.coingecko.com/api/v3/coins/list')
+    axios.get(`http://localhost:8000/api/etsy/${cat}`)
       .then(response => {
-        setEtsy(response.data)
+        setEtsy(response.data.data)
       })
       .catch(err => setErrors(err))
   }
 
+  const savedItemsHook = (items)=>{
+    let totalItems = []
+    items.forEach((ele, i) => {
+      axios.get(`http://localhost:8000/api/items/${ele}`)
+      .then(response => {
+        let newArray = totalItems.push(response.data)
+        console.log(totalItems)
+        setSavedItems(totalItems)
+      })
+    })
+  }
+
   // show 5 
 
-  console.log(etsy)
-  console.log(cat)
+  console.log(savedItems)
   useEffect(listHook, [])
 
-  if (data === {} || etsy === {}) return <div>Loading</div>
+  if (data === {} || etsy === {} || savedItems === []) return <div>Loading</div>
   return (
     <section className="section">
       <div className="container">
@@ -59,17 +73,30 @@ const SingleList = ( props ) => {
               <div className="subtitle">{data.giftRecipient}</div>
               <div className="subtitle">{data.eventDate}</div>
               <div className="subtitle">{data.eventName}</div>
+              {cat.map((ele, i) => {
+                return (
+                  <button key={i} onClick={()=>etsyHook(ele)}>{ele}</button>
+                )
+              })}
             </div>
             <div className="container">
+              <div className="subtitle">Gift suggestions</div>
               {etsy.map((ele, i)=>{
                 return (
-                  <p>{ele.title}</p>
+                  <p key={i}>{ele.title}</p>
                 )
               })}
             </div>
           </div>
           <div className="column">
-            Column 2
+            <div className="container">
+              <div className="subtitle">Saved gifts</div>
+              {savedItems.map((ele, i)=>{
+                return (
+                  <p key={i}>{ele.productName}</p>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>

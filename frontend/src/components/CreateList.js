@@ -129,16 +129,10 @@ function CreateList(props) {
               </label>
               <div className="control">
 
-<<<<<<< HEAD
-                {/* <select className='select'>
-                  {UseAxios('/categories').map((category, i) => 
-                    <option value='results.long_name'></option>
-=======
                 <select className='select'>
                   {
                   addCategories().map((category, i) =>
                     <option key={i} value={category.categoryName}>{category.categoryName}</option>
->>>>>>> development
                   )}
                 </select>*/}
 

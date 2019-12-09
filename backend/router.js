@@ -4,6 +4,7 @@ const lists = require('./controllers/lists')
 const items = require('./controllers/items')
 const categoryList = require('./controllers/categoryList')
 const secureRoute = require('./lib/secureRoute')
+const etsyProducts = require('./controllers/etsyProducts')
 
 
 //-----ITEMS routes
@@ -63,5 +64,15 @@ router.route('/lists/public/:listId')
 router.route('/categories')
   .get(categoryList.allCategories) 
 
+//---ETSY PRODUCTS via CATEGORY
+
+router.route('/etsy/:catname')
+  .get(etsyProducts.getProducts) 
+
+router.route('/etsy/:catname/:subcatname')
+  .get(etsyProducts.getSubCat)
+
+router.route('/image/:id')
+  .get(etsyProducts.getImage)
 
 module.exports = router
