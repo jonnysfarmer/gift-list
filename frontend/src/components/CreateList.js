@@ -38,7 +38,7 @@ function CreateListForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post('http://localhost:8000/api/lists/:userId', data)
-      .then(() => )//get list id
+      //get list id
       .then(() => props.history.push(`/lists/${userId}/${listId}`))
       .catch((err) => {
         setErrors (err.response.data.errors )
