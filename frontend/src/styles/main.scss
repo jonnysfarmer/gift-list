@@ -19,7 +19,9 @@
 // TEXT
 //===================================
 
-
+.edit {
+  color: red;
+}
 
 
 //===================================
@@ -40,6 +42,10 @@ input[name='budget'] {
   left: 0.5rem;
   top: 0.5rem;
 	font-weight:bold;
+}
+
+.not-editable {
+  display: none;
 }
 
 

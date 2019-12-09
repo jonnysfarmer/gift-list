@@ -1,74 +1,100 @@
 import React, {useEffect, useState } from 'react'
 import axios from 'axios'
-// import { useHistory } from "react-router-dom"
+// import { useHistory } from 'react-router-dom'
+import Auth from '../lib/auth'
 
 require('dotenv').config()
-const etsyKey = '0b6tytx6ibc1jzi7gd790l0a'
-
-
-// require('dotenv').config()
-
+// taken etsy key off so it's not committed to github
 
 
 
 const SingleList = ( props ) => {
-
-
-  
+  //variables for getting the list info
   const [data, setData] = useState({})
   const [errors, setErrors] = useState([])
   const [cat, setCat] = useState([])
   const [etsy, setEtsy] = useState([])
+  //variables for editing
+  const [editActive, setEditState] = useState(true) //set default to true
 
+  //global variables 
+  const userID = props.match.params.userId
+  const listID = props.match.params.listId
+
+  //for getting the list info
   const listHook = () => {
-    const userID = props.match.params.userId
-    const listID = props.match.params.listId
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
     .then(response => {
       setData(response.data)
       setCat(response.data.subcategory)
-      etsyHook(response.data.subcategory[0])
+      // etsyHook(response.data.subcategory[0])
     })
-
     .catch(err => setErrors(err))
   }
+  //for getting suggestions from Etsy
+  // const etsyHook = (cat) => {
+  //   axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=10&api_key=${etsyKey}`)
+  //     .then(response => {
+  //       setEtsy(response.data)
+  //     })
+  //     .catch(err => setErrors(err))
+  // }
 
-  const etsyHook = (cat) => {
-    axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=10&api_key=${etsyKey}`)
-    // axios.get('https://api.coingecko.com/api/v3/coins/list')
-      .then(response => {
-        setEtsy(response.data)
-      })
-      .catch(err => setErrors(err))
+  //for allowing a user to edit a field - only one field is editable at a time, clicking on a new 'edit' link will save the last change
+  function editField(e) {
+    console.log(e.target)
+
+
+  }
+
+
+  //for putting the edited field back to our database
+  // if changed put
+  function saveEdit(e) {
+    e.preventDefault()
+    console.log(`/api/lists/${userID}/${listID}`)
+    axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, data, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(console.log('done'))
+      .catch(err => console.log(err))
   }
 
   // show 5 
 
-  console.log(etsy)
-  console.log(cat)
+  // console.log(etsy)
+  // console.log(cat)
   useEffect(listHook, [])
 
   if (data === {} || etsy === {}) return <div>Loading</div>
   return (
-    <section className="section">
-      <div className="container">
-        <div className="columns">
-          <div className="column">
-            <div className="container">
-              <div className="title">{data.listName}</div>
-              <div className="subtitle">{data.giftRecipient}</div>
-              <div className="subtitle">{data.eventDate}</div>
-              <div className="subtitle">{data.eventName}</div>
+    <section className='section'>
+      <div className='container'>
+        <div className='columns'>
+          <div className='column'>
+            <div className='container'>
+              <div className='title'>
+                <h1>{data.listName}</h1> 
+                <span className='edit' onClick={() => setEditState(!editActive)}>edit</span>
+                
+                <div className={`${editActive ? 'not-editable' : ''}`}>
+                  <input placeholder={data.listName} name='editListName' />
+                </div>
+                
+              </div>
+              <div className='subtitle'>{data.giftRecipient} <span className='edit'>edit</span></div>
+              <div className='subtitle'>{data.eventDate} <span className='edit'>edit</span></div>
+              <div className='subtitle'>{data.eventName} <span className='edit'>edit</span></div>
             </div>
-            <div className="container">
+            {/* <div className='container'>
               {etsy.map((ele, i)=>{
                 return (
                   <p>{ele.title}</p>
                 )
               })}
-            </div>
+            </div> */}
           </div>
-          <div className="column">
+          <div className='column'>
             Column 2
           </div>
         </div>
