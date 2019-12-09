@@ -10,6 +10,8 @@ require('dotenv').config()
 
 
 const SingleList = (props) => {
+
+  //===== VARIABLES =====
   //variables for getting the list info
   const [data, setData] = useState({})
   const [errors, setErrors] = useState([])
@@ -33,6 +35,7 @@ const SingleList = (props) => {
   const userID = props.match.params.userId
   const listID = props.match.params.listId
 
+//===== POPULATE DATA FROM BACKEND =====
   //for getting the list info
   const listHook = () => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
@@ -43,6 +46,8 @@ const SingleList = (props) => {
       })
       .catch(err => setErrors(err))
   }
+
+  //===== POPULATE SUGGESTIONS FROM ETSY =====
   //for getting suggestions from Etsy
   // const etsyHook = (cat) => {
   //   axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=10&api_key=${etsyKey}`)
@@ -52,7 +57,7 @@ const SingleList = (props) => {
   //     .catch(err => setErrors(err))
   // }
 
-  //for allowing a user to edit a field
+  //===== USER CAN EDIT LIST DETAILS ======
   //the code in the form checks to see if editActive is true (which means the fields are not editable)
   //if it is true, then it calls this function to switch the state and thus display the input fields
   //the save button calls the PUT, then editField to save the changes and set fields back to 'edit'
@@ -81,7 +86,7 @@ const SingleList = (props) => {
     listHook()
     setEditState(!editActive)
   }
-
+//===============================================
   
 
   // show 5 
@@ -122,8 +127,10 @@ const SingleList = (props) => {
                 </div>
               </div>
             </div>
-            <button onClick={saveEdit}>Save</button>
-            <button onClick={cancelEdit}>Cancel</button>
+            <div className={`edit ${editActive ? 'not-editable' : ''}`}> 
+              <button onClick={saveEdit}>Save</button>
+              <button onClick={cancelEdit}>Cancel</button>
+            </div>
             {/* <div className='container'>
               {etsy.map((ele, i)=>{
                 return (
