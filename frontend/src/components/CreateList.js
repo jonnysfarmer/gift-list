@@ -29,9 +29,6 @@ function CreateList(props) {
   //get userId
   const userId = auth.getUserId()
 
-  //get categories for use in select list
-  // const categories = UseAxios('/categories')
-
 
   //handle input values: data, function
   const [data, setData] = useState(createListForm)
@@ -44,17 +41,20 @@ function CreateList(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(userId)
     axios.post(`http://localhost:8000/api/lists/${userId}`, data, {
       headers: { Authorization: `Bearer ${auth.getToken()}` }
     })
       .then((resp) => props.history.push(`/lists/${userId}/${resp.data._id}`))
       .catch((err) => {
         setErrors(err.response.data.errors)
-        console.log(err)
       })
   }
 
+  function addCategories() {
+    return UseAxios('http://localhost:8000/api/categories')
+  }
+
+  
 
   return <>
 
@@ -130,8 +130,9 @@ function CreateList(props) {
               <div className="control">
 
                 <select className='select'>
-                  {/* {UseAxios('/categories').map((category, i) => */}
-                    <option value='results.long_name'></option>
+                  {
+                  addCategories().map((category, i) =>
+                    <option key={i} value={category.categoryName}>{category.categoryName}</option>
                   )}
                 </select>
 
