@@ -23,7 +23,17 @@ function login(req, res) {
     .catch(() => res.status(401).json({ message: 'Unauthorized' } ))
 }
 
+function getInfo(req, res) {
+  User.findById(req.params.userId)
+    .then(user => {
+      if (!user) res.status(404).json({ message: '404 Not found' })
+      else res.status(200).json(user)
+    })
+    .catch(err => res.status(400).json({ message: err }))
+}
+
 module.exports = {
   register,
-  login
+  login,
+  getInfo
 }
