@@ -6,22 +6,23 @@ function index(req, res) {
     .find()
     // .populate('user')
     .then(list => res.status(200).json(list))
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 }
 
 function userAll(req, res) {
   List.find({ user: req.params.userId })
     .populate('user')
     .then(lists => res.status(200).json(lists))
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 
 }
 
 function create(req, res) {
   req.body.user = req.currentUser
+  console.log(req.body)
   List.create(req.body)
     .then(list => res.status(201).json(list))
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 }
 
 function oneList(req, res) {
@@ -30,7 +31,7 @@ function oneList(req, res) {
       if (!list) res.status(404).json({ message: '404 Not found' })
       else res.status(200).json(list)
     })
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 }
 //Have temp taken off user varification for Dev purposes
 function editList(req, res) {
@@ -43,7 +44,7 @@ function editList(req, res) {
     })
     .then(list => list.save())
     .then(list => res.status(202).json(list))
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 }
 
 function addEtsyItem(req,res){
@@ -56,7 +57,7 @@ function addEtsyItem(req,res){
       return list.save()
     })
     .then(list => res.status(201).json(list))
-    .catch(err => res.status(404).json({ message: err }))
+    .catch(err => res.status(404).json(console.log(err)))
 }
 
 
@@ -67,7 +68,7 @@ function publicList(req, res) {
       if (!list) res.status(404).json({ message: '404 Not found' })
       else res.status(200).json(list.user)
     })
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 }
 
 //THIS ONE , WE WANT TO DISPLAY LESS INFORMATION
@@ -81,7 +82,7 @@ function addItem(req, res) {
       return list.save()
     })
     .then(list => res.status(201).json(list))
-    .catch(err => res.status(404).json({ message: err }))
+    .catch(err => res.status(404).json(console.log(err)))
 }
 
 function allCustomItems(req, res) {
@@ -90,7 +91,7 @@ function allCustomItems(req, res) {
       if (!list) res.status(404).json({ message: '404 Not found' })
       else res.status(200).json(list.customItem)
     })
-    .catch(err => res.status(400).json({ message: err }))
+    .catch(err => res.status(400).json(console.log(err)))
 }
 
 //Has Verification need to put on
@@ -105,7 +106,7 @@ function editCustomItems(req, res) {
       return list.save()
     })
     .then(list => res.status(200).json(list))
-    .catch(err => res.status(404).json({ message: err }))
+    .catch(err => res.status(404).json(console.log(err)))
 }
 //Has Verification need to put on
 
@@ -120,7 +121,7 @@ function removeCustomItem(req, res) {
       return list.save()
     })
     .then(list => res.status(200).json(list))
-    .catch(err => res.status(404).json({ message: err }))
+    .catch(err => res.status(404).json(console.log(err)))
 
 }
 

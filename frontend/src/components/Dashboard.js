@@ -3,9 +3,6 @@ import axios from 'axios'
 
 import AllLists from './AllLists'
 
-
-
-
 const Dashboard = ( props ) => {
   
   const [userInfo, setUserInfo] = useState({})
@@ -15,10 +12,6 @@ const Dashboard = ( props ) => {
   // Might need to add a filter for "active" lists
 
   
-
-  
-  //temp for devlopment, this needs to be passed via URL
-  // const userID = '5dee2efa789b9a57f9799cff'
 
   //this hook gets the list Info
   const userlistHook = () => {
