@@ -46,7 +46,11 @@ function getSubCategories(categories) {
   return promise
 }
 
+function getCategoryList() {
+
+}
+
 module.exports = {
   getCategories,
-  getSubCategories
+  getCategoryList
 }

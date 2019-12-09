@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 // import ReactDOM from 'react-dom'
 // import { Link } from 'react-router-dom'
-// import axios from 'axios'
 
 import auth from '../lib/auth'
+import UseAxios from '../hooks/UseAxios'
 
 //setup our fields needed
 const createListForm = {
@@ -30,7 +30,7 @@ function CreateList(props) {
   const userId = auth.getUserId()
 
   //get categories for use in select list
-  
+  // const categories = UseAxios('/categories')
 
 
   //handle input values: data, function
@@ -128,6 +128,13 @@ function CreateList(props) {
                 Select a category <span className='optional'>optional</span>
               </label>
               <div className="control">
+
+                <select className='select'>
+                  {/* {UseAxios('/categories').map((category, i) => */}
+                    <option value='results.long_name'></option>
+                  )}
+                </select>
+
                 <input onChange={handleChange} type="text" className="input" name="subcategory">
                 </input>
               </div>
