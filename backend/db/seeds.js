@@ -92,7 +92,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             listStatus: 'Active',
             subcategory: ['art/sculpture', 'accessories'],
             keywords: [],
-            itemsSaved: ['1234556', '1234556444'],
+            itemsSaved: ['etsy-1234556', 'etsy-1234556444'],
             customItem: [],
             shareUrl: ''
           },
@@ -122,7 +122,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             listStatus: 'Active',
             subcategory: ['art/painting'],
             keywords: [], //not implemented for MVP
-            itemsSaved: ['1234556434'],
+            itemsSaved: ['etsy-1234556444'],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           },
@@ -137,7 +137,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             listStatus: 'Active',
             subcategory: ['accessories/men', 'art/painting'],
             keywords: [], //not implemented for MVP
-            itemsSaved: ['1234556434', '1234556444'],
+            itemsSaved: ['etsy-1234556', 'etsy-1234556444'],
             customItem: [],
             shareUrl: '' //null until we implement url structures
           }
