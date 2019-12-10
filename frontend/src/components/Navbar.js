@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom'
 // import Auth from
 
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+  // console.log(this.props.location.pathname)
+  // //set breadcrumb route(s)
+  // // const breadcrumbs = () => {
+  // //   const urlPath = props.location.pathname
+  // //   console.log(urlPath)
+  // // }
 
   const [state, setState] = useState({
     isOpen: false
@@ -48,7 +55,7 @@ const Navbar = () => {
               </Link>
           </div>
           <div className="navbar-item">
-            <Link className="navbar-item" to="/list/create"
+            <Link className="navbar-item" to="/lists/create"
               onClick={() => toggleNavbar()}
             >
               Create new list

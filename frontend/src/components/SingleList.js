@@ -3,6 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 // import { useHistory } from 'react-router-dom'
 import Auth from '../lib/auth'
+import Breadcrumbs from './Breadcrumbs'
 
 require('dotenv').config()
 // taken etsy key off so it's not committed to github
@@ -161,6 +162,9 @@ const SingleList = (props) => {
   if (data === {} || etsy === {} || savedItems === []) return <div>Loading</div>
   return (
     <section className='section'>
+      <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
       <div className='container'>
         <div className='columns'>
           <div className='column'>

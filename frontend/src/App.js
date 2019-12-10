@@ -18,9 +18,8 @@ import auth from './lib/auth'
 import CreateList from './components/CreateList'
 
 function App() {
- 
-  //the aside of suggested lists is hardcoded here for now as it was an additional feature we thought of that was simple to implement in this manner
-  //we want to extract this out to the backend so that here we just make an API call to get the latest 9 suggestions
+
+  
 
   return (
     <div className="App">
@@ -29,8 +28,8 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/browse" component={Browse} />
-          <Route exact path='/list/create' component={CreateList} />
+          {/* <Route exact path="/browse" component={Browse} /> */}
+          <Route exact path='/lists/create' component={CreateList} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/dashboard/:userId' component={Dashboard} />

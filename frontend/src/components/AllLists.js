@@ -5,15 +5,6 @@ import moment from 'moment'
 
 const AllLists = ({ data }) => {
     let history = useHistory()
-    console.log(data)
-
-    //filter the data to just return listStatus: 'Active'
-    const getActiveLists = (data) => {
-      const activeLists = data.filter(data.listStatus === 'Active')
-      console.log(activeLists)
-    }
-
-   
 
    const handleClick = (elem) => {
     history.push(`/lists/${elem.user._id}/${elem._id}`)

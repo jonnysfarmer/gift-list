@@ -6,6 +6,7 @@ import moment from 'moment'
 
 import auth from '../lib/auth'
 import UseAxios from '../hooks/UseAxios'
+import Breadcrumbs from './Breadcrumbs'
 
 //setup our fields needed
 const createListForm = {
@@ -60,6 +61,9 @@ function CreateList(props) {
   return <>
 
     <section className='section'>
+    <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
       <div className='container'>
         <h1>Create a list</h1>
         <div className='container columns'>

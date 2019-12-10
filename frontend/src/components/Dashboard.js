@@ -2,8 +2,10 @@ import React, {useState, useEffect }from 'react'
 import axios from 'axios'
 
 import AllLists from './AllLists'
+import Breadcrumbs from './Breadcrumbs'
 
 const Dashboard = ( props ) => {
+
   
   const [userInfo, setUserInfo] = useState({})
   const [listInfo, setListInfo] = useState([])
@@ -50,6 +52,10 @@ const Dashboard = ( props ) => {
   if(listInfo === [] || userInfo === {} ) return <div>Loading</div>
   return (
     <section className="section">
+      <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
+      
       <section className="section">
         <div className="container">
         <div className='title'>Welcome back, {userInfo.firstname}</div>

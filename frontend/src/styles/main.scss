@@ -30,11 +30,13 @@
 
 input[name='budget'] {
   max-width: 25%;
-  padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
 
 .has-static-text {
 	position:relative;
+}
+.has-static-text input {
+  padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
 
 .static-text {
