@@ -19,12 +19,9 @@ function getSubCat(req, res) {
   const subcat = req.params.subcatname
   axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}/${subcat}&limit=6&api_key=${etsyKey}`)
     .then(response => {
-      // console.log(response.data)
       res.send({ data: response.data.results })
-    }
-    )
+    })
     .catch(err => console.log(err))
-
 }
 
 function getImage(req, res) {

@@ -146,5 +146,6 @@ module.exports = {
   add,
   index,
   show,
-  addItem
+  addItem,
+  getEtsyListing
 }
