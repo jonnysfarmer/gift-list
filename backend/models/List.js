@@ -20,7 +20,7 @@ const listSchema = new mongoose.Schema({
   //you can optionally attach this list to an event, all event fields are independently optional you can fill out one, all, none
   eventName: { type: String },
   eventDate: { type: Date },
-  eventReminder: { type: String, enum: ['on', false] },
+  eventReminder: { type: String, enum: ['on', true, false] },
   //budget is also optional, but must be turned to the correct format for passing on APIs by the front end
   budget: { type: String }, //budget is always stored as GBP
   //list status is either active (visible) or archived (not visible) on dashboard/shared list view
