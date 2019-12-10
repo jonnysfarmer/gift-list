@@ -133,6 +133,7 @@ Currently we need to re-login in everytime we change something, otherwise the to
 
 ### While we are not yet planning to build any of these, we did consider them in the architecture.
 
+- `Etsy Items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
 
 ----
 

@@ -32,7 +32,7 @@ const SingleList = (props) => {
     budget: ''
   }
 
-  //global variables 
+  //component variables 
   const userID = props.match.params.userId
   const listID = props.match.params.listId
 
