@@ -1,24 +1,13 @@
-const categories = require('../controllers/categories')
+const getCategories = require('../controllers/categories')
 
 
 function getEtsyCategories() {
-  const promise = new Promise(function (resolve) {
-    const etsyCategoriesToSeed = []
-    categories.then((res) => {
-      const categories = res
-      categories.forEach(elem => {
-        etsyCategoriesToSeed.push({
-          categoryName: elem.long_name,
-          etsyCategoryName: elem.name,
-          subcategoryName: elem.subcategoriesShortName,
-          etsySubcategoryName: elem.subcategoriesAPIName
-        })
-      })
-      resolve(etsyCategoriesToSeed)
+  return new Promise(function (resolve) {
+    getCategories.then((res) => {
+      // console.log(res[0])
+      resolve(res)
     })
   })
-  return promise
-
 }
 
 module.exports = getEtsyCategories
