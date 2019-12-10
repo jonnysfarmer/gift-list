@@ -31,7 +31,7 @@ const SingleList = (props) => {
   const [addCustomEdit, setAddCustomEdit] = useState(true)
   const [customItem, setCustomItem] = useState({ customSchema })
   const [editCustom, setEditCustom] = useState([])
-  const [editCustomItem1, setEditCustomItem1] = useState({}) // this is for the Put
+
   const editList = {
     user: '',
     listName: '',
