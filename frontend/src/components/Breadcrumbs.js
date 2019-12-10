@@ -43,7 +43,6 @@ const Breadcrumbs = () => {
       return (
         <li key={i}><Link to={elem.path}>{elem.label}</Link></li>
         ) 
-
       })}
     </ul>
   )

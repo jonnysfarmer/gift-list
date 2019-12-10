@@ -38,6 +38,7 @@ function CreateList(props) {
 
 
   const handleChange = (e) => {
+    e.preventDefault()
     setData({ ...data, [e.target.name]: e.target.value })
     setErrors({})
   }
@@ -109,7 +110,7 @@ function CreateList(props) {
                 Event date <span className='optional'>optional</span>
               </label>
               <div className="control">
-                <input onChange={handleSubmit} type="date" className="input" name="eventDate">
+                <input onChange={handleChange} type="date" className="input" name="eventDate">
                 </input>
               </div>
               {errors.eventDate && <small className="help is-danger">{errors.eventDate}</small>}
