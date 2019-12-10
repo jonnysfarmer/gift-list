@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 // import ReactDOM from 'react-dom'
 // import { Link } from 'react-router-dom'
 
@@ -104,7 +105,7 @@ function CreateList(props) {
                 Event date <span className='optional'>optional</span>
               </label>
               <div className="control">
-                <input onChange={handleChange} type="date" className="input" name="eventDate">
+                <input onChange={handleSubmit} type="date" className="input" name="eventDate">
                 </input>
               </div>
               {errors.eventDate && <small className="help is-danger">{errors.eventDate}</small>}

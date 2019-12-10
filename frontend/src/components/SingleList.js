@@ -19,7 +19,7 @@ const SingleList = (props) => {
   const [etsy, setEtsy] = useState([])
   const [savedItems, setSavedItems] = useState([])
   const [customItems, setCustomItems] = useState([])
-  const [editActive, setEditState] = useState(true) //set default to true so it's in non-edit mode
+  const [editOff, setEditState] = useState(true) //set default to true so it's in non-edit mode
   const [editDate, setDateState] = useState()
   const [editStatus, setStatusState] = useState()
   const editList = {
@@ -83,7 +83,7 @@ const SingleList = (props) => {
       axios.get(`http://localhost:8000/api/items/${ele}`)
         .then(response => {
           let newArray = totalItems.push(response.data)
-          console.log(totalItems)
+          // console.log(totalItems)
           setSavedItems(totalItems)
         })
     })
@@ -100,37 +100,36 @@ const SingleList = (props) => {
   // show 5 
   // we want to spin off the cat into a different component.
   //call the picture as well.
-  console.log(savedItems)
+  // console.log(savedItems)
 
 
   //===== USER CAN EDIT LIST DETAILS ======
-  //the code in the form checks to see if editActive is true (which means the fields are not editable)
+  //the code in the form checks to see if editOff is true (which means the fields are not editable)
   //if it is true, then it calls this function to switch the state and thus display the input fields
   //the save button calls the PUT, then editField to save the changes and set fields back to 'edit'
   //the cancel button ignores any edits and sets fields back to 'non editable'
   function editField(e) {
-    setEditState(!editActive)
+    setEditState(!editOff)
   }
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
     setErrors({})
   }
-
   //for putting the edited field back to our database
   function saveEdit(e) {
     e.preventDefault()
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(setEditState(!editActive))
+      .then(setEditState(!editOff))
       .catch(err => console.log(err))
   }
   //for clearing any changes made to the fields
   function cancelEdit(e) {
     e.preventDefault()
     listHook()
-    setEditState(!editActive)
+    setEditState(!editOff)
   }
 
 
@@ -167,34 +166,35 @@ const SingleList = (props) => {
           <div className='column'>
             <div className='container'>
               <div className='title'>
-                <h1 name='listName' className={`${editActive ? '' : 'not-editable'}`}>{data.listName} <span className='edit-link' onClick={editField}>edit</span></h1>
-                <div className={`${editActive ? 'not-editable' : ''}`}>
-                  <input className='input' type='text' name='listName' value={data.listName} onChange={handleChange} />
+                <h1 name='listName' className={`${editOff ? '' : 'not-editable'}`}>{data.listName} <span className='edit-link' onClick={editField}>edit</span></h1>
+                <div className={`${editOff ? 'not-editable' : ''}`}>
+                  {data.listName && <input className='input' type='text' value={data.listName} name='listName' onChange={handleChange} />}
+                  {!data.listName && <input className='input' type='text' name='listName' onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
-                <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.giftRecipient} <span className='edit-link' onClick={editField}>edit</span></p>
-                <div className={`${editActive ? 'not-editable' : ''}`}>
+                <p className={`edit ${editOff ? '' : 'not-editable'}`}>{data.giftRecipient} <span className='edit-link' onClick={editField}>edit</span></p>
+                <div className={`${editOff ? 'not-editable' : ''}`}>
                   {data.giftRecipient && <input className='input' type='text' value={data.giftRecipient} name='giftRecipient' onChange={handleChange} />}
                   {!data.giftRecipient && <input className='input' type='text' name='giftRecipient' onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
-                <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventDate}  <span className='edit-link' onClick={editField}>edit</span></p>
-                <div className={`${editActive ? 'not-editable' : ''}`}>
-                  {data.eventDate && <input className='input' type='date' value={data.eventDate} name='eventDate' onChange={handleChange} />}
+                <p className={`edit ${editOff ? '' : 'not-editable'}`}>{moment(data.eventDate).format('DD-MM-YYYY')}  <span className='edit-link' onClick={editField}>edit</span></p>
+                <div className={`${editOff ? 'not-editable' : ''}`}>
+                  {data.eventDate && <input className='input' type='date' value={moment(data.eventDate).format('YYYY-MM-DD')} name='eventDate' onChange={handleChange} />}
                   {!data.eventDate && <input className='input' type='date' name='eventDate' onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
-                <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventName}  <span className='edit-link' onClick={editField}>edit</span></p>
-                <div className={`${editActive ? 'not-editable' : ''}`}>
+                <p className={`edit ${editOff ? '' : 'not-editable'}`}>{data.eventName}  <span className='edit-link' onClick={editField}>edit</span></p>
+                <div className={`${editOff ? 'not-editable' : ''}`}>
                   {data.eventName && <input className='input' type='text' value={data.eventName} name='eventName' onChange={handleChange} />}
                   {!data.eventName && <input className='input' type='text' name='eventName' onChange={handleChange} />}
                 </div>
               </div>
             </div>
-            <div className={`edit ${editActive ? 'not-editable' : ''}`}>
+            <div className={`edit ${editOff ? 'not-editable' : ''}`}>
               <button onClick={saveEdit}>Save</button>
               <button onClick={cancelEdit}>Cancel</button>
             </div>
