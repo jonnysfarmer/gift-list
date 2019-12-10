@@ -12,7 +12,9 @@ const Breadcrumbs = ({ data }) => {
     //map the results of the url pieces against their breadcrum (or null if the piece is not a crumb eg userid)
     let crumb
     
-    const crumbArr = pathSplit.map((elem, i) => {
+    const crumbArrAll = pathSplit.map((elem, i) => {
+
+      console.log(elem)
       switch(elem) {
         //Home is always visible as a crumb if crumbs are shown so it is not defined here, it will return null
         case 'dashboard': crumb = 'Dashboard'; break
@@ -22,15 +24,25 @@ const Breadcrumbs = ({ data }) => {
       }
       return crumb
     })
-    
+    console.log(crumbArrAll)
+    //remove the null values
+    const crumbArr = crumbArrAll.filter(crumb => crumb !== null)
     console.log(crumbArr)
-
+    console.log(crumbArr.length)
     
-
+    //need to add the router links instead of a href's
+    //need to get this page name, should be last in array
+    
+  if (!crumbArr) { return <div>Loading</div> }
   return (
-    <section className='breadcrumbs'>
-      <p>Breadcrumbs here</p>
-    </section>
+    <ul className='breadcrumbs'>
+      <li><a href='/'>Home</a></li>
+      {crumbArr.map((elem, i) => {
+        if (i < crumbArr.length-1) { return ( <li key={i}> <a href='x'>{i} {elem}</a></li> ) }
+        else { return ( <li key={i}>{elem}</li> ) }
+        
+      })}
+    </ul>
   )
 }
 
