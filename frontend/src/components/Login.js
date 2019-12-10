@@ -26,7 +26,7 @@ class Login extends React.Component {
       .then(resp => {
         Auth.setToken(resp.data.token)
         console.log(resp)
-        this.props.history.push(`/dashboard/${resp.data.id}`) 
+        this.props.history.push(`/lists/${resp.data.id}`) 
       })
       .catch(() => this.setState({ errors: 'Incorrect username/password combination' }))
   }

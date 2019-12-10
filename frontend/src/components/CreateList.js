@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 // import ReactDOM from 'react-dom'
 // import { Link } from 'react-router-dom'
 
 import auth from '../lib/auth'
 import UseAxios from '../hooks/UseAxios'
+import Breadcrumbs from './Breadcrumbs'
 
 //setup our fields needed
 const createListForm = {
@@ -18,7 +20,7 @@ const createListForm = {
   eventReminder: false,
   //budget is also optional, but must be turned to the correct format for passing on APIs by the front end
   budget: '', //budget is always stored as GBP
-  //list status is either active (visible) or archived (not visible) on dashboard/shared list view
+  //list status is either active (visible) or archived (not visible) on lists/shared list view
   subcategory: ''
   //we're not implementing keywords in MVP but including in data structure for future
 }
@@ -59,6 +61,9 @@ function CreateList(props) {
   return <>
 
     <section className='section'>
+    <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
       <div className='container'>
         <h1>Create a list</h1>
         <div className='container columns'>

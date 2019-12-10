@@ -3,7 +3,8 @@ import axios from 'axios'
 import moment from 'moment'
 // import { useHistory } from 'react-router-dom'
 import Auth from '../lib/auth'
-import { element } from 'prop-types'
+// import { element } from 'prop-types'
+import Breadcrumbs from './Breadcrumbs'
 
 require('dotenv').config()
 // taken etsy key off so it's not committed to github
@@ -133,7 +134,6 @@ const SingleList = (props) => {
     setData({ ...data, [e.target.name]: e.target.value })
     setErrors({})
   }
-
   //for putting the edited field back to our database
   function saveEdit(e) {
     e.preventDefault()
@@ -197,13 +197,11 @@ const SingleList = (props) => {
     let newArray = [...editCustom]
     newArray[pos] = !newArray[pos]
     setEditCustom(newArray)
-    // customItemHook()
 
   }
   const editHandleChangeCustom = (e, i) => {
     const data = [...customItems]
     data[i] = {...data[i],[e.target.name]: e.target.value }
-
     setCustomItems(data)
   }
   
@@ -254,10 +252,13 @@ const SingleList = (props) => {
   // console.log(cat)
   useEffect(listHookOnMount, [])
   useEffect(customItemHookInitial, [])
-  console.log(customItems)
+  // console.log(customItems)
   if (data === {} || etsy === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
   return (
     <section className='section'>
+      <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
       <div className='container'>
         <div className='columns'>
           <div className='column'>
@@ -265,7 +266,8 @@ const SingleList = (props) => {
               <div className='title'>
                 <h1 name='listName' className={`${editOff ? '' : 'not-editable'}`}>{data.listName} <span className='edit-link' onClick={editField}>edit</span></h1>
                 <div className={`${editOff ? 'not-editable' : ''}`}>
-                  <input className='input' type='text' name='listName' value={data.listName} onChange={handleChange} />
+                  {data.listName && <input className='input' type='text' value={data.listName} name='listName' onChange={handleChange} />}
+                  {!data.listName && <input className='input' type='text' name='listName' onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
