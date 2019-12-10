@@ -46,7 +46,7 @@ function add(req, res) {
       // eslint-disable-next-line quotes
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
         .then(getEtsyListing(req.body.id, 'fromCreateItem'))
-        .then(res.send({ status: 200, message: 'item saved', listingId: listingId }))
+         
         .catch(err => console.log('put to list error', err))
     })
 }

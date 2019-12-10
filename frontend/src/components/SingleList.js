@@ -20,6 +20,7 @@ const SingleList = (props) => {
   //variables for getting product data
   const [cat, setCat] = useState([])
   const [etsy, setEtsy] = useState([])
+  // const [etsyImage, setEtsyImage] = useState([])
   //variables to handle saved items
   const [savedItems, setSavedItems] = useState([])
   const [customItems, setCustomItems] = useState([]) // ALl custom Items
@@ -75,14 +76,16 @@ const SingleList = (props) => {
 
   //===== POPULATING THE SUGGESTED ITEMS DATA =====
   //OnMount, this will call etsy for 6 items for the first category listed (where there is a category)
-  //If another category button on the page is clicked, then it reruns this to return 6 items for that category
+  //If another category button on the page is clicked, then it reruns this to return 6 items for
   const etsyHook = (cat) => {
     axios.get(`http://localhost:8000/api/etsy/${cat}`)
       .then(response => {
+        console.log(response.data)
         setEtsy(response.data.data)
       })
       .catch(err => setErrors(err))
   }
+
 
 
 
@@ -115,8 +118,7 @@ const SingleList = (props) => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
       .then(response => {
         setCustomItems(response.data)
-      }
-      )
+      })
       .catch(err => setErrors(err))
   }
 
@@ -163,7 +165,7 @@ const SingleList = (props) => {
   //Handle Change for Custom Item
   const handleChangeCustom = (e) => {
     setCustomItem({ ...customItem, [e.target.name]: e.target.value })
-    console.log(customItem)
+    // console.log(customItem)
     setErrors({})
 
   }
@@ -217,7 +219,7 @@ const SingleList = (props) => {
   //===== USER CAN ARCHIVE LIST ======
   function archiveList(e) {
     e.preventDefault()
-    console.log('archive called')
+    // console.log('archive called')
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { listStatus: 'Archived' }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -246,7 +248,7 @@ const SingleList = (props) => {
 
   // show 5 
 
-  console.log(etsy)
+  // console.log(etsyImage)
   // console.log(cat)
   useEffect(listHookOnMount, [])
   useEffect(customItemHookInitial, [])
@@ -312,9 +314,10 @@ const SingleList = (props) => {
               <div className='subtitle'>Suggested Gifts</div>
               <div className='columns'>
                 {etsy.map((ele, i) => {
+                  
                   return (
                     <div className='card column' key={i}>
-                      
+                     
                       {ele.title}
 
                     </div>
