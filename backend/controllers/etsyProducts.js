@@ -3,26 +3,30 @@ const axios = require('axios')
 require('dotenv').config()
 const etsyKey = process.env.ETSY_KEY
 
-function getProducts(req, res) {
-  const cat = req.params.catname
-  axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=6&api_key=${etsyKey}`)
-    .then(response => {
-      // console.log(response.data)
-      res.send({ data: response.data.results })
-    }
-    )
-    .catch(err => console.log(err))
-}
+// function getProducts(req, res) {
+//   console.log('gettingproducts')
+//   // const cat = req.params.catname
+//   // axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=6&api_key=${etsyKey}`)
+//   //   .then(response => {
+//   //     // console.log(response.data)
+//   //     res.send({ data: response.data.results })
+//   //   }
+//   //   )
+//   //   .catch(err => console.log(err))
+// }
 
-const etsyItems = [{}]
+
+
 
 function getSubCat(req, res) {
+console.log('gettingsubcat')
   const cat = req.params.catname
   const subcat = req.params.subcatname
+  const etsyItems = [{}]
 
   axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}/${subcat}&limit=6&api_key=${etsyKey}`)
-    .then(response => {
-      const resArray = response.data.results
+    .then(res => {
+      const resArray = res.data.results
       resArray.map((elem, i) => {
         etsyItems.push({
           id: i,
@@ -35,35 +39,27 @@ function getSubCat(req, res) {
           imgsrc: '',
           subcategories: elem.category_path
         })
-        getImage(i, elem.listing_id)
+        axios.get(`http://openapi.etsy.com/v2/listings/${elem.listing_id}/images?region=GB&api_key=${etsyKey}`)
+          .then(res => {
+            // console.log(id)
+            etsyItems.map((elem) => {
+              if (elem.id === i) {
+                elem.imgsrc = res.data.results[0].url_570xN
+              }
+            })
+            console.log(etsyItems)
+            // res.send({ data: etsyItems }) 
+            // return etsyItems
+          })
+          .catch(err => console.log(err))
       })
     })
     .catch(err => console.log(err))
 }
-
-function getImage(id, listing_id) {
-  axios.get(`http://openapi.etsy.com/v2/listings/${listing_id}/images?region=GB&api_key=${etsyKey}`)
-    .then(response => {
-      // console.log(id)
-      etsyItems.map((elem) => {
-        if (elem.id === id) {
-          elem.imgsrc = response.data.results[0].url_570xN
-        }
-      })
-      // console.log(etsyItems)
-      return etsyItems
-    })
-    .catch(err => console.log(err))
-}
-
-
-
-
 
 
 
 module.exports = {
-  getProducts,
-  getSubCat,
-  getImage
+  // getProducts,
+  getSubCat
 }

@@ -66,13 +66,13 @@ router.route('/categories')
 
 //---ETSY PRODUCTS via CATEGORY
 
-router.route('/etsy/:catname')
-  .get(etsyProducts.getProducts) 
+// router.route('/etsy/:catname')
+//   .get(etsyProducts.getProducts) 
 
 router.route('/etsy/:catname/:subcatname')
   .get(etsyProducts.getSubCat)
 
-router.route('/image/:id')
-  .get(etsyProducts.getImage)
+// router.route('/image/:id')
+//   .get(etsyProducts.getImage)
 
 module.exports = router
