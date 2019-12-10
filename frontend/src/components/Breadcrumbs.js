@@ -4,12 +4,12 @@ import Auth from '../lib/auth'
 
 
 
-const Breadcrumbs = ({ data }) => {
+const Breadcrumbs = () => {
+
+  //get the userId (for if they're logged in)
+  const userId = Auth.getUserId()
 
   //set our name/path array
-  //get the userId (for if they're logged in)
-  const userId = Auth.getToken()
-
   const breadcrumbArr = [
     {
       urlStub: 'lists',
@@ -23,48 +23,23 @@ const Breadcrumbs = ({ data }) => {
     }
   ]
 
-
   //get the url
   let history = useHistory()
   //break the url apart and add it to our array
   const pathSplit = (history.location.pathname).split('/')
   //map the path items and get their label and paths from breadcrumbArr
-  const crumbs = pathSplit.filter(elem => elem !== '').map((elem, i) => {
-    console.log(elem)
+  const crumbs = pathSplit.map((elem, i) => {
       return breadcrumbArr.find( ({ urlStub }) => urlStub === elem )
     })
+  //remove any undefined entries (ones that didn't match our breadcrumbArr)
+  const crumbsNoNull = crumbs.filter(elem => elem !== undefined)
 
-  
-  
-    console.log(crumbs)
-  
-   
-
-
-  // //map the results of the url pieces against their breadcrumb (or null if the piece is not a crumb eg userid)
-  // //then return just the non nulls
-  // let crumb
-  // const crumbArr = pathSplit.map((elem, i) => {
-  //   switch (elem) {
-  //     case 'lists': crumb = 'My Lists', path = '/lists/${userId}'; break
-  //     case 'create': crumb = 'Create A List'; break
-  //     default: crumb = null
-  //   }
-  //   return crumb
-  // }).filter(crumb => crumb !== null)
-  // console.log(crumbArr)
-  // console.log(crumbArr[crumbArr.length - 1])
-
-  //need to add the router links instead of a href's
-  //need to get this page name, should be last in array
 
   if (!breadcrumbArr) { return <div>Loading</div> }
-
   return (
     <ul className='breadcrumbs'>
       <li><Link to='/'>Home</Link></li>
-      {crumbs.map((elem, i) => {
-
+      {crumbsNoNull.map((elem, i) => {
       return (
         <li key={i}><Link to={elem.path}>{elem.label}</Link></li>
         ) 
