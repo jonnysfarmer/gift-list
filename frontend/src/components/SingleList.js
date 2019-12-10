@@ -20,6 +20,7 @@ const SingleList = ( props ) => {
   const [cat, setCat] = useState([])
   const [etsy, setEtsy] = useState([])
   const [savedItems, setSavedItems] = useState([])
+  const [customItems, setCustomItems] = useState([])
   
   const listHook = () => {
     const userID = props.match.params.userId
@@ -57,10 +58,20 @@ const SingleList = ( props ) => {
     })
   }
 
-  // show 5 
+  const customItemHook = ()=>{
+    const userID = props.match.params.userId
+    const listID = props.match.params.listId
+    axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
+    .then(response => setCustomItems(response.data))
+    .catch(err => setErrors(err))
+  }
 
+  // show 5 
+  // we want to spin off the cat into a different component.
+  //call the picture as well.
   console.log(savedItems)
   useEffect(listHook, [])
+  useEffect(customItemHook, [])
 
   if (data === {} || etsy === {} || savedItems === []) return <div>Loading</div>
   return (
@@ -96,6 +107,9 @@ const SingleList = ( props ) => {
                   <p key={i}>{ele.productName}</p>
                 )
               })}
+            </div>
+            <div className="container">
+            <div className="subtitle">Cutstom Gifts</div>
             </div>
           </div>
         </div>

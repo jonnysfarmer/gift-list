@@ -33,6 +33,7 @@ function getImage(req, res) {
     .then(response => {
       res.send({ image: response.data.results[0].url_570xN }) 
     })
+    .catch(err => console.log(err))
 }
 
 module.exports = {
