@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import Auth from
+import Auth from '../lib/auth'
 
 
-const Navbar = () => {
+const Navbar = (props) => {
 
   const [state, setState] = useState({
     isOpen: false
   })
 
-  // const handleLogout = () => {
-  //   Auth.logout()
-  //   props.history.push('/')
-  // }
+  const handleLogout = () => {
+    Auth.logout()
+    props.history.push('/')
+  }
 
   const toggleNavbar = () => {
     setState({ isOpen: !state.isOpen })
@@ -68,11 +68,11 @@ const Navbar = () => {
               Login
             </Link>
           </div>
-          {/* {Auth.isAuthorized() && <div className="navbar-item">
+          {Auth.isAuthorized() && <div className="navbar-item">
               <div className="navbar-item" onClick={() => handleLogout()}>
                 Logout
               </div>
-            </div>} */}
+            </div>}
         </div>
       </div>
     </div>
