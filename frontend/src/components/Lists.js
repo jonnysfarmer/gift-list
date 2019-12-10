@@ -2,8 +2,10 @@ import React, {useState, useEffect }from 'react'
 import axios from 'axios'
 
 import AllLists from './AllLists'
+import Breadcrumbs from './Breadcrumbs'
 
-const Dashboard = ( props ) => {
+const Lists = ( props ) => {
+
   
   const [userInfo, setUserInfo] = useState({})
   const [listInfo, setListInfo] = useState([])
@@ -12,16 +14,22 @@ const Dashboard = ( props ) => {
   // Might need to add a filter for "active" lists
 
   
+  //this returns just the active lists
+  const getActiveLists = (data) => {
+    const activeLists = data.filter((item) => {
+      return item.listStatus.includes('Active')
+    })
+    return activeLists
+  }
 
   //this hook gets the list Info
   const userlistHook = () => {
     const userID = props.match.params.userId
     axios.get(`http://localhost:8000/api/lists/${userID}`)
-    .then(response => {
-      setListInfo(response.data)
-    })
+    .then(response => setListInfo(getActiveLists(response.data))) //this will only return list with a status of active
     .catch(err => setErrors(err))
   }
+
   //this is a hook for the User info
   const userInfoHook = () => {
     const userID = props.match.params.userId
@@ -44,11 +52,14 @@ const Dashboard = ( props ) => {
   if(listInfo === [] || userInfo === {} ) return <div>Loading</div>
   return (
     <section className="section">
+      <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
+      
       <section className="section">
         <div className="container">
         <div className='title'>Welcome back, {userInfo.firstname}</div>
         <p>You currently working on {listInfo.length} lists</p>
-        
         </div>
       </section>
       <section className="section">
@@ -60,4 +71,4 @@ const Dashboard = ( props ) => {
   )
 }
 
-export default Dashboard;
+export default Lists;

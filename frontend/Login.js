@@ -25,7 +25,7 @@ class Login extends React.Component {
     axios.post('http://localhost:8000/api/login', this.state.data)
       .then(resp => {
         Auth.setToken(resp.data.token)
-        this.props.history.push('/dashboard') 
+        this.props.history.push('/lists') 
       })
       .catch(() => this.setState({ errors: 'Incorrect username/password combination' }))
   }

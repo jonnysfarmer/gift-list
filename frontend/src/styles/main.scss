@@ -1,27 +1,74 @@
 
-@use 'reset';
-@use 'colors';
+//===================================
+// VARIABLES
+//===================================
+// having problems with sass compiler, need to investigate
 
-* {
-  box-sizing: border-box; 
-}
+//Fonts
+@import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto&display=swap');
+//Brand name and h1s only
+$font-title: 'Charmonman', cursive;
+$font: 'Roboto', sans-serif;
+
+//Dark Brand Color #358270
+//Light Brand Color #4AB59A
+
+//used for hero images, coloured boxes/borders
+$background: #4AB59A;
+
+//used when we want to color a title something other than the text color
+$title: #358270;
+
+//standard for all text
+$text: #000000;
+$text-inverted: #ffffff;
+
+//used for placeholders and supporting text
+$light-text: #686868;
+
+//link text, for when we want to color a link something other than the text color
+$link: #358270;
+$link-hover: #4AB59A;
+
+//used for forms
+$error: #b63c5a;
+
+//buttons
+$button:  #358270;
+$button-hover: #4AB59A;
+
+
+//Logo - colours used in the logo only
+$logo-purple: #654AB5;
+$logo-red: #B54A65;
+$logo-green: #9BB54A;
+
+
 
 
 //===================================
 // LAYOUT
 //===================================
-
+* {
+  box-sizing: border-box; 
+}
 
 
 
 
 //===================================
-// TEXT
+// TEXT & LINKS
 //===================================
 
 .edit {
   color: red;
 }
+
+.breadcrumbs li:last-of-type a, .breadcrumbs li:last-of-type a:hover {
+  cursor: default;
+  text-decoration: none;
+  color: $text;
+} 
 
 
 //===================================
@@ -30,11 +77,16 @@
 
 input[name='budget'] {
   max-width: 25%;
+}
+.has-static-text input {
   padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
 
 .has-static-text {
 	position:relative;
+}
+.has-static-text input {
+  padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
 
 .static-text {
