@@ -17,8 +17,8 @@ const SingleList = (props) => {
   const [errors, setErrors] = useState([])
   const [cat, setCat] = useState([])
   const [etsy, setEtsy] = useState([])
-
-  //variables for editing
+  const [savedItems, setSavedItems] = useState([])
+  const [customItems, setCustomItems] = useState([])
   const [editActive, setEditState] = useState(true) //set default to true so it's in non-edit mode
   const [editDate, setDateState] = useState()
   const [editStatus, setStatusState] = useState()
@@ -28,36 +28,80 @@ const SingleList = (props) => {
     giftRecipient: '',
     eventName: '',
     eventDate: '',
-    eventReminder: false, 
+    eventReminder: false,
     budget: ''
   }
 
-  //component variables 
-  const userID = props.match.params.userId
-  const listID = props.match.params.listId
 
-//===== POPULATE DATA FROM BACKEND =====
-  //for getting the list info
   const listHook = () => {
+    const userID = props.match.params.userId
+    const listID = props.match.params.listId
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
       .then(response => {
         setData(response.data)
         setCat(response.data.subcategory)
         setStatusState(response.data.listStatus)
-        // etsyHook(response.data.subcategory[0])
+        etsyHook(response.data.subcategory[0])
+        savedItemsHook(response.data.itemsSaved)
+      })
+
+      .catch(err => setErrors(err))
+  }
+
+  //This displays 10 of the first category
+  //when the other categories are clicked, it then does those
+  const etsyHook = (cat) => {
+    axios.get(`http://localhost:8000/api/etsy/${cat}`)
+      .then(response => {
+        setEtsy(response.data.data)
       })
       .catch(err => setErrors(err))
   }
 
-  //===== POPULATE SUGGESTIONS FROM ETSY =====
-  //for getting suggestions from Etsy
-  // const etsyHook = (cat) => {
-  //   axios.get(`http://openapi.etsy.com/v2/listings/active/?region=GB&category=${cat}&limit=10&api_key=${etsyKey}`)
+  //variables for editing
+
+  //global variables 
+  const userID = props.match.params.userId
+  const listID = props.match.params.listId
+
+  //===== POPULATE DATA FROM BACKEND =====
+  //for getting the list info
+  // const listHook = () => {
+  //   axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
   //     .then(response => {
-  //       setEtsy(response.data)
+  //       setData(response.data)
+  //       setCat(response.data.subcategory)
+  //       setStatusState(response.data.listStatus)
+  //       // etsyHook(response.data.subcategory[0])
   //     })
   //     .catch(err => setErrors(err))
   // }
+
+  const savedItemsHook = (items) => {
+    let totalItems = []
+    items.forEach((ele, i) => {
+      axios.get(`http://localhost:8000/api/items/${ele}`)
+        .then(response => {
+          let newArray = totalItems.push(response.data)
+          console.log(totalItems)
+          setSavedItems(totalItems)
+        })
+    })
+  }
+
+  const customItemHook = () => {
+    const userID = props.match.params.userId
+    const listID = props.match.params.listId
+    axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
+      .then(response => setCustomItems(response.data))
+      .catch(err => setErrors(err))
+  }
+
+  // show 5 
+  // we want to spin off the cat into a different component.
+  //call the picture as well.
+  console.log(savedItems)
+
 
   //===== USER CAN EDIT LIST DETAILS ======
   //the code in the form checks to see if editActive is true (which means the fields are not editable)
@@ -79,7 +123,7 @@ const SingleList = (props) => {
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then( setEditState(!editActive) )
+      .then(setEditState(!editActive))
       .catch(err => console.log(err))
   }
   //for clearing any changes made to the fields
@@ -90,20 +134,20 @@ const SingleList = (props) => {
   }
 
 
-//===== USER CAN ARCHIVE LIST ======
- function archiveList(e) {
-  e.preventDefault()
-  console.log('archive called')
-  axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, {listStatus: 'Archived'}, {
-    headers: { Authorization: `Bearer ${Auth.getToken()}` }
-  })
-    .then(setStatusState('Archived'))
-    .catch(err => console.log(err))
-}
+  //===== USER CAN ARCHIVE LIST ======
+  function archiveList(e) {
+    e.preventDefault()
+    console.log('archive called')
+    axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { listStatus: 'Archived' }, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(setStatusState('Archived'))
+      .catch(err => console.log(err))
+  }
 
 
 
-//===============================================
+  //===============================================
   // need to find better way to handle there being no data in optional fields
   // {data.eventDate && <input className='input' type='date' value={data.eventDate} name='eventDate'  onChange={handleChange} />}
   // {!data.eventDate && <input className='input' type='date' name='eventDate'  onChange={handleChange} />}
@@ -113,8 +157,9 @@ const SingleList = (props) => {
   // console.log(etsy)
   // console.log(cat)
   useEffect(listHook, [])
+  useEffect(customItemHook, [])
 
-  if (data === {} || etsy === {}) return <div>Loading</div>
+  if (data === {} || etsy === {} || savedItems === []) return <div>Loading</div>
   return (
     <section className='section'>
       <div className='container'>
@@ -130,44 +175,62 @@ const SingleList = (props) => {
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.giftRecipient} <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  {data.giftRecipient && <input className='input' type='date' value={data.giftRecipient} name='giftRecipient'  onChange={handleChange} />}
-                  {!data.giftRecipient && <input className='input' type='date' name='giftRecipient'  onChange={handleChange} />}
+                  {data.giftRecipient && <input className='input' type='text' value={data.giftRecipient} name='giftRecipient' onChange={handleChange} />}
+                  {!data.giftRecipient && <input className='input' type='text' name='giftRecipient' onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventDate}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  {data.eventDate && <input className='input' type='date' value={data.eventDate} name='eventDate'  onChange={handleChange} />}
-                  {!data.eventDate && <input className='input' type='date' name='eventDate'  onChange={handleChange} />}
+                  {data.eventDate && <input className='input' type='date' value={data.eventDate} name='eventDate' onChange={handleChange} />}
+                  {!data.eventDate && <input className='input' type='date' name='eventDate' onChange={handleChange} />}
                 </div>
               </div>
               <div className='subtitle'>
                 <p className={`edit ${editActive ? '' : 'not-editable'}`}>{data.eventName}  <span className='edit-link' onClick={editField}>edit</span></p>
                 <div className={`${editActive ? 'not-editable' : ''}`}>
-                  {data.eventName && <input className='input' type='date' value={data.eventName} name='eventName'  onChange={handleChange} />}
-                  {!data.eventName && <input className='input' type='date' name='eventName'  onChange={handleChange} />}
+                  {data.eventName && <input className='input' type='text' value={data.eventName} name='eventName' onChange={handleChange} />}
+                  {!data.eventName && <input className='input' type='text' name='eventName' onChange={handleChange} />}
                 </div>
               </div>
             </div>
-            <div className={`edit ${editActive ? 'not-editable' : ''}`}> 
+            <div className={`edit ${editActive ? 'not-editable' : ''}`}>
               <button onClick={saveEdit}>Save</button>
               <button onClick={cancelEdit}>Cancel</button>
             </div>
             {editStatus !== 'Archived' && <button className='is-active' onClick={archiveList}>Archive list</button>}
             {editStatus === 'Archived' && <p className='is-archived'>List is archived</p>}
-           
-            {/* <div className='container'>
-              {etsy.map((ele, i)=>{
+            <div className='container'>
+              {cat.map((ele, i) => {
                 return (
-                  <p>{ele.title}</p>
+                  <button key={i} onClick={() => etsyHook(ele)}>{ele}</button>
                 )
               })}
-            </div> */}
+            </div>
+
+            <div className='container'>
+              <div className='subtitle'>Suggested Gifts</div>
+              {etsy.map((ele, i) => {
+                return (
+                  <p key={i}>{ele.title}</p>
+                )
+              })}
+            </div>
           </div>
-          <div className='column'>
-            Column 2
+        <div className="column">
+          <div className="container">
+            <div className="subtitle">Saved gifts</div>
+            {savedItems.map((ele, i) => {
+              return (
+                <p key={i}>{ele.productName}</p>
+              )
+            })}
+          </div>
+          <div className="container">
+            <div className="subtitle">Cutstom Gifts</div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   )
