@@ -13,14 +13,14 @@ const customItemSchema = new mongoose.Schema({
 
 const listSchema = new mongoose.Schema({
   //userId connects us to the USER schema
-  user: { type: mongoose.Schema.ObjectId, ref: 'User' , required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   listName: { type: String, required: true },
   //this must be 'me' or anyone else you enter
   giftRecipient: { type: String, required: true },
   //you can optionally attach this list to an event, all event fields are independently optional you can fill out one, all, none
   eventName: { type: String },
   eventDate: { type: Date },
-  eventReminder: { type: Boolean },
+  eventReminder: { type: String, enum: ['on', false] },
   //budget is also optional, but must be turned to the correct format for passing on APIs by the front end
   budget: { type: String }, //budget is always stored as GBP
   //list status is either active (visible) or archived (not visible) on dashboard/shared list view

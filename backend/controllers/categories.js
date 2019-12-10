@@ -1,6 +1,7 @@
 const axios = require('axios')
 require('dotenv').config()
 
+
 const etsyKey = process.env.ETSY_KEY
 
 // this will be populated with data from etsy's API
@@ -46,4 +47,11 @@ function getSubCategories(categories) {
   return promise
 }
 
-module.exports = getCategories()
+function getCategoryList() {
+
+}
+
+module.exports = {
+  getCategories,
+  getCategoryList
+}
