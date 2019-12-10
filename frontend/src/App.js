@@ -12,7 +12,7 @@ import Home from './components/Home'
 import Browse from './components/Browse'
 import Register from './components/Register'
 import Login from './components/Login'
-import Dashboard from './components/Dashboard'
+import Lists from './components/Lists'
 import SingleList from './components/SingleList'
 import auth from './lib/auth'
 import CreateList from './components/CreateList'
@@ -28,12 +28,11 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route exact path="/browse" component={Browse} /> */}
           <Route exact path='/lists/create' component={CreateList} />
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
-          <Route path='/dashboard/:userId' component={Dashboard} />
-          <Route path='/lists/:userId/:listId' component={SingleList} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/lists/:userId' component={Lists} />
+          <Route exact path='/lists/:userId/:listId' component={SingleList} />
         </Switch>
       </BrowserRouter>
 

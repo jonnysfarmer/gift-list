@@ -20,7 +20,7 @@ const createListForm = {
   eventReminder: false,
   //budget is also optional, but must be turned to the correct format for passing on APIs by the front end
   budget: '', //budget is always stored as GBP
-  //list status is either active (visible) or archived (not visible) on dashboard/shared list view
+  //list status is either active (visible) or archived (not visible) on lists/shared list view
   subcategory: ''
   //we're not implementing keywords in MVP but including in data structure for future
 }

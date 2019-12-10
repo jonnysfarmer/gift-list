@@ -4,7 +4,7 @@ import axios from 'axios'
 import AllLists from './AllLists'
 import Breadcrumbs from './Breadcrumbs'
 
-const Dashboard = ( props ) => {
+const Lists = ( props ) => {
 
   
   const [userInfo, setUserInfo] = useState({})
@@ -71,4 +71,4 @@ const Dashboard = ( props ) => {
   )
 }
 
-export default Dashboard;
+export default Lists;
