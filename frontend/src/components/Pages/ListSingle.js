@@ -6,7 +6,6 @@ import ListName from '../Components/ListName'
 import ListEvent from '../Components/ListEvent'
 import ListSavedItems from '../Components/ListSavedItems'
 import ListCustomItems from '../Components/ListCustomItems'
-import ProductShow from '../Components/ProductShow'
 import Breadcrumbs from '../Breadcrumbs'
 
 const ListSingle = (props) => {
@@ -25,13 +24,13 @@ const ListSingle = (props) => {
   const onMount = () => {
     axios.get(`http://localhost:8000/api/lists/${userId}/${listId}`)
       .then(response => {
-        // console.log(response)
+        console.log(response)
         setData(response.data)
       })
   }
 
 
-
+  
 
   useEffect(onMount, [])
 
@@ -56,13 +55,9 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          <div className='container'>
-           {data.subcategory && <ProductShow
-              subcategory={data.subcategory}
-              userId={userId} listId={listId}
-            />}
-          </div>
+          
         </div>
+
 
 
 
@@ -75,10 +70,10 @@ const ListSingle = (props) => {
             />
           </div>
           <div className='container'>
-            {/* <ListCustomItems
+            <ListCustomItems
               customItem={data.customItem}
               userId={userId} listId={listId}
-            /> */}
+            />
           </div>
         </div>
 
