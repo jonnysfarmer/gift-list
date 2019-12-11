@@ -111,7 +111,32 @@ const ListCustomItems = (props) => {
   // if (data === {}) { return <div>Loading</div> }
   return (
     <div id='list-name' className='element'>
-   
+      {/* <h3>Your other items</h3>
+      <ul>
+        {data.map((ele, i) => {
+          return (
+            <div key={i}>
+              <div className={`edit ${editCustom[i] ? '' : 'not-editable'}`}>
+                <p>{ele.note}</p>
+                <p>{ele.url}</p>
+                <button onClick={() => deleteCustomItem(ele._id)}>Delete</button>
+                <button onClick={() => editCustomItem(i)}>Edit</button>
+              </div>
+              <div className={`${editCustom[i] ? 'not-editable' : ''}`}>
+                {<div>
+                  <input className='input' type='text' name='note' value={customItems[i].note} onChange={(e) => editHandleChangeCustom(e, i)} />
+                  <input className='input' type='text' name='url' onChange={(e) => editHandleChangeCustom(e, i)} title='url' value={ele.url} />
+
+                  <button onClick={() => saveCustomEditItem(ele._id, i)}>Save</button>
+                  <button onClick={() => editCustomItem(i)}>Cancel</button>
+                </div>}
+
+              </div>
+            </div>
+
+          )
+        })}
+      </ul> */}
     </div>
   )
 
