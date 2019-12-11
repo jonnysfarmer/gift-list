@@ -33,15 +33,15 @@ const SingleList = (props) => {
   const [editCustom, setEditCustom] = useState([])
   const [etsyListingID, setEtsyListingID]= useState([])
 
-  const editList = {
-    user: '',
-    listName: '',
-    giftRecipient: '',
-    eventName: '',
-    eventDate: '',
-    eventReminder: false,
-    budget: ''
-  }
+  // const editList = {
+  //   user: '',
+  //   listName: '',
+  //   giftRecipient: '',
+  //   eventName: '',
+  //   eventDate: '',
+  //   eventReminder: false,
+  //   budget: ''
+  // }
 
 
   const userID = props.match.params.userId
@@ -104,17 +104,17 @@ const SingleList = (props) => {
 
 
 
-  const savedItemsHook = (items) => {
-    let totalItems = []
-    items.forEach((ele, i) => {
-      axios.get(`http://localhost:8000/api/items/${ele}`)
-        .then(response => {
-          totalItems = [...totalItems]
-          totalItems.push(response.data)
-          setSavedItems(totalItems)
-        })
-    })
-  }
+  // const savedItemsHook = (items) => {
+  //   let totalItems = []
+  //   items.forEach((ele, i) => {
+  //     axios.get(`http://localhost:8000/api/items/${ele}`)
+  //       .then(response => {
+  //         totalItems = [...totalItems]
+  //         totalItems.push(response.data)
+  //         setSavedItems(totalItems)
+  //       })
+  //   })
+  // }
   //Inital also refreshes all the individual hiding data
   const customItemHookInitial = () => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
@@ -279,9 +279,9 @@ const SingleList = (props) => {
   if (data === {} || etsy === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
   return (
     <section className='section'>
-      <div className='breadcrumb-container'>
+      {/* <div className='breadcrumb-container'>
         <Breadcrumbs />
-      </div>
+      </div> */}
       <div className='container'>
         <div className='columns'>
           <div className='column'>

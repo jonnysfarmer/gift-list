@@ -38,6 +38,7 @@ function CreateList(props) {
 
 
   const handleChange = (e) => {
+    e.preventDefault()
     setData({ ...data, [e.target.name]: e.target.value })
     setErrors({...errors, [e.target.name]: '' })
   }

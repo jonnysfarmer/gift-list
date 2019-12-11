@@ -1,8 +1,10 @@
 const Item = require('../models/Item')
-const { APIKey } = require('../config/environment')
 // const { getEtsyListing } = require('./stores') :: aim to extract this out but the call to addItem from stores isn't working
 const axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8000/api'
+
+require('dotenv').config()
+const etsyKey = process.env.ETSY_KEY
 
 
 //===== CLIENT POSTS AN ITEM TO SAVE =====
@@ -22,6 +24,7 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 //CHECK IF ITEM IN OUR DB
 function add(req, res) {
+  console.log(req.body)
   //If we are missing user._id, list._id, id (for item), store (always Etsy atm) then we need to return an error for missing data
   if (!req.body.src || !req.body.id || !req.body.user_id || !req.body.list_id) {
     return res.send({ status: 400, message: 'missing data, check you are sending src, id, user_id, list_id' })
@@ -44,9 +47,10 @@ function add(req, res) {
     .catch(err => {
       //if it doesn't exist, then we get the full product details from the store
       // eslint-disable-next-line quotes
+      console.log('erroring')
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
         .then(getEtsyListing(req.body.id, 'fromCreateItem'))
-        .then(res.send({ status: 200, message: 'item saved', listingId: listingId }))
+         
         .catch(err => console.log('put to list error', err))
     })
 }
@@ -68,14 +72,14 @@ function addItem(body, res) {
 //the id here being that stores product/listing id for the item we want
 // eslint-disable-next-line no-unused-vars
 function getEtsyListing(id, reqFrom, req, res) {
-
+console.log(id)
   
   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
 
   //create our result variable so we can send this data back
   const results = []
   //get the data we need from Etsy
-  axios.get(`${etsyURL}listings/${id}/?region=GB&api_key=${APIKey}`)
+  axios.get(`${etsyURL}listings/${id}/?region=GB&api_key=${etsyKey}`)
     .then(res => {
       // console.log(res.data.results[0].title)
       results.push({
@@ -89,7 +93,7 @@ function getEtsyListing(id, reqFrom, req, res) {
         subcategories: res.data.results[0].category_path
       })
       //get the image url and add that to our results object
-      axios.get(`${etsyURL}/listings/${id}/images?region=GB&api_key=${APIKey}`)
+      axios.get(`${etsyURL}/listings/${id}/images?region=GB&api_key=${etsyKey}`)
         .then(res => {
           results.imgsrc = res.data.results[0].url_170x135
         })
@@ -146,5 +150,6 @@ module.exports = {
   add,
   index,
   show,
-  addItem
+  addItem,
+  getEtsyListing
 }

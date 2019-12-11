@@ -62,12 +62,12 @@ router.route('/lists/public/:listId')
 //-----CATEGORY routes
 
 router.route('/categories')
-  .get(categoryList.allCategories)
+  .get(categoryList.allCategories) 
 
 //---ETSY PRODUCTS via CATEGORY
 
 router.route('/etsy/:catname')
-  .get(etsyProducts.getProducts)
+  .get(etsyProducts.getProducts) 
 
 router.route('/etsy/:catname/:subcatname')
   .get(etsyProducts.getSubCat)
@@ -75,7 +75,10 @@ router.route('/etsy/:catname/:subcatname')
 router.route('/image/:id')
   .get(etsyProducts.getImage)
 
+<<<<<<< HEAD
 router.route('/browse/trending')
   .get(etsyProducts.getTrending)
 
+=======
+>>>>>>> development
 module.exports = router
