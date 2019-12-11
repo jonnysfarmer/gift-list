@@ -241,7 +241,26 @@ const SingleList = (props) => {
 
   }
 
-
+  //Adds item to list
+  const sendAddItem = (e, listing_id) =>  {
+    e.preventDefault()
+    console.log(listing_id)
+    const user_id = Auth.getUserId()
+    const data = {
+      src: 'etsy', 
+      id: listing_id,
+      user_id: user_id,
+      list_id: listID
+    }
+    console.log(data)
+    axios.post('http://localhost:8000/api/items/', data, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(console.log('success, how to rerender'))
+      .catch((err) => {
+        setErrors(err.response.data.errors)
+      })
+  }
   
 
   //===============================================
@@ -316,11 +335,11 @@ const SingleList = (props) => {
               <div className='columns'>
 
                 {etsy.map((ele, i) => {
-                  getEtsyImage(ele.listing_id, i)
+                  // getEtsyImage(ele.listing_id, i)
 
                   return (
                     <div key={i}>
-                      {}
+                      <p onClick={(e) => sendAddItem(e, ele.listing_id)}>ADD</p>
                       {ele.title}
                     </div>
                   )
