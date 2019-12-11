@@ -20,7 +20,7 @@ const SingleList = (props) => {
   //variables for getting product data
   const [cat, setCat] = useState([])
   const [etsy, setEtsy] = useState([])
-  // const [etsyImage, setEtsyImage] = useState([])
+  const [etsyImage, setEtsyImage] = useState([])
   //variables to handle saved items
   const [savedItems, setSavedItems] = useState([])
   const [customItems, setCustomItems] = useState([]) // ALl custom Items
@@ -85,11 +85,14 @@ const SingleList = (props) => {
       })
       .catch(err => setErrors(err))
   }
+  // function getEtsyImage(id, i) {
+  //   axios.get(`http://localhost:8000/api/image/${id}`)
+  //     .then(res => setEtsyImage(etsyImage => [...etsyImage, res.data]))
+  // }
 
 
 
-
- //===== POPULATING THE SUGGESTED ITEMS DATA =====
+  //===== POPULATING THE SUGGESTED ITEMS DATA =====
 
 
   const savedItemsHook = (items) => {
@@ -239,7 +242,7 @@ const SingleList = (props) => {
   }
 
 
-
+  
 
   //===============================================
   // need to find better way to handle there being no data in optional fields
@@ -248,7 +251,7 @@ const SingleList = (props) => {
 
   // show 5 
 
-  // console.log(etsyImage)
+  // console.log(etsy)
   // console.log(cat)
   useEffect(listHookOnMount, [])
   useEffect(customItemHookInitial, [])
@@ -308,28 +311,23 @@ const SingleList = (props) => {
             </div>
 
 
-
-
             <div className='container'>
               <div className='subtitle'>Suggested Gifts</div>
               <div className='columns'>
-                {etsy.map((ele, i) => {
-                  
-                  return (
-                    <div className='card column' key={i}>
-                     
-                      {ele.title}
 
+                {etsy.map((ele, i) => {
+                  getEtsyImage(ele.listing_id, i)
+
+                  return (
+                    <div key={i}>
+                      {}
+                      {ele.title}
                     </div>
                   )
                 })}
+
               </div>
             </div>
-
-
-
-
-
 
           </div>
           <div className="column">
