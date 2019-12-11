@@ -4,6 +4,8 @@ import Auth from '../../lib/auth'
 
 import ListName from '../Components/ListName'
 import ListEvent from '../Components/ListEvent'
+import ListSavedItems from '../Components/ListSavedItems'
+import Breadcrumbs from '../Breadcrumbs'
 
 const ListSingle = (props) => {
 
@@ -33,13 +35,19 @@ const ListSingle = (props) => {
 
     <div className='page'>
 
-      <p>TEMP: userId ${userId}</p>
-      <p>TEMP: listId ${listId}</p>
+      <div className='breadcrumb-container'>
+        <Breadcrumbs />
+      </div>
 
-
-      <section className='section'>
+      <section className='section columns'>
+      <div className='container'>
         <ListName listName={data.listName} listRecipient={data.giftRecipient} />
         <ListEvent listEventName={data.eventName} listEventDate={data.eventDate} listEventReminder={data.eventReminder} />
+      </div>
+        
+      <div className='container'>
+        <ListSavedItems  listItemsSaved={data.itemsSaved} />
+      </div>
       </section>
 
     </div>
