@@ -252,7 +252,10 @@ const SingleList = (props) => {
       return ele !== ItemID
     })
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { itemsSaved: newItems })
-      .then(response => savedItemsHook(response.data.itemsSaved))
+      .then(response => {
+        // listHook()
+        savedItemsHook(response.data.itemsSaved)})
+      .catch(err=> console.log(err))
 
   }
 

@@ -20,6 +20,7 @@ $background: #4AB59A;
 $title: #358270;
 
 //standard for all text
+//thoughts on this being v.dark grey / v.light white
 $text: #000000;
 $text-inverted: #ffffff;
 
@@ -52,6 +53,25 @@ $logo-green: #9BB54A;
 * {
   box-sizing: border-box; 
 }
+.hero{
+  background-color: $background;
+  // font-family: $font-title;
+}
+.lists{
+  border: 3px solid $link-hover;
+  color:$text;
+  margin: 0.5em 0;
+  background-color: white;
+  .column{
+    margin: 0.5em;
+  }
+}
+.lists:hover{
+  background-color: $link-hover;
+}
+// .list-map{
+//   background-color:$link-hover ;
+// }
 
 
 
@@ -63,12 +83,30 @@ $logo-green: #9BB54A;
 .edit {
   color: red;
 }
+.title{
+  color: $title;
+}
 
-.breadcrumbs li:last-of-type a, .breadcrumbs li:last-of-type a:hover {
-  cursor: default;
-  text-decoration: none;
-  color: $text;
-} 
+.breadcrumbs{
+  display: flex;
+  flex-direction: row;
+  li{
+    margin: 0.5em;
+    
+  }
+  a{
+    color: $link;
+  }
+  a:hover{
+    color: $link-hover;
+  }
+}
+
+// .breadcrumbs li:last-of-type a, .breadcrumbs li:last-of-type a:hover {
+//   cursor: default;
+//   text-decoration: none;
+//   color: $text;
+// } 
 
 
 //===================================
@@ -98,6 +136,38 @@ input[name='budget'] {
 
 .hide {
   display: none;
+}
+.button{
+  background-color: $button;
+  color:$text-inverted;
+  font-family: $font;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+
+}
+.button:hover{
+  background-color: $button-hover
+
+}
+.navbar-item{
+  color: $text;
+  font-family: $font;
+
+}
+.navbar-item{
+  a:focus{
+    background-color: $button-hover;
+    color: $text;
+    border-radius: 290486px;
+  }
+}
+
+.navbar-item:hover{
+  a{
+    background-color: $button-hover;
+    color: $text;
+    border-radius: 290486px;
+  }
 }
 
 

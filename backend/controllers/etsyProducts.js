@@ -31,7 +31,18 @@ function getImage(req, res) {
   const id = req.params.id
   axios.get(`http://openapi.etsy.com/v2/listings/${id}/images?region=GB&api_key=${etsyKey}`)
     .then(response => {
-      res.send({ image: response.data.results[0].url_570xN }) 
+      res.send({ image: response.data.results[0].url_170x135 }) 
+    })
+    .catch(err => console.log(err))
+}
+
+function getTrending(req, res) {
+  console.log('test')
+  // hard coded for now
+  const searchTerm = 'interesting'
+  axios.get(`https://openapi.etsy.com/v2/listings/${searchTerm}?api_key=${etsyKey}`)
+    .then(response => {
+      res.send({ data: response.data.results })
     })
     .catch(err => console.log(err))
 }
@@ -39,5 +50,6 @@ function getImage(req, res) {
 module.exports = {
   getProducts,
   getSubCat,
-  getImage
+  getImage,
+  getTrending
 }

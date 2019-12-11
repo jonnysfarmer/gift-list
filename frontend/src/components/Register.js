@@ -122,7 +122,7 @@ class Register extends React.Component {
               </small>}
             </div>
             
-            <button className='button is-success'>
+            <button className='button is-rounded'>
               Register
             </button>
           </form>

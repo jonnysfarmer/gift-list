@@ -59,10 +59,10 @@ const Lists = ( props ) => {
       <section className="section">
         <div className="container">
         <div className='title'>Welcome back, {userInfo.firstname}</div>
-        <p>You currently working on {listInfo.length} lists</p>
+        <p className='subtitle'>You currently working on {listInfo.length} lists</p>
         </div>
       </section>
-      <section className="section">
+      <section className="section list-map">
         <div className="container">
           <AllLists data = {listInfo} />
         </div>

@@ -69,7 +69,7 @@ class Login extends React.Component {
             {this.state.errors && <small className='help is-danger'>
               {this.state.errors}
             </small>}
-            <button className='button is-success'>
+            <button className='button is-rounded'>
               Login
             </button>
 
