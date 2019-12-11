@@ -31,6 +31,7 @@ class Register extends React.Component {
   }
 
   render() {
+    console.log(this.state.errors)
     return (
       <div className='section'>
         <div className='container'>
