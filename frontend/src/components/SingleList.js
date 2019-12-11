@@ -80,11 +80,19 @@ const SingleList = (props) => {
   const etsyHook = (cat) => {
     axios.get(`http://localhost:8000/api/etsy/${cat}`)
       .then(response => {
-        console.log(response.data)
         setEtsy(response.data.data)
       })
+      // .then(mapImages())
       .catch(err => setErrors(err))
   }
+  // const mapImages = () => {
+  //   etsy.map((elem, i) => {
+  //     axios.get(`http://localhost:8000/api/image/${elem.listing_id}`)
+  //     .then(console.log(elem))
+  //   })
+  // }
+
+
   // function getEtsyImage(id, i) {
   //   axios.get(`http://localhost:8000/api/image/${id}`)
   //     .then(res => setEtsyImage(etsyImage => [...etsyImage, res.data]))
@@ -244,7 +252,7 @@ const SingleList = (props) => {
   //Adds item to list
   const sendAddItem = (e, listing_id) =>  {
     e.preventDefault()
-    console.log(listing_id)
+    // console.log(listing_id)
     const user_id = Auth.getUserId()
     const data = {
       src: 'etsy', 
@@ -252,7 +260,7 @@ const SingleList = (props) => {
       user_id: user_id,
       list_id: listID
     }
-    console.log(data)
+    // console.log(data)
     axios.post('http://localhost:8000/api/items/', data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
