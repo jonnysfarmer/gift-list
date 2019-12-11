@@ -19,8 +19,9 @@ const SingleList = (props) => {
   const [errors, setErrors] = useState([])
   //variables for getting product data
   const [cat, setCat] = useState([])
-  const [etsy, setEtsy] = useState([])
-  const [etsyImage, setEtsyImage] = useState([])
+  // const [etsy, setEtsy] = useState([])
+  // const [etsyImage, setEtsyImage] = useState([])
+  const [etsySuggestions, setEtsySuggestions] = useState([])
   //variables to handle saved items
   const [savedItems, setSavedItems] = useState([])
   const [customItems, setCustomItems] = useState([]) // ALl custom Items
@@ -54,8 +55,9 @@ const SingleList = (props) => {
         setData(response.data) //list data
         setCat(response.data.subcategory) //subcategory from list data
         setStatusState(response.data.listStatus) //list status from list data
-        savedItemsHook(response.data.itemsSaved) //saved items from list data
-        etsyHook(response.data.subcategory[0]) //call etsy and get some suggestions
+        // savedItemsHook(response.data.itemsSaved) //saved items from list data
+        // etsyHook(response.data.subcategory[0]) //call etsy and get some suggestions
+        getEtsySuggestions(response.data.subcategory[0]) //take the first subcategory from our data and call etsy products
       })
       .catch(err => setErrors(err))
   }
@@ -77,15 +79,15 @@ const SingleList = (props) => {
   //===== POPULATING THE SUGGESTED ITEMS DATA =====
   //OnMount, this will call etsy for 6 items for the first category listed (where there is a category)
   //If another category button on the page is clicked, then it reruns this to return 6 items for
-  const etsyHook = (cat) => {
-    axios.get(`http://localhost:8000/api/etsy/${cat}`)
-      .then(response => {
-        setEtsy(response.data.data)
-      })
-      // .then(mapImages())
-      .catch(err => setErrors(err))
-  }
-  // const mapImages = () => {
+  // const etsyHook = (cat) => {
+  //   axios.get(`http://localhost:8000/api/etsy/${cat}`)
+  //     .then(response => {
+  //       setEtsy(response.data.data)
+  //     })
+  //     // .then(mapImages())
+  //     .catch(err => setErrors(err))
+  // }
+  // // const mapImages = () => {
   //   etsy.map((elem, i) => {
   //     axios.get(`http://localhost:8000/api/image/${elem.listing_id}`)
   //     .then(console.log(elem))
@@ -97,6 +99,17 @@ const SingleList = (props) => {
   //   axios.get(`http://localhost:8000/api/image/${id}`)
   //     .then(res => setEtsyImage(etsyImage => [...etsyImage, res.data]))
   // }
+
+  const getEtsySuggestions = (cat) => {
+    console.log(cat)
+    axios.get(`http://localhost:8000/api/etsy/${cat}`)
+      .then(a => console.log(JSON.stringify(a)))
+
+    // .Ûthen(response => {
+    //   setEtsySuggestions(response.data.data)
+    // })
+    // .catch(err => setErrors(err))
+  }
 
 
 
@@ -250,12 +263,12 @@ const SingleList = (props) => {
   }
 
   //Adds item to list
-  const sendAddItem = (e, listing_id) =>  {
+  const sendAddItem = (e, listing_id) => {
     e.preventDefault()
     // console.log(listing_id)
     const user_id = Auth.getUserId()
     const data = {
-      src: 'etsy', 
+      src: 'etsy',
       id: listing_id,
       user_id: user_id,
       list_id: listID
@@ -269,7 +282,7 @@ const SingleList = (props) => {
         setErrors(err.response.data.errors)
       })
   }
-  
+
 
   //===============================================
   // need to find better way to handle there being no data in optional fields
@@ -278,13 +291,13 @@ const SingleList = (props) => {
 
   // show 5 
 
-  // console.log(etsy)
+  console.log(etsySuggestions)
   // console.log(cat)
   useEffect(listHookOnMount, [])
   useEffect(customItemHookInitial, [])
   // console.log(customItems)
 
-  if (data === {} || etsy === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
+  if (data === {} || etsySuggestions === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
   return (
     <section className='section'>
       <div className='breadcrumb-container'>
@@ -330,11 +343,11 @@ const SingleList = (props) => {
             {editStatus !== 'Archived' && <button className='is-active' onClick={archiveList}>Archive list</button>}
             {editStatus === 'Archived' && <p className='is-archived'>List is archived</p>}
             <div className='container'>
-              {cat.map((ele, i) => {
+              {/* {cat.map((ele, i) => {
                 return (
                   <button key={i} onClick={() => etsyHook(ele)}>{ele}</button>
                 )
-              })}
+              })} */}
             </div>
 
 
@@ -342,7 +355,9 @@ const SingleList = (props) => {
               <div className='subtitle'>Suggested Gifts</div>
               <div className='columns'>
 
-                {etsy.map((ele, i) => {
+
+
+                {etsySuggestions.map((ele, i) => {
                   // getEtsyImage(ele.listing_id, i)
 
                   return (
