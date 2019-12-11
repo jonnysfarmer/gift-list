@@ -13,7 +13,8 @@ import Home from './components/Home'
 import Register from './components/Register'
 import Login from './components/Login'
 import Lists from './components/Lists'
-import SingleList from './components/SingleList'
+// import SingleList from './components/SingleList'
+import ListSingle from './components/Pages/ListSingle'
 // import auth from './lib/auth'
 import CreateList from './components/CreateList'
 import SecureRoute from './lib/SecureRoute'
@@ -33,7 +34,7 @@ function App() {
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
           <SecureRoute exact path='/lists/:userId' component={Lists} />
-          <SecureRoute exact path='/lists/:userId/:listId' component={SingleList} />
+          <SecureRoute exact path='/lists/:userId/:listId' component={ListSingle} />
         </Switch>
       </BrowserRouter>
 
