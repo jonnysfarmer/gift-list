@@ -17,12 +17,12 @@ function userAll(req, res) {
 
 }
 
-function create(req, res) {
+function create(req, res, next) {
   req.body.user = req.currentUser
   req.body.listStatus = 'Active'
   List.create(req.body)
     .then(list => res.status(201).json(list))
-    .catch(err => res.status(400).json(console.log(err)))
+    .catch(next)
 }
 
 function oneList(req, res) {
