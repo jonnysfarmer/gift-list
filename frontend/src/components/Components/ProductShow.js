@@ -7,8 +7,8 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 const ProductShow = (props) => {
-console.log(props)
-  console.log(props.subcategory[0])
+// console.log(props)
+  // console.log(props.subcategory[0])
   //===== ICONOGRAPHY =====
   // const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
 
@@ -28,7 +28,7 @@ console.log(props)
       .then(response => {
         setEtsy(response.data.data)
         getListingIds(response.data.data)
-        console.log(response.data.data)
+        // console.log(response.data.data)
       })
       .catch(err => setErrors(err))
   }
@@ -37,7 +37,7 @@ console.log(props)
     const ListingID = data.map((ele, i) => {
       return ele.listing_id
     })
-    console.log(ListingID)
+    // console.log(ListingID)
     let newArr = []
     ListingID.map((ele, i) => {
       axios.get(`http://localhost:8000/api/image/${ele}`)

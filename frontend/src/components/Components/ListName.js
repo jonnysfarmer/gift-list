@@ -87,8 +87,8 @@ const ListName = (props) => {
             {data.giftRecipient && <input className='input' type='text' defaultValue={data.giftRecipient} name='giftRecipient' onChange={((e) => handleChange(e))} />}
           </div>
         </div>
-        <button className='button save' onClick={((e) => handleSave(e))} >Save changes</button>
-        <button className='button cancel' onClick={((e) => handleCancel(e))}>Cancel changes</button>
+        <button className='button save is-rounded' onClick={((e) => handleSave(e))} >Save changes</button>
+        <button className='button cancel is-rounded' onClick={((e) => handleCancel(e))}>Cancel changes</button>
       </form>
 
     </div>
