@@ -6,6 +6,9 @@ import moment from 'moment'
 const AllLists = ({ data }) => {
     let history = useHistory()
 
+    console.log(data)
+    console.log(data._id)
+
    const handleClick = (elem) => {
     history.push(`/lists/${elem.user._id}/${elem._id}`)
    }
