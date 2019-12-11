@@ -14,38 +14,43 @@ const ListName = (props) => {
   const editIcon = <FontAwesomeIcon icon={faEdit} />
 
   //===== VARIABLES =====
-  const [data, setData] = useState([{}])
+  const [data, setData] = useState({})
+  const [tempData, setTempData] = useState() //on handle change we set the temp date into here so we can either save it, or cancel changes
   const [editState, setEditState] = useState(false) //can I edit this field? True or False, default to false on load
 
-  //set our propst into data
+  //initiate our data from our props
   const setDataFromProps = () => {
     setData(props)
+    setTempData(props)
   }
 
   //===== FUNCTIONS FOR THIS COMPONENT ======
+  //can probably extract these to a shared component, currently only used by two components though so deprioritising that activity
   function canEdit(state) {
     if (state !== editState)
       setEditState(state)
   }
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
+    setTempData({ ...tempData, [e.target.name]: e.target.value })
   }
 
   const handleSave = (e) => {
     e.preventDefault()
-    axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, data, {
+    axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, tempData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
     //update our page data
-    setData(data)
+    setData(tempData)
     //update editable status
     canEdit(false)
   }
 
   const handleCancel = (e) => {
     e.preventDefault()
+    //clear temp data and return it to original data
+    //set fields to non-editable
     canEdit(false)
   }
 
@@ -54,16 +59,18 @@ const ListName = (props) => {
   }, [props])
 
 
+
+
   return (
     <div id='list-name'>
 
       <div className={`element ${editState ? 'hide' : 'show'}`}>
         <h1><span onClick={() => { canEdit(true) }}>{editIcon}</span> {data.listName}</h1>
-        <h2>{data.giftRecipient}</h2>
+        <h2>for {data.giftRecipient}</h2>
       </div>
 
 
-      <form onSubmit={handleSave} className={`form ${editState ? 'show' : 'hide'}`}>
+      <form className={`form ${editState ? 'show' : 'hide'}`}>
         <div className="field">
           <label htmlFor="listName" className="label">
             Your list name
@@ -80,11 +87,9 @@ const ListName = (props) => {
             {data.giftRecipient && <input className='input' type='text' defaultValue={data.giftRecipient} name='giftRecipient' onChange={((e) => handleChange(e))} />}
           </div>
         </div>
-        <button className='button save'>Save changes</button>
-        <button className="button cancel" onClick={handleCancel}>Cancel changes</button>
+        <button className='button save' onClick={((e) => handleSave(e))} >Save changes</button>
+        <button className='button cancel' onClick={((e) => handleCancel(e))}>Cancel changes</button>
       </form>
-
-
 
     </div>
   )

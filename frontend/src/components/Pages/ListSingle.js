@@ -46,13 +46,13 @@ const ListSingle = (props) => {
           userId={userId} listId={listId} 
         />
         <ListEvent 
-          listEventName={data.eventName} listEventDate={data.eventDate} listEventReminder={data.eventReminder}
+          eventName={data.eventName} eventDate={data.eventDate} eventReminder={data.eventReminder}
           userId={userId} listId={listId} 
         />
       </div>
       <div className='container'>
         <ListSavedItems  
-          listItemsSaved={data.itemsSaved} 
+          itemsSaved={data.itemsSaved} 
           userId={userId} listId={listId} 
         />
       </div>
