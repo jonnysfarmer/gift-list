@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-import Auth from '../lib/auth'
-
-=======
 import { Link, useHistory } from 'react-router-dom'
 import Auth from '../lib/auth'
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
 
 const Navbar = (props) => {
   let history = useHistory()
@@ -23,11 +17,7 @@ const Navbar = (props) => {
 
   const handleLogout = () => {
     Auth.logout()
-<<<<<<< HEAD
-    props.history.push('/')
-=======
     history.push('/')
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
   }
 
   const toggleNavbar = () => {
@@ -83,9 +73,6 @@ const Navbar = (props) => {
             >
               Login
             </Link>
-<<<<<<< HEAD
-          </div>
-=======
           </div>}
           {Auth.isAuthorized() && <div className="navbar-item">
             <Link className="navbar-item" to={`/lists/${Auth.getUserId()}`}
@@ -94,7 +81,6 @@ const Navbar = (props) => {
               My Lists
             </Link>
           </div>}
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
           {Auth.isAuthorized() && <div className="navbar-item">
               <div className="navbar-item" onClick={() => handleLogout()}>
                 Logout

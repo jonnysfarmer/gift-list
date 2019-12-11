@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import moment from 'moment'
+// import { useHistory } from 'react-router-dom'
 import Auth from '../lib/auth'
+// import { element } from 'prop-types'
 import Breadcrumbs from './Breadcrumbs'
 
 require('dotenv').config()
+// taken etsy key off so it's not committed to github
 
 const customSchema = {
   note: '',
   url: ''
 }
+
 
 const SingleList = (props) => {
 
@@ -17,34 +21,16 @@ const SingleList = (props) => {
   //variables for getting the list info
   const [data, setData] = useState({})
   const [errors, setErrors] = useState([])
-  //variables for getting product data
   const [cat, setCat] = useState([])
-  // const [etsy, setEtsy] = useState([])
-  // const [etsyImage, setEtsyImage] = useState([])
-  const [etsySuggestions, setEtsySuggestions] = useState([])
-  //variables to handle saved items
+  const [etsy, setEtsy] = useState([])
   const [savedItems, setSavedItems] = useState([])
   const [customItems, setCustomItems] = useState([]) // ALl custom Items
-  const [customItem, setCustomItem] = useState({ customSchema })
-  const [addCustomEdit, setAddCustomEdit] = useState(true)
-  const [editCustomItem1, setEditCustomItem1] = useState({}) // this is for the Put
-  //variables to handle editing your list details
   const [editOff, setEditState] = useState(true) //set default to true so it's in non-edit mode
-  // const [editDate, setDateState] = useState()
+  const [editDate, setDateState] = useState()
   const [editStatus, setStatusState] = useState()
+  const [addCustomEdit, setAddCustomEdit] = useState(true)
+  const [customItem, setCustomItem] = useState({ customSchema })
   const [editCustom, setEditCustom] = useState([])
-<<<<<<< HEAD
-  // const editList = {
-  //   user: '',
-  //   listName: '',
-  //   giftRecipient: '',
-  //   eventName: '',
-  //   eventDate: '',
-  //   eventReminder: false,
-  //   budget: ''
-  // }
-  //variables used across multiple functions
-=======
   const [etsyListingID, setEtsyListingID]= useState([])
 
   const editList = {
@@ -58,27 +44,21 @@ const SingleList = (props) => {
   }
 
 
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
   const userID = props.match.params.userId
   const listID = props.match.params.listId
-
-
-  //===== POPULATING THE DATA =====
-  //we've put a version onMount to restrict the number of calls made to Etsy as we have a limit on our developer api
+  //this one also pulls from Etsy, pulled out to only on Mount to restrict calls
   const listHookOnMount = () => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
       .then(response => {
-        setData(response.data) //list data
-        setCat(response.data.subcategory) //subcategory from list data
-        setStatusState(response.data.listStatus) //list status from list data
-        // savedItemsHook(response.data.itemsSaved) //saved items from list data
-        // etsyHook(response.data.subcategory[0]) //call etsy and get some suggestions
-        getEtsySuggestions(response.data.subcategory[0]) //take the first subcategory from our data and call etsy products
+        setData(response.data)
+        setCat(response.data.subcategory)
+        setStatusState(response.data.listStatus)
+        etsyHook(response.data.subcategory[0])
+        savedItemsHook(response.data.itemsSaved)
       })
+
       .catch(err => setErrors(err))
   }
-  //populate the page with everything other than etsy data (done to prevent the number of calls being made)
-  //note here when this is used
   const listHook = () => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
       .then(response => {
@@ -87,46 +67,14 @@ const SingleList = (props) => {
         setStatusState(response.data.listStatus)
         savedItemsHook(response.data.itemsSaved)
       })
+
       .catch(err => setErrors(err))
   }
 
-
-
-  //===== POPULATING THE SUGGESTED ITEMS DATA =====
-  //OnMount, this will call etsy for 6 items for the first category listed (where there is a category)
-  //If another category button on the page is clicked, then it reruns this to return 6 items for
-  // const etsyHook = (cat) => {
-  //   axios.get(`http://localhost:8000/api/etsy/${cat}`)
-  //     .then(response => {
-  //       setEtsy(response.data.data)
-  //     })
-  //     // .then(mapImages())
-  //     .catch(err => setErrors(err))
-  // }
-  // // const mapImages = () => {
-  //   etsy.map((elem, i) => {
-  //     axios.get(`http://localhost:8000/api/image/${elem.listing_id}`)
-  //     .then(console.log(elem))
-  //   })
-  // }
-
-
-  // function getEtsyImage(id, i) {
-  //   axios.get(`http://localhost:8000/api/image/${id}`)
-  //     .then(res => setEtsyImage(etsyImage => [...etsyImage, res.data]))
-  // }
-
-  const getEtsySuggestions = (cat) => {
-    console.log(cat)
+  //This displays 6 of the first category
+  //when the other categories are clicked, it then does those
+  const etsyHook = (cat) => {
     axios.get(`http://localhost:8000/api/etsy/${cat}`)
-<<<<<<< HEAD
-      .then(a => console.log(JSON.stringify(a)))
-
-    // .Ûthen(response => {
-    //   setEtsySuggestions(response.data.data)
-    // })
-    // .catch(err => setErrors(err))
-=======
       .then(response => {
         setEtsy(response.data.data)
         getListingIds(response.data.data)
@@ -149,13 +97,11 @@ const SingleList = (props) => {
         setEtsyListingID(newArr)
       })
     })
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
   }
 
   // router.route('/image/:id')
 
 
-  //===== POPULATING THE SUGGESTED ITEMS DATA =====
 
 
   const savedItemsHook = (items) => {
@@ -184,7 +130,8 @@ const SingleList = (props) => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
       .then(response => {
         setCustomItems(response.data)
-      })
+      }
+      )
       .catch(err => setErrors(err))
   }
 
@@ -231,7 +178,7 @@ const SingleList = (props) => {
   //Handle Change for Custom Item
   const handleChangeCustom = (e) => {
     setCustomItem({ ...customItem, [e.target.name]: e.target.value })
-    // console.log(customItem)
+    console.log(customItem)
     setErrors({})
 
   }
@@ -272,20 +219,25 @@ const SingleList = (props) => {
   }
   const editHandleChangeCustom = (e, i) => {
     const data = [...customItems]
-    data[i] = { ...data[i], [e.target.name]: e.target.value }
+    data[i] = {...data[i],[e.target.name]: e.target.value }
     setCustomItems(data)
   }
-
-  const saveCustomEditItem = (id, i) => {
+  
+  const saveCustomEditItem =(id, i) => {
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}/customItems/${id}`, customItems[i])
-      .then(() => { customItemHookInitial() })
-      .catch(err => setErrors(err))
+    .then(() => {customItemHookInitial()})
+    .catch(err => setErrors(err))
   }
+  // edit, 
+
+  //   .put(lists.editCustomItems) // allows you to edit custom items from a speicific list
+
+
 
   //===== USER CAN ARCHIVE LIST ======
   function archiveList(e) {
     e.preventDefault()
-    // console.log('archive called')
+    console.log('archive called')
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { listStatus: 'Archived' }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -304,26 +256,7 @@ const SingleList = (props) => {
 
   }
 
-  //Adds item to list
-  const sendAddItem = (e, listing_id) => {
-    e.preventDefault()
-    // console.log(listing_id)
-    const user_id = Auth.getUserId()
-    const data = {
-      src: 'etsy',
-      id: listing_id,
-      user_id: user_id,
-      list_id: listID
-    }
-    // console.log(data)
-    axios.post('http://localhost:8000/api/items/', data, {
-      headers: { Authorization: `Bearer ${Auth.getToken()}` }
-    })
-      .then(console.log('success, how to rerender'))
-      .catch((err) => {
-        setErrors(err.response.data.errors)
-      })
-  }
+
 
 
   //===============================================
@@ -333,19 +266,14 @@ const SingleList = (props) => {
 
   // show 5 
 
-<<<<<<< HEAD
-  console.log(etsySuggestions)
-=======
   console.log(etsyListingID)
   console.log(etsyListingID.length)
   console.log(etsy.length)
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
   // console.log(cat)
   useEffect(listHookOnMount, [])
   useEffect(customItemHookInitial, [])
   // console.log(customItems)
-
-  if (data === {} || etsySuggestions === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
+  if (data === {} || etsy === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
   return (
     <section className='section'>
       <div className='breadcrumb-container'>
@@ -391,34 +319,15 @@ const SingleList = (props) => {
             {editStatus !== 'Archived' && <button className='is-active' onClick={archiveList}>Archive list</button>}
             {editStatus === 'Archived' && <p className='is-archived'>List is archived</p>}
             <div className='container'>
-              {/* {cat.map((ele, i) => {
+              {cat.map((ele, i) => {
                 return (
                   <button key={i} onClick={() => etsyHook(ele)}>{ele}</button>
                 )
-              })} */}
+              })}
             </div>
-
 
             <div className='container'>
               <div className='subtitle'>Suggested Gifts</div>
-<<<<<<< HEAD
-              <div className='columns'>
-
-
-
-                {etsySuggestions.map((ele, i) => {
-                  // getEtsyImage(ele.listing_id, i)
-
-                  return (
-                    <div key={i}>
-                      <p onClick={(e) => sendAddItem(e, ele.listing_id)}>ADD</p>
-                      {ele.title}
-                    </div>
-                  )
-                })}
-
-              </div>
-=======
               {etsy.map((ele, i) => {
                 return (
                   <div key={i}>
@@ -427,9 +336,7 @@ const SingleList = (props) => {
                   </div>
                 )
               })}
->>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
             </div>
-
           </div>
           <div className="column">
             <div className="container">
@@ -452,15 +359,15 @@ const SingleList = (props) => {
                       <p>{ele.note}</p>
                       <p>{ele.url}</p>
                       <button onClick={() => deleteCustomItem(ele._id)}>Delete</button>
-                      <button onClick={() => editCustomItem(i)}>Edit</button>
+                      <button onClick={()=>editCustomItem(i)}>Edit</button>
                     </div>
                     <div className={`${editCustom[i] ? 'not-editable' : ''}`}>
                       {<div>
-                        <input className='input' type='text' name='note' value={customItems[i].note} onChange={(e) => editHandleChangeCustom(e, i)} />
-                        <input className='input' type='text' name='url' onChange={(e) => editHandleChangeCustom(e, i)} title='url' value={ele.url} />
-
-                        <button onClick={() => saveCustomEditItem(ele._id, i)}>Save</button>
-                        <button onClick={() => editCustomItem(i)}>Cancel</button>
+                          <input className='input' type='text' name='note' value={customItems[i].note} onChange={(e)=>editHandleChangeCustom(e, i)} />
+                          <input className='input' type='text' name='url' onChange={(e)=>editHandleChangeCustom(e, i)} title='url' value={ele.url}  />
+                                        
+                        <button onClick={()=>saveCustomEditItem(ele._id, i)}>Save</button>
+                        <button onClick={()=>editCustomItem(i)}>Cancel</button>
                       </div>}
 
                     </div>
