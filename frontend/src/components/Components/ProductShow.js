@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 // import getSymbol from '../../lib/currencyCodes'
+import ListSinge from '../Pages/ListSingle'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import ListSingle from '../Pages/ListSingle'
 
 
 
@@ -59,12 +61,11 @@ const ProductShow = (props) => {
       user_id : props.userId,
       list_id : props.listId
     }  
-    console.log(data)
     e.preventDefault()
     axios.post(`http://localhost:8000/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then((resp) => console.log('done'))
+      .then(etsyHook(cat))
       .catch((err) => {
         setErrors(err.response.data.errors)
       })

@@ -16,11 +16,7 @@ const ListSavedItems = (props) => {
 
   //===== FUNCTIONS FOR THIS PAGE =====
   function getSavedItems(items) {
-    console.log('Imma get some items')
-    console.log(props)
     let itemDetail = [] //holds item data for each item
-
-    console.log('props', props.itemsSaved)
 
     if (props.itemsSaved) {
       items.map((elem, i) => {
