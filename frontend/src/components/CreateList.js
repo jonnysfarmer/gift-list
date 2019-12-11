@@ -40,7 +40,7 @@ function CreateList(props) {
   const handleChange = (e) => {
     e.preventDefault()
     setData({ ...data, [e.target.name]: e.target.value })
-    setErrors({})
+    setErrors({...errors, [e.target.name]: '' })
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -58,7 +58,7 @@ function CreateList(props) {
   }
 
   
-
+  console.log(errors)
   return <>
 
     <section className='section'>
