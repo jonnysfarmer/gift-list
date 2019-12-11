@@ -193,10 +193,111 @@ input[name='budget'] {
 //===================================
 
 
+.present {
+  border: 2px solid $logo-purple;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  animation: bounce ease 5s infinite;
+}
+.logo-box {
+  width: 50%;
+  height: 50%;
+}
+.logo-box:nth-child(odd) {
+  border-right: 0.3em solid $logo-purple;
+}
+.logo-box:nth-child(even) {
+  border-left: 0.3em solid $logo-purple;
+}
+.logo-box:nth-child(1), .logo-box:nth-child(2) {
+  border-bottom: 0.3em solid $logo-purple;
+  background-color: white;
+}
+.logo-box:nth-child(3), .logo-box:nth-child(4) {
+  border-top: 0.3em solid $logo-purple;
+  background-image: linear-gradient(white, $logo-purple);
+}
 
+.present.tall {
+  border: 2px solid $logo-red;
+  width: 3.5rem;
+  height: 5.5rem;
+  animation: bounce2 ease 5s infinite;
+}
+.tall .logo-box {
+  border-color: $logo-red;
+}
+.tall .logo-box:nth-child(3), .tall .logo-box:nth-child(4) {
+  background-image: linear-gradient(white, $logo-red);
+}
+
+.present.wide {
+  border: 2px solid $logo-green;
+  width: 5.5rem;
+  height: 3.5rem;
+  animation: bounce3 ease 5s infinite;
+}
+.wide .logo-box {
+  border-color: $logo-green;
+}
+.wide .logo-box:nth-child(3), .wide .logo-box:nth-child(4) {
+  background-image: linear-gradient(white, $logo-green);
+}
 
 
 //===================================
 // ANIMATION
 //===================================
 
+  @keyframes bounce {
+    0%, 2%, 6%,  100% {
+      transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+    4%, 5% {
+     transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+     transform: translate3d(0, -30px, 0);
+    }
+    7% {
+     transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+     transform: translate3d(0, -15px, 0);
+    }
+     9% { transform: translate3d(0,-4px,0);
+    }
+  } 
+
+  @keyframes bounce2 {
+    0%, 6%, 9%,  100% {
+      transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+    7%, 8% {
+     transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+     transform: translate3d(0, -30px, 0);
+    }
+    10% {
+     transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+     transform: translate3d(0, -15px, 0);
+    }
+     11% { transform: translate3d(0,-4px,0);
+    }
+  } 
+
+  @keyframes bounce3 {
+    0%, 10%, 13%,  100% {
+      transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+    11%, 12% {
+     transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+     transform: translate3d(0, -30px, 0);
+    }
+    14% {
+     transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+     transform: translate3d(0, -15px, 0);
+    }
+     15% { transform: translate3d(0,-4px,0);
+    }
+  } 
