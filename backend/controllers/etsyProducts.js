@@ -35,8 +35,20 @@ function getImage(req, res) {
     .catch(err => console.log(err))
 }
 
+function getTrending(req, res) {
+  console.log('test')
+  // hard coded for now
+  const searchTerm = 'trending'
+  axios.get(`https://openapi.etsy.com/v2/listings/${searchTerm}?api_key=${etsyKey}`)
+    .then(response => {
+      res.send({ data: response.data })
+    })
+    .catch(err => console.log(err))
+}
+
 module.exports = {
   getProducts,
   getSubCat,
-  getImage
+  getImage,
+  getTrending
 }

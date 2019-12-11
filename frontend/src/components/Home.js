@@ -1,15 +1,15 @@
 import React from 'react'
 
 const Home = () => (
-  <section className='hero is-fullheight has-text-centered'>
-    <div className='hero-body'>
-      <div className='container'>
-        <div className='columns'>
-          <div className='column'>
-            <div className='card'>
-              <div className='card-image'>
-                <figure className='image is-4by3'>
-                  <img src='https://via.placeholder.com/400' alt='' />
+  <section className="hero is-fullheight has-text-centered">
+    <div className="hero-body">
+      <div className="container">
+        <div className="columns">
+          <div className="column">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-4by3">
+                  <img src="https://via.placeholder.com/400" alt="" />
                 </figure>
               </div>
               <div className='card-content'>
@@ -17,11 +17,11 @@ const Home = () => (
               </div>
             </div>
           </div>
-          <div className='column is-half'>
-            <div className='card'>
-              <div className='card-image'>
-                <figure className='image is-4by3'>
-                  <img src='https://via.placeholder.com/400' alt='' />
+          <div className="column is-half">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-4by3">
+                  <img src="https://via.placeholder.com/400" alt="" />
                 </figure>
               </div>
               <div className='card-content'>
@@ -30,11 +30,11 @@ const Home = () => (
               </div>
             </div>
           </div>
-          <div className='column'>
-            <div className='card'>
-              <div className='card-image'>
-                <figure className='image is-4by3'>
-                  <img src='https://via.placeholder.com/400' alt='' />
+          <div className="column">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-4by3">
+                  <img src="https://via.placeholder.com/400" alt="" />
                 </figure>
               </div>
               <div className='card-content'>
@@ -43,13 +43,13 @@ const Home = () => (
             </div>
           </div>
         </div>
-      <p className='subtitle'>Inspiration Lists</p>
-      <div className='columns'>
-        <div className='column'>
-          <div className='card'>
-            <div className='card-image'>
-              <figure className='image is-4by3'>
-                <img src='https://via.placeholder.com/400' alt='' />
+      <p className="subtitle">Inspiration Lists</p>
+      <div className="columns">
+        <div className="column">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://via.placeholder.com/400" alt="" />
               </figure>
             </div>
             <div className='card-content'>
@@ -57,11 +57,11 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div className='column'>
-          <div className='card'>
-            <div className='card-image'>
-              <figure className='image is-4by3'>
-                <img src='https://via.placeholder.com/400' alt='' />
+        <div className="column">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://via.placeholder.com/400" alt="" />
               </figure>
             </div>
             <div className='card-content'>
@@ -69,11 +69,11 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div className='column'>
-          <div className='card'>
-            <div className='card-image'>
-              <figure className='image is-4by3'>
-                <img src='https://via.placeholder.com/400' alt='' />
+        <div className="column">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://via.placeholder.com/400" alt="" />
               </figure>
             </div>
             <div className='card-content'>
@@ -81,11 +81,11 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div className='column'>
-          <div className='card'>
-            <div className='card-image'>
-              <figure className='image is-4by3'>
-                <img src='https://via.placeholder.com/400' alt='' />
+        <div className="column">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://via.placeholder.com/400" alt="" />
               </figure>
             </div>
             <div className='card-content'>
@@ -93,11 +93,11 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div className='column'>
-          <div className='card'>
-            <div className='card-image'>
-              <figure className='image is-4by3'>
-                <img src='https://via.placeholder.com/400' alt='' />
+        <div className="column">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img src="https://via.placeholder.com/400" alt="" />
               </figure>
             </div>
             <div className='card-content'>

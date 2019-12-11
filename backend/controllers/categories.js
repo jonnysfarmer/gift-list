@@ -1,7 +1,6 @@
 const axios = require('axios')
 require('dotenv').config()
 
-
 const etsyKey = process.env.ETSY_KEY
 
 // this will be populated with data from etsy's API
@@ -29,24 +28,26 @@ function getSubCategories(categories) {
         // grab all subcategories per category on etsy
         axios.get(`https://openapi.etsy.com/v2/taxonomy/categories/${category.name}?api_key=${etsyKey}`)
           .then(res => {
-            const subcategoriesAPIName = res.data.results.map(elem => elem.name)
-            category.subcategoriesAPIName = subcategoriesAPIName
-            const subcategoriesShortName = res.data.results.map(elem => elem.short_name)
-            category.subcategoriesShortName = subcategoriesShortName
-            results.push(category)
-
+            category.subCategories = []
+            results.push(category) // TODO remove this, and the results when refactoring to use promise.all
+            res.data.results.forEach((result) => {
+              //TODO destructure this
+              const temp = {
+                name: result.name,
+                short_name: result.short_name
+              }
+              category.subCategories.push(temp)
+            })
+            // TODO refactor to use promise.all instead of this rookie test!
             if (results.length === categories.length) {
-              resolve(results)
+              resolve(categories)
             }
           })
           .catch(err => reject(err))
-        // TODO: at 1000 it seems to still be exceeding the api call quota, so leave at 2000 for now
       }, 2000 * i)
     })
   })
   return promise
 }
-
-
 
 module.exports = getCategories()
