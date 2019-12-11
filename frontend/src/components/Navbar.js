@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
 import Auth from '../lib/auth'
 
+=======
+import { Link, useHistory } from 'react-router-dom'
+import Auth from '../lib/auth'
+>>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
 
 const Navbar = (props) => {
-
+  let history = useHistory()
   // console.log(this.props.location.pathname)
   // //set breadcrumb route(s)
   // // const breadcrumbs = () => {
@@ -18,7 +23,11 @@ const Navbar = (props) => {
 
   const handleLogout = () => {
     Auth.logout()
+<<<<<<< HEAD
     props.history.push('/')
+=======
+    history.push('/')
+>>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
   }
 
   const toggleNavbar = () => {
@@ -47,13 +56,13 @@ const Navbar = (props) => {
       </div>
       <div className={`navbar-menu ${state.isOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
-          <div className="navbar-item">
+          {/* <div className="navbar-item">
             <Link className="navbar-item" to="/browse"
               onClick={() => toggleNavbar()}
             >
               Browse
               </Link>
-          </div>
+          </div> */}
           <div className="navbar-item">
             <Link className="navbar-item" to="/lists/create"
               onClick={() => toggleNavbar()}
@@ -61,20 +70,31 @@ const Navbar = (props) => {
               Create new list
               </Link>
           </div>
-          <div className="navbar-item">
+          {!Auth.isAuthorized() && <div className="navbar-item">
             <Link className="navbar-item" to="/register"
               onClick={() => toggleNavbar()}
             >
               Register
               </Link>
-          </div>
-          <div className="navbar-item">
+          </div>}
+          {!Auth.isAuthorized() && <div className="navbar-item">
             <Link className="navbar-item" to="/login"
               onClick={() => toggleNavbar()}
             >
               Login
             </Link>
+<<<<<<< HEAD
           </div>
+=======
+          </div>}
+          {Auth.isAuthorized() && <div className="navbar-item">
+            <Link className="navbar-item" to={`/lists/${Auth.getUserId()}`}
+              onClick={() => toggleNavbar()}
+            >
+              My Lists
+            </Link>
+          </div>}
+>>>>>>> 296bfdcdc4db82055c2b696b16d9a89251ca89ff
           {Auth.isAuthorized() && <div className="navbar-item">
               <div className="navbar-item" onClick={() => handleLogout()}>
                 Logout
