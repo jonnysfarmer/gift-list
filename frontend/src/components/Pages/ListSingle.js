@@ -55,7 +55,12 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
+          
         </div>
+
+
+
+
 
         <div className='column'>
           <div className='container'>

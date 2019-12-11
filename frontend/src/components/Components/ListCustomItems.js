@@ -7,38 +7,45 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 const ListCustomItems = (props) => {
 
-  //===== ICONOGRAPHY =====
-  const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
+  // //===== ICONOGRAPHY =====
+  // const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
 
-  //===== VARIABLES =====
-  const [data, setData] = useState({})
+  // //===== VARIABLES =====
+  // const customSchema = {
+  //   note: '',
+  //   url: ''
+  // }
+
+  // const [data, setData] = useState({})
   // const [addCustomEdit, setAddCustomEdit] = useState(true)
   // const [customItem, setCustomItem] = useState({ customSchema })
   // const [editCustom, setEditCustom] = useState([])
 
-  console.log(props.customItem)
+  
 
-   //initiate our data from our props
-   const setDataFromProps = () => {
-    setData(props)
-    // setTempData(props)
-  }
-  console.log(data)
+  // console.log(props.customItem)
 
-  //===== FUNCTIONS FOR THIS PAGE =====
-  //Set initial data from props
+  // //initiate our data from our props
+  // const setDataFromProps = () => {
+  //   setData(props)
+  //   // setTempData(props)
+  // }
+  // console.log(data)
+
+  // //===== FUNCTIONS FOR THIS PAGE =====
+  // //Set initial data from props
 
   // const customItemHookInitial = () => {
   //   axios.get(`http://localhost:8000/api/lists/${data.userId}/${data.listId}/customItems`)
   //     .then(response => {
-  //       setCustomItems(response.data)
+  //       setData(response.data)
   //       customItemIdArray(response.data)
   //     }
   //     )
   //     .catch(err => setErrors(err))
   // }
 
-  //Add a new item
+  // //Add a new item
   // function addEditCustom() {
   //   setAddCustomEdit(!addCustomEdit)
   // }
@@ -86,9 +93,9 @@ const ListCustomItems = (props) => {
   // const editHandleChangeCustom = (e, i) => {
   //   const data = [...customItems]
   //   data[i] = {...data[i],[e.target.name]: e.target.value }
-  //   setCustomItems(data)
+  //   setData(data)
   // }
-  
+
   // const saveCustomEditItem =(id, i) => {
   //   axios.put(`http://localhost:8000/api/lists/${userID}/${listID}/customItems/${id}`, customItems[i])
   //   .then(() => {customItemHookInitial()})
@@ -101,20 +108,10 @@ const ListCustomItems = (props) => {
 
 
 
-  if (data === {}) { return <div>Loading</div> }
+  // if (data === {}) { return <div>Loading</div> }
   return (
     <div id='list-name' className='element'>
-      <h3>Your other items</h3>
-      <ul>
-        {/* {Array.from(data).map((elem, i) => {
-          return (
-            <li key={i}>
-              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
-              <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer'>{elem.productName}</a>
-              </li>
-          )
-        })} */}
-      </ul>
+   
     </div>
   )
 
