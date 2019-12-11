@@ -53,13 +53,13 @@ const Navbar = (props) => {
               Browse
               </Link>
           </div> */}
-          <div className="navbar-item">
+          {Auth.isAuthorized() && <div className="navbar-item">
             <Link className="navbar-item" to="/lists/create"
               onClick={() => toggleNavbar()}
             >
               Create new list
               </Link>
-          </div>
+          </div>}
           {!Auth.isAuthorized() && <div className="navbar-item">
             <Link className="navbar-item" to="/register"
               onClick={() => toggleNavbar()}
@@ -82,9 +82,9 @@ const Navbar = (props) => {
             </Link>
           </div>}
           {Auth.isAuthorized() && <div className="navbar-item">
-              <div className="navbar-item" onClick={() => handleLogout()}>
+              <Link className="navbar-item" onClick={() => handleLogout()}>
                 Logout
-              </div>
+              </Link>
             </div>}
         </div>
       </div>

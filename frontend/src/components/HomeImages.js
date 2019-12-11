@@ -66,12 +66,12 @@ const HomeImages = () => {
             <div key={i} className="column">
           <div className="card">
             <div className="card-image">
-              <figure className="image is-4by3">
+              <figure className="image is-3by2">
                 <img src={etsyImage[i]} alt="" />
               </figure>
             </div>
             <div className="card-content">
-              <p>{ele.title.substring(0,20)}...</p>
+              <p>{ele.title.substring(0,25)}...</p>
             </div>
           </div>
         </div>

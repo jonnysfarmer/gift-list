@@ -75,10 +75,7 @@ router.route('/etsy/:catname/:subcatname')
 router.route('/image/:id')
   .get(etsyProducts.getImage)
 
-<<<<<<< HEAD
 router.route('/browse/trending')
   .get(etsyProducts.getTrending)
 
-=======
->>>>>>> development
 module.exports = router
