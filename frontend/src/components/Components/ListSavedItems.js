@@ -11,15 +11,13 @@ const ListSavedItems = (props) => {
   const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
 
   //===== VARIABLES =====
-  let [data, setData] = useState({})
-  
+  const [data, setData] = useState({})
 
   //===== FUNCTIONS FOR THIS PAGE =====
   function getSavedItems(items) {
     let itemDetail = [] //holds item data for each item
 
-    console.log('props', props.listItemsSaved)
-    if (props.listItemsSaved) {
+    if (props.itemsSaved) {
       items.map((elem, i) => {
         axios.get(`http://localhost:8000/api/items/${elem}`)
           .then(response => {
@@ -48,25 +46,26 @@ const ListSavedItems = (props) => {
     })
     //remove from list data
     axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, { itemsSaved: updatedListingIds })
-    .then(response => console.log(response))
+    // .then(response => console.log(response))
     .catch(err => console.log('error', err))
   }
 
 
   useEffect(() => {
-    getSavedItems(props.listItemsSaved)
-  }, [props.listItemsSaved])
+    getSavedItems(props.itemsSaved)
+  }, [props.itemsSaved])
 
+  // console.log(props)
 
   if (data === {}) { return <div>Loading</div> }
   return (
     <div id='list-name' className='element'>
-      <h3>Saved items</h3>
+      <h3>Your Etsy saved items</h3>
       <ul>
         {Array.from(data).map((elem, i) => {
           return (
             <li key={i}>
-              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
+              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon} </span> 
               <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer'>{elem.productName}</a>
               </li>
           )

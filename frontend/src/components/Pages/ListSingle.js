@@ -5,6 +5,7 @@ import Auth from '../../lib/auth'
 import ListName from '../Components/ListName'
 import ListEvent from '../Components/ListEvent'
 import ListSavedItems from '../Components/ListSavedItems'
+import ListCustomItems from '../Components/ListCustomItems'
 import Breadcrumbs from '../Breadcrumbs'
 
 const ListSingle = (props) => {
@@ -23,13 +24,16 @@ const ListSingle = (props) => {
   const onMount = () => {
     axios.get(`http://localhost:8000/api/lists/${userId}/${listId}`)
       .then(response => {
+        console.log(response)
         setData(response.data)
       })
   }
 
+
   
 
   useEffect(onMount, [])
+
 
   return (
 
@@ -40,22 +44,34 @@ const ListSingle = (props) => {
       </div>
 
       <section className='section columns'>
-      <div className='container'>
-        <ListName 
-          listName={data.listName} giftRecipient={data.giftRecipient} 
-          userId={userId} listId={listId} 
-        />
-        <ListEvent 
-          eventName={data.eventName} eventDate={data.eventDate} eventReminder={data.eventReminder}
-          userId={userId} listId={listId} 
-        />
-      </div>
-      <div className='container'>
-        <ListSavedItems  
-          itemsSaved={data.itemsSaved} 
-          userId={userId} listId={listId} 
-        />
-      </div>
+        <div className='column'>
+          <div className='container'>
+            <ListName
+              listName={data.listName} giftRecipient={data.giftRecipient}
+              userId={userId} listId={listId}
+            />
+            <ListEvent
+              eventName={data.eventName} eventDate={data.eventDate} eventReminder={data.eventReminder}
+              userId={userId} listId={listId}
+            />
+          </div>
+        </div>
+
+        <div className='column'>
+          <div className='container'>
+            <ListSavedItems
+              itemsSaved={data.itemsSaved}
+              userId={userId} listId={listId}
+            />
+          </div>
+          <div className='container'>
+            <ListCustomItems
+              customItem={data.customItem}
+              userId={userId} listId={listId}
+            />
+          </div>
+        </div>
+
       </section>
 
     </div>
