@@ -15,18 +15,18 @@ const Lists = ( props ) => {
 
   
   //this returns just the active lists
-  const getActiveLists = (data) => {
-    const activeLists = data.filter((item) => {
-      return item.listStatus.includes('Active')
-    })
-    return activeLists
-  }
+  // const getActiveLists = (data) => {
+  //   const activeLists = data.filter((item) => {
+  //     return item.listStatus.includes('Active')
+  //   })
+  //   return activeLists
+  // }
 
   //this hook gets the list Info
   const userlistHook = () => {
     const userID = props.match.params.userId
     axios.get(`http://localhost:8000/api/lists/${userID}`)
-    .then(response => setListInfo(getActiveLists(response.data))) //this will only return list with a status of active
+    .then(response => setListInfo(response.data)) //this will only return list with a status of active
     .catch(err => setErrors(err))
   }
 
