@@ -14,10 +14,6 @@ const ListSavedItems = (props) => {
   let [data, setData] = useState({})
 
   //===== FUNCTIONS FOR THIS PAGE =====
-
-  // console.log('props', props.listItemsSaved)
-  // console.log(Array.isArray(props.listItemsSaved))
-
   function getSavedItems(items) {
     let itemDetail = [] //holds item data for each item
     if (props.listItemsSaved) {
@@ -29,13 +25,30 @@ const ListSavedItems = (props) => {
             itemDetail.push(response.data)
             setData(itemDetail)
           })
-          // .catch(err => console.log('error', err))
+        // .catch(err => console.log('error', err))
       })
     }
   }
 
+  function deleteSavedItem(itemId) {
+    //remove from this page
+    const newArray = [...data]
+    console.log(itemId)
+    console.log(newArray)
+    setData(newArray.filter((elem => { 
+      return elem.listingId !== itemId 
+    })))
+    
+    //remove from list data
+    // axios.put(`http://localhost:8000/api/lists/${userId}/${listId}`, { dataresultshere })
+    //   .then(console.log('done'))
+  }
+
+
+
+
+
   useEffect(() => {
-    // console.log('value changed!')
     getSavedItems(props.listItemsSaved)
   }, [props.listItemsSaved])
 
@@ -43,21 +56,21 @@ const ListSavedItems = (props) => {
   console.log('data', data)
 
   if (data === {}) { return <div>Loading</div> }
-    return (
-      <div id='list-name' className='element'>
-        <h3>Saved items</h3>
-        <ul>
-          {Array.from(data).map((elem, i) => {
+  return (
+    <div id='list-name' className='element'>
+      <h3>Saved items</h3>
+      <ul>
+        {Array.from(data).map((elem, i) => {
           return (
-            <li key={i}><span>{trashIcon}</span> {elem.productName}</li>
+            <li key={i}><span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> {elem.productName}</li>
           )
         })}
-        </ul>
+      </ul>
 
 
-      </div>
+    </div>
 
-    )
+  )
 
 }
 
