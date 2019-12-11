@@ -2,7 +2,7 @@ import React from 'react'
 import HomeImages from './HomeImages'
 
 const Home = () => (
-  <section className='section'>
+  <section>
   <section className="hero is-medium has-text-centered">
     
     <div className="hero-body">
