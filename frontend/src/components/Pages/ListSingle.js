@@ -27,7 +27,7 @@ const ListSingle = (props) => {
       })
   }
 
-  console.log(data)
+  
 
   useEffect(onMount, [])
 
@@ -41,12 +41,20 @@ const ListSingle = (props) => {
 
       <section className='section columns'>
       <div className='container'>
-        <ListName listName={data.listName} listRecipient={data.giftRecipient} />
-        <ListEvent listEventName={data.eventName} listEventDate={data.eventDate} listEventReminder={data.eventReminder} />
+        <ListName 
+          listName={data.listName} listRecipient={data.giftRecipient} 
+          userId={userId} listId={listId} 
+        />
+        <ListEvent 
+          listEventName={data.eventName} listEventDate={data.eventDate} listEventReminder={data.eventReminder}
+          userId={userId} listId={listId} 
+        />
       </div>
-        
       <div className='container'>
-        <ListSavedItems  listItemsSaved={data.itemsSaved} />
+        <ListSavedItems  
+          listItemsSaved={data.itemsSaved} 
+          userId={userId} listId={listId} 
+        />
       </div>
       </section>
 

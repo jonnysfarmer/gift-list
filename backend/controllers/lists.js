@@ -43,7 +43,7 @@ function editList(req, res) {
       return list.set(req.body)
     })
     .then(list => list.save())
-    .then(list => res.status(202).json(list))
+    .then(list => res.status(202).json(console.log(list)))
     .catch(err => res.status(400).json(console.log(err)))
 }
 

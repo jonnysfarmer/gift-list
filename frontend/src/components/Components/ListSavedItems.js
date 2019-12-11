@@ -12,12 +12,15 @@ const ListSavedItems = (props) => {
 
   //===== VARIABLES =====
   let [data, setData] = useState({})
+  
 
   //===== FUNCTIONS FOR THIS PAGE =====
   function getSavedItems(items) {
     let itemDetail = [] //holds item data for each item
+
+    console.log('props', props.listItemsSaved)
     if (props.listItemsSaved) {
-      items.forEach((elem, i) => {
+      items.map((elem, i) => {
         axios.get(`http://localhost:8000/api/items/${elem}`)
           .then(response => {
             itemDetail = [...itemDetail]
@@ -25,7 +28,7 @@ const ListSavedItems = (props) => {
             itemDetail.push(response.data)
             setData(itemDetail)
           })
-        // .catch(err => console.log('error', err))
+        .catch(err => console.log('error', err))
       })
     }
   }
@@ -33,27 +36,27 @@ const ListSavedItems = (props) => {
   function deleteSavedItem(itemId) {
     //remove from this page
     const newArray = [...data]
-    console.log(itemId)
-    console.log(newArray)
-    setData(newArray.filter((elem => { 
+    const updatedArray = newArray.filter((elem => { 
       return elem.listingId !== itemId 
-    })))
-    
+    }))
+    setData(updatedArray)
+    //get just the listingId from the newArray
+    let updatedListingIds = []
+    updatedArray.map(elem => {
+      updatedListingIds = [...updatedListingIds]
+      updatedListingIds.push(elem.listingId)
+    })
     //remove from list data
-    // axios.put(`http://localhost:8000/api/lists/${userId}/${listId}`, { dataresultshere })
-    //   .then(console.log('done'))
+    axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, { itemsSaved: updatedListingIds })
+    .then(response => console.log(response))
+    .catch(err => console.log('error', err))
   }
-
-
-
 
 
   useEffect(() => {
     getSavedItems(props.listItemsSaved)
   }, [props.listItemsSaved])
 
-
-  console.log('data', data)
 
   if (data === {}) { return <div>Loading</div> }
   return (
@@ -62,14 +65,14 @@ const ListSavedItems = (props) => {
       <ul>
         {Array.from(data).map((elem, i) => {
           return (
-            <li key={i}><span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> {elem.productName}</li>
+            <li key={i}>
+              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
+              <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer'>{elem.productName}</a>
+              </li>
           )
         })}
       </ul>
-
-
     </div>
-
   )
 
 }
