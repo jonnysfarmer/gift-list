@@ -10,13 +10,13 @@ class Login extends React.Component {
         email: '',
         password: ''
       },
-      errors: {}
+      errors: ''
     }
   }
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    const errors = { ...this.state.errors, [e.target.name]: '' }
+    const errors = ''
     this.setState({ data, errors })
   }
 
@@ -32,6 +32,7 @@ class Login extends React.Component {
   }
 
   render() {
+    console.log(this.state.errors)
     return (
       <div className='section'>
         <div className='container'>
@@ -65,13 +66,13 @@ class Login extends React.Component {
                 />
               </div>
             </div>
-            
+            {this.state.errors && <small className='help is-danger'>
+              {this.state.errors}
+            </small>}
             <button className='button is-success'>
               Login
             </button>
-            {this.state.errors.email && <small className='help is-danger'>
-              {this.state.errors.email}
-            </small>}
+
           </form>
         </div>
       </div>

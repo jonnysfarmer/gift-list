@@ -20,7 +20,7 @@ function login(req, res) {
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '12h' })
       res.status(202).json({ id: user._id, token })
     }) 
-    .catch(() => res.status(401).json({ message: 'Unauthorized' } ))
+    .catch(() => res.status(401).json({ message: 'Invalid credentials' } ))
 }
 
 function getInfo(req, res) {
