@@ -91,7 +91,7 @@ function getEtsyListing(id, reqFrom, req, res) {
       //get the image url and add that to our results object
       axios.get(`${etsyURL}/listings/${id}/images?region=GB&api_key=${APIKey}`)
         .then(res => {
-          results.imgsrc = res.data.results[0].url_570xN
+          results.imgsrc = res.data.results[0].url_170x135
         })
         .then(() => {
           //check where request came from and take appropriate next action

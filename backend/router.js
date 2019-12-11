@@ -75,7 +75,7 @@ router.route('/etsy/:catname/:subcatname')
 router.route('/image/:id')
   .get(etsyProducts.getImage)
 
-router.route('/browse/:productCat')
+router.route('/browse/trending')
   .get(etsyProducts.getTrending)
 
 module.exports = router
