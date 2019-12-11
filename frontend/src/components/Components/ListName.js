@@ -81,7 +81,7 @@ const ListName = (props) => {
         </div>
         <div className="field">
           <label htmlFor="giftRecipient" className="label">
-            Your list name
+            Who your list is for
           </label>
           <div className="control">
             {data.giftRecipient && <input className='input' type='text' defaultValue={data.giftRecipient} name='giftRecipient' onChange={((e) => handleChange(e))} />}

@@ -98,8 +98,8 @@ _wireframes, sketches, architecture, etc go here too_
 
 ### Creating multiple schemas
 
-_**solved**_
-We designed 4 schemas, of which two had subschemas, we were fairly confident of our schema types. When it came to seeding our data, we tried to generate an output from User, Category, and Item, then use that in our List seeds. We started seeing cannot read property 0 of undefined. We worked through our data movement and realised that Category and Item were not intrinsically linked to List, List just holds some words/numbers to let the frontend find the right category information. We updated our seed data accordingly and it 
+_**not solved**_
+We designed 4 schemas, of which two had subschemas, we were fairly confident of our schema types. When it came to seeding our data, we tried to generate an output from User, Category, and Item, then use that in our List seeds. We started seeing cannot read property 0 of undefined. We worked through our data movement and realised that Category and Item were not intrinsically linked to List, List just holds some words/numbers to let the frontend find the right category information. 
 
 ### Saving an item to a list in the backend
 
@@ -124,7 +124,6 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 
 ### Bugs
 
-Currently we need to re-login in everytime we change something, otherwise the token validation fails
 
 ### These are items we wish to improve on
 
@@ -134,6 +133,7 @@ Currently we need to re-login in everytime we change something, otherwise the to
 ### While we are not yet planning to build any of these, we did consider them in the architecture.
 
 - `Etsy Items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
+- `Browse Items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
 
 ----
 

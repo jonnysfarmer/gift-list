@@ -83,8 +83,12 @@ $logo-green: #9BB54A;
 .edit {
   color: red;
 }
-.title{
+.title {
   color: $title;
+}
+
+h1 {
+  font-weight: bold;
 }
 
 .breadcrumbs{
@@ -100,6 +104,20 @@ $logo-green: #9BB54A;
   a:hover{
     color: $link-hover;
   }
+}
+
+.clickable {
+  color: $link;
+  width: 30%;
+  cursor: pointer;
+}
+.clickable:hover {
+  color: $link-hover;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 // .breadcrumbs li:last-of-type a, .breadcrumbs li:last-of-type a:hover {
@@ -147,7 +165,6 @@ input[name='budget'] {
 }
 .button:hover{
   background-color: $button-hover
-
 }
 .navbar-item{
   color: $text;

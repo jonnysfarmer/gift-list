@@ -35,6 +35,8 @@ const ListSingle = (props) => {
 
   useEffect(onMount, [])
 
+  //currently using the data.subcategory && for that component as without it it seems to load before the subcategory exists to pass
+  //not sure why, needs investigation
 
   return (
 
@@ -74,12 +76,12 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          <div className='container'>
+          {/* <div className='container'>
             <ListCustomItems
               customItem={data.customItem}
               userId={userId} listId={listId}
             />
-          </div>
+          </div> */}
         </div>
 
       </section>
