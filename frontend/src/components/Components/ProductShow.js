@@ -7,7 +7,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 const ProductShow = (props) => {
-
+console.log(props)
   console.log(props.subcategory[0])
   //===== ICONOGRAPHY =====
   // const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
@@ -51,7 +51,7 @@ const ProductShow = (props) => {
 
   useEffect(() => {
     etsyHook(props.subcategory[0])
-  }, [props])
+  }, [props.subcategory[0]])
 
   if (data === {}) { return <div>Loading</div> }
   return (

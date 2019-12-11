@@ -7,6 +7,7 @@ import ListEvent from '../Components/ListEvent'
 import ListSavedItems from '../Components/ListSavedItems'
 import ListCustomItems from '../Components/ListCustomItems'
 import Breadcrumbs from '../Breadcrumbs'
+import ProductShow from '../Components/ProductShow'
 
 const ListSingle = (props) => {
 
@@ -29,7 +30,7 @@ const ListSingle = (props) => {
       })
   }
 
-
+  
   
 
   useEffect(onMount, [])
@@ -55,9 +56,13 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          
+          {data.subcategory && <div className='container'>
+            <ProductShow
+              subcategory={data.subcategory}
+              userId={userId} listId={listId}
+            />
+          </div>}
         </div>
-
 
 
 
