@@ -42,7 +42,7 @@ const ListSingle = (props) => {
       <section className='section columns'>
       <div className='container'>
         <ListName 
-          listName={data.listName} listRecipient={data.giftRecipient} 
+          listName={data.listName} giftRecipient={data.giftRecipient} 
           userId={userId} listId={listId} 
         />
         <ListEvent 
