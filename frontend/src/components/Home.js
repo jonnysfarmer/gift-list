@@ -4,8 +4,8 @@ const Home = () => (
   <section className="hero is-fullheight has-text-centered">
     <div className="hero-body">
       <div className="container">
-        <div class="columns">
-          <div class="column">
+        <div className="columns">
+          <div className="column">
             <div className="card">
               <div className="card-image">
                 <figure className="image is-4by3">
@@ -17,7 +17,7 @@ const Home = () => (
               </div>
             </div>
           </div>
-          <div class="column is-half">
+          <div className="column is-half">
             <div className="card">
               <div className="card-image">
                 <figure className="image is-4by3">
@@ -30,7 +30,7 @@ const Home = () => (
               </div>
             </div>
           </div>
-          <div class="column">
+          <div className="column">
             <div className="card">
               <div className="card-image">
                 <figure className="image is-4by3">
@@ -45,7 +45,7 @@ const Home = () => (
         </div>
       <p className="subtitle">Inspiration Lists</p>
       <div className="columns">
-        <div class="column">
+        <div className="column">
           <div className="card">
             <div className="card-image">
               <figure className="image is-4by3">
@@ -57,7 +57,7 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div class="column">
+        <div className="column">
           <div className="card">
             <div className="card-image">
               <figure className="image is-4by3">
@@ -69,7 +69,7 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div class="column">
+        <div className="column">
           <div className="card">
             <div className="card-image">
               <figure className="image is-4by3">
@@ -81,7 +81,7 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div class="column">
+        <div className="column">
           <div className="card">
             <div className="card-image">
               <figure className="image is-4by3">
@@ -93,7 +93,7 @@ const Home = () => (
             </div>
           </div>
         </div>
-        <div class="column">
+        <div className="column">
           <div className="card">
             <div className="card-image">
               <figure className="image is-4by3">
