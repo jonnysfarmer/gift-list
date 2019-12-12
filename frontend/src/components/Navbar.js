@@ -31,7 +31,8 @@ const Navbar = (props) => {
         <Link className="navbar-item" to="/"
           onClick={() => setState({ isOpen: false })}
         >
-          <Logo /> Gift List
+          <Logo /> 
+          <em className='logo-text'>Gift List</em>
           </Link>
         <a
           role="button"

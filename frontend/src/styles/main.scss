@@ -264,24 +264,6 @@ input[name='budget'] {
 }
 
 
-// .navbar-item {
-//   color: $text;
-//   font-family: $font;
-// }
-// .navbar-item{
-//   a:focus {
-//     background-color: $button-hover;
-//     color: $text;
-//     border-radius: $button-link;
-//    }
-// }
-// .navbar-item:hover{
-//   a {
-//     background-color: $button-hover;
-//     color: $text;
-//     border-radius: $button-link;
-//   }
-// }
 
 /* for category section */
 .filter-option {
@@ -305,6 +287,15 @@ input[name='budget'] {
 //===================================
 // LOGO
 //===================================
+
+//TEXT: FOR WHEN SHOWN AS A LOGO
+//present image can be used independently
+.logo-text {
+  font-family: $font-title;
+  font-size: 1.5rem; //this is sized for navbar sized logo
+  margin-left: 5px;
+  color: $brand-dark;
+}
 
 //PRESENT: BOX STRUCTURE
 .present {
