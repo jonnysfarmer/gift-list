@@ -99,8 +99,8 @@ const ProductShow = (props) => {
       </div>
 
       <div className='container'>
-        <h2>Suggested gifts</h2>
-        <div className='columns is-multiline'>
+        <h3>Suggested gifts</h3>
+        <div className='columns is-multiline suggested-gifts'>
           {etsy.map((ele, i) => {
             return (
               <div className='column is-one-third' key={i}>
