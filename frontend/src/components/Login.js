@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../lib/auth'
+
+import Breadcrumbs from './Breadcrumbs'
 import NoteCards from '../components/Components/NoteCards'
 
 class Login extends React.Component {
@@ -35,7 +37,11 @@ class Login extends React.Component {
   render() {
     console.log(this.state.errors)
     return (
-      <div className='section'>
+      <>
+        <div className='breadcrumb-container'>
+          <Breadcrumbs />
+        </div>
+      <div className=''>
         <div className='container'>
           <div className='columns'>
             <div className='column is-half'>
@@ -87,6 +93,7 @@ class Login extends React.Component {
           </div>
         </div>
       </div>
+      </>
     )
   }
 }

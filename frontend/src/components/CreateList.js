@@ -110,11 +110,11 @@ function CreateList(props) {
     <div className='breadcrumb-container'>
       <Breadcrumbs />
     </div>
-    <section className='section'>
+    <section className=''>
 
       <div className='container'>
         <h1>Create a list</h1>
-        <div className='container columns'>
+        <div className='columns'>
           <div className='column is-half'>
           <form className='form' onSubmit={handleSubmit}>
 
