@@ -10,8 +10,8 @@
 $font-title: 'Lobster+Two', cursive;
 $font: 'Roboto', sans-serif;
 
-//Dark Brand Color #358270
-//Light Brand Color #4AB59A
+$brand-dark: #358270;
+$brand-light: #4AB59A;
 
 //used for hero images, coloured boxes/borders
 $background: #4AB59A;
@@ -57,18 +57,18 @@ $logo-green: #9BB54A;
 //===================================
 
 
-.section {
-  // background-color: green;
-}
-.container {
-  border: 1px solid red;
-}
-.navbar {
-  background-color: purple;
-}
-.breadcrumb-container {
-  background-color: blue;
-}
+// .section {
+//   // background-color: green;
+// }
+// .container {
+//   border: 1px solid red;
+// }
+// .navbar {
+//   background-color: purple;
+// }
+// .breadcrumb-container {
+//   background-color: blue;
+// }
 
 
 
@@ -149,8 +149,11 @@ h1 {
 h2 {
   font-size: 1.5rem;
 }
-h3 {
+h3 { /*list page*/
   font-size: 1.25rem;
+  border-bottom: 1px solid $brand-light;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 
@@ -245,27 +248,49 @@ input[name='budget'] {
 .button.cancel {
   background-color: $button-secondary;
 }
-.button:hover, .button:active, .button:focus {
+.button:hover, .button:active, .button:focus,
+.navbar-item:hover a, .navbar-item:active a, .navbar-item:focus a,
+.filter-option li:hover, .filter-option li:active, .filter-option li:focus
+/* adding nav-bar & filter-options as all need same styling */
+{
   background-color: $button-hover;
-}
-.navbar-item{
+  border-radius: $button-link;
   color: $text;
-  font-family: $font;
+}
+.navbar-item a, .filter-option li {
+  color: $text;
+}
 
+
+// .navbar-item {
+//   color: $text;
+//   font-family: $font;
+// }
+// .navbar-item{
+//   a:focus {
+//     background-color: $button-hover;
+//     color: $text;
+//     border-radius: $button-link;
+//    }
+// }
+// .navbar-item:hover{
+//   a {
+//     background-color: $button-hover;
+//     color: $text;
+//     border-radius: $button-link;
+//   }
+// }
+
+/* for category section */
+.filter-option {
+  display: flex;
 }
-.navbar-item{
-  a:focus {
-    background-color: $button-hover;
-    color: $text;
-    border-radius: $button-link;
-   }
-}
-.navbar-item:hover{
-  a {
-    background-color: $button-hover;
-    color: $text;
-    border-radius: $button-link;
-  }
+.filter-option li {
+  max-width: 20%;
+  margin: 0.5rem 10px 0 0;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid $button;
+  border-radius: $button-link;
 }
 
 

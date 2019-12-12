@@ -89,10 +89,10 @@ const ProductShow = (props) => {
     <div id='list-products' className='element'>
       <div className='container'>
         <h3>Your categories</h3>
-        <ul>
+        <ul className='filter-option'>
           {cat.map((ele, i) => {
             return (
-              <li className='clickable' key={i} onClick={() => etsyHook(ele.value)}>{ele.name}</li>
+              <li className='clickable truncate' key={i} onClick={() => etsyHook(ele.value)}>{ele.name}</li>
             )
           })}
         </ul>
