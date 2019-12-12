@@ -352,6 +352,7 @@ input[name='budget'] {
 
 //PRESENT: RIBBONS
 //outside border
+.present { box-shadow: 2px 1px 10px rgba(0,0,0,0.5); }
 .present.square { border: 1px solid $logo-purple; }
 .present.tall { border: 1px solid $logo-red; }
 .present.wide { border: 1px solid $logo-green; }
@@ -379,27 +380,28 @@ input[name='budget'] {
 .present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
 
 //::NAVBAR
-//vertical line: boxes 1 and 3 border right
-.present .logo-box:nth-child(odd) { border-right-width: calc((0.1 * 50px)); border-right-style: solid; }
-.present.square .logo-box:nth-child(odd) { border-right-color: $logo-purple; }
-.present.tall .logo-box:nth-child(odd) { border-right-color: $logo-red; }
-.present.wide .logo-box:nth-child(odd) { border-right-color: $logo-green; }
-//vertical line: boxes 2 and 4 border left
-.present .logo-box:nth-child(even) { border-left-width: calc((0.1 * 50px)); border-left-style: solid; }
-.present.square .logo-box:nth-child(even) { border-left-color: $logo-purple; }
-.present.tall .logo-box:nth-child(even) { border-left-color: $logo-red; }
-.present.wide .logo-box:nth-child(even) { border-left-color: $logo-green; }
-//horizontal line: boxes 1 and 2 border bottom
-.present .logo-box:nth-child(1), .present .logo-box:nth-child(2) { border-bottom-width: calc((0.1 * 50px)); border-bottom-style: solid;  background-color: white; }
-.present.square .logo-box:nth-child(1), .present.square .logo-box:nth-child(2) { border-bottom-color: $logo-purple; }
-.present.tall .logo-box:nth-child(1), .present.tall .logo-box:nth-child(2) { border-bottom-color: $logo-red; }
-.present.wide .logo-box:nth-child(1), .present.wide .logo-box:nth-child(2) { border-bottom-color: $logo-green; }
-//horizontal line: boxes 3 and 4 border top
-.present .logo-box:nth-child(3), .present .logo-box:nth-child(4) { border-top-width: calc((0.1 * 50px)); border-top-style: solid; }
-.present.square .logo-box:nth-child(3), .present.square .logo-box:nth-child(4) { border-top-color: $logo-purple; background-image: linear-gradient(white, $logo-purple)}
-.present.tall .logo-box:nth-child(3), .present.tall .logo-box:nth-child(4) { border-top-color: $logo-red; background-image: linear-gradient(white, $logo-red)}
-.present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
-
+.navbar-item{
+  //vertical line: boxes 1 and 3 border right
+  .present .logo-box:nth-child(odd) { border-right-width: calc((0.1 * 20px)); border-right-style: solid; }
+  .present.square .logo-box:nth-child(odd) { border-right-color: $logo-purple; }
+  .present.tall .logo-box:nth-child(odd) { border-right-color: $logo-red; }
+  .present.wide .logo-box:nth-child(odd) { border-right-color: $logo-green; }
+  //vertical line: boxes 2 and 4 border left
+  .present .logo-box:nth-child(even) { border-left-width: calc((0.1 * 20px)); border-left-style: solid; }
+  .present.square .logo-box:nth-child(even) { border-left-color: $logo-purple; }
+  .present.tall .logo-box:nth-child(even) { border-left-color: $logo-red; }
+  .present.wide .logo-box:nth-child(even) { border-left-color: $logo-green; }
+  //horizontal line: boxes 1 and 2 border bottom
+  .present .logo-box:nth-child(1), .present .logo-box:nth-child(2) { border-bottom-width: calc((0.1 * 20px)); border-bottom-style: solid;  background-color: white; }
+  .present.square .logo-box:nth-child(1), .present.square .logo-box:nth-child(2) { border-bottom-color: $logo-purple; }
+  .present.tall .logo-box:nth-child(1), .present.tall .logo-box:nth-child(2) { border-bottom-color: $logo-red; }
+  .present.wide .logo-box:nth-child(1), .present.wide .logo-box:nth-child(2) { border-bottom-color: $logo-green; }
+  //horizontal line: boxes 3 and 4 border top
+  .present .logo-box:nth-child(3), .present .logo-box:nth-child(4) { border-top-width: calc((0.1 * 20px)); border-top-style: solid; }
+  .present.square .logo-box:nth-child(3), .present.square .logo-box:nth-child(4) { border-top-color: $logo-purple; background-image: linear-gradient(white, $logo-purple)}
+  .present.tall .logo-box:nth-child(3), .present.tall .logo-box:nth-child(4) { border-top-color: $logo-red; background-image: linear-gradient(white, $logo-red)}
+  .present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
+}
 
 
 //===================================
