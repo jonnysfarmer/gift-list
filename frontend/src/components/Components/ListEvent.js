@@ -85,12 +85,6 @@ console.log('remind', data.eventReminder)
             <input className='input' type='date' defaultValue={moment(data.eventDate).format('YYYY-MM-DD')} name='eventDate' onChange={((e) => handleChange(e))} />
           </div>
         </div>}
-        {data.eventReminder && <div className="field">
-          <label className="checkbox">
-            <input className='checkbox' type='checkbox' defaultValue={data.eventReminder} name='eventReminder' onChange={((e) => handleChange(e))} />
-            Event reminders 
-            </label>
-        </div>}
         <button className='button save is-rounded' onClick={((e) => handleSave(e))} >Save changes</button>
         <button className='button cancel is-rounded' onClick={((e) => handleCancel(e))}>Cancel changes</button>
       </form>

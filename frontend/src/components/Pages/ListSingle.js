@@ -60,12 +60,11 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          {data.subcategory && <div className='container'>
+          {data.subcategory && <div>
             <ProductShow
               subcategory={data.subcategory} itemsSaved={data.itemsSaved}
               userId={userId} listId={listId}
               refreshFunction={onMount}
-
             />
           </div>}
         </div>
