@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated'
 import axios from 'axios'
 import moment from 'moment'
 // import ReactDOM from 'react-dom'
@@ -7,6 +9,9 @@ import moment from 'moment'
 import auth from '../lib/auth'
 import UseAxios from '../hooks/UseAxios'
 import Breadcrumbs from './Breadcrumbs'
+
+// animation for dropdown menu
+const animatedComponents = makeAnimated()
 
 //setup our fields needed
 const createListForm = {
@@ -25,17 +30,27 @@ const createListForm = {
   //we're not implementing keywords in MVP but including in data structure for future
 }
 
-
 function CreateList(props) {
+
+  // get all category and subcategory data
+  function addCategories() {
+    axios.get('http://localhost:8000/api/categories')
+      .then(res => manipulateResponseData(res.data))
+      .catch(err => console.log(err))
+  }
+
+  // load categories for dropdown menu on page load
+  useEffect(addCategories,[])
 
   //get userId
   const userId = auth.getUserId()
 
-
   //handle input values: data, function
   const [data, setData] = useState(createListForm)
   const [errors, setErrors] = useState({})
-
+  const [categoriesList, setCategoriesList] = useState([])
+  const [subcategoriesList, setSubcategoriesList] = useState([])
+  const [subcategoriesSelected, setSubcategoriesSelected] = useState([])
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -44,6 +59,8 @@ function CreateList(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    data.subcategory = [subcategoriesSelected]
+    console.log(data)
     axios.post(`http://localhost:8000/api/lists/${userId}`, data, {
       headers: { Authorization: `Bearer ${auth.getToken()}` }
     })
@@ -53,16 +70,48 @@ function CreateList(props) {
       })
   }
 
-  function addCategories() {
-    return UseAxios('http://localhost:8000/api/categories')
+  // get subcategories for category selected
+  function drillDown(e) {
+    const categoryObj = categoriesList.find(elem => {
+      return elem.value === e.value
+    })
+    const temp = categoryObj.subcategories.map((elem) => {
+      return {
+        value: elem.category_name,
+        label: elem.name
+      }
+    })
+    setSubcategoriesList(temp)
   }
 
-  
-  console.log(errors)
+  // store subcategories selected in state to post on submit
+  function subCatsSelected(e) {
+    const test = e.map((elem) => {
+      return {
+        value: elem.value,
+        name: elem.label
+      }
+    })
+    setSubcategoriesSelected(test)
+  }
+
+  // format response data for react select
+  function manipulateResponseData(input) {
+    const temp = input.map((category) => {
+      return {
+        value: category.name,
+        label: category.short_name,
+        subcategories: category.subcategories
+      }
+    })
+    console.log(temp)
+    setCategoriesList(temp)
+  }
+
   return <>
 
     <section className='section'>
-    <div className='breadcrumb-container'>
+      <div className='breadcrumb-container'>
         <Breadcrumbs />
       </div>
       <div className='container'>
@@ -126,13 +175,26 @@ function CreateList(props) {
               </label>
               <div className="control">
 
-                <select className='select'>
+                <Select
+                  options={categoriesList}
+                  onChange={drillDown} />
+                  
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  //  defaultValue={['red', 'green']}
+                  isMulti
+                  options={subcategoriesList}
+                  onChange={subCatsSelected}
+                  // value={null}
+                  />
+                {/* <select className='select'>
                   <option>Select a category</option>
                   {
-                  addCategories().map((category, i) =>
-                    <option key={i} value={category.categoryName}>{category.categoryName}</option>
-                  )}
-                </select>
+                    addCategories().map((category, i) =>
+                      <option key={i} value={category.categoryName}>{category.categoryName}</option>
+                    )}
+                </select> */}
 
               </div>
               {errors.subcategory && <small className="help is-danger">{errors.subcategory}</small>}
@@ -144,9 +206,9 @@ function CreateList(props) {
                 Add a budget <span className='optional'>optional</span>
               </label>
               <div className='control has-static-text'>
-                  <input onChange={handleChange} type='text' className='input' name='budget' title='max £' />
-                  <span className='static-text'>max &pound;</span>
-                </div>
+                <input onChange={handleChange} type='text' className='input' name='budget' title='max £' />
+                <span className='static-text'>max &pound;</span>
+              </div>
               {errors.budget && <small className="help is-danger">{errors.budget}</small>}
             </div>
 

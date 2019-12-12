@@ -40,6 +40,14 @@ const Lists = ( props ) => {
     .catch(err => setErrors(err))
   }
 
+  const listLength = () => {
+   const length = (listInfo.filter((ele, i) => {
+      return ele.listStatus === 'Active'
+    }))
+    console.log(length.length)
+    return length.length
+  }
+
 
 
   //cool to add how many events are in the next month...
@@ -59,12 +67,12 @@ const Lists = ( props ) => {
       <section className="section">
         <div className="container">
         <div className='title'>Welcome back, {userInfo.firstname}</div>
-        <p className='subtitle'>You currently working on {listInfo.length} lists</p>
+        <p className='subtitle'>You currently working on {listLength()} lists</p>
         </div>
       </section>
       <section className="section list-map">
         <div className="container">
-          <AllLists data = {listInfo} />
+          <AllLists data = {listInfo} refreshFunction={userlistHook} />
         </div>
       </section>
     </section>
