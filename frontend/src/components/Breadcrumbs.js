@@ -29,22 +29,24 @@ const Breadcrumbs = () => {
   const pathSplit = (history.location.pathname).split('/')
   //map the path items and get their label and paths from breadcrumbArr
   const crumbs = pathSplit.map((elem, i) => {
-      return breadcrumbArr.find( ({ urlStub }) => urlStub === elem )
-    })
+    return breadcrumbArr.find(({ urlStub }) => urlStub === elem)
+  })
   //remove any undefined entries (ones that didn't match our breadcrumbArr)
   const crumbsNoNull = crumbs.filter(elem => elem !== undefined)
 
 
   if (!breadcrumbArr) { return <div>Loading</div> }
   return (
-    <ul className='breadcrumbs'>
-      <li><Link to='/'>Home</Link></li>
-      {crumbsNoNull.map((elem, i) => {
-      return (
-        <li key={i}><Link to={elem.path}>{elem.label}</Link></li>
-        ) 
-      })}
-    </ul>
+    <div className='breadcrumbs-container'>
+      <ul className='breadcrumbs'>
+        <li><Link to='/'>Home</Link></li>
+        {crumbsNoNull.map((elem, i) => {
+          return (
+            <li key={i}><Link to={elem.path}>{elem.label}</Link></li>
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 
