@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../lib/auth'
+import NoteCards from '../components/Components/NoteCards'
 
 class Login extends React.Component {
   constructor() {
@@ -26,7 +27,7 @@ class Login extends React.Component {
       .then(resp => {
         Auth.setToken(resp.data.token)
         console.log(resp)
-        this.props.history.push(`/lists/${resp.data.id}`) 
+        this.props.history.push(`/lists/${resp.data.id}`)
       })
       .catch(() => this.setState({ errors: 'Incorrect username/password combination' }))
   }
@@ -36,44 +37,54 @@ class Login extends React.Component {
     return (
       <div className='section'>
         <div className='container'>
-          <div className='title'>Login</div>
-          <form className='form' onSubmit={(e) => this.handleSubmit(e)}>
-            
-            <div className='field'>
-              <label htmlFor='email' className='label'>
-                Email
-              </label>
-              <div className='control'>
-                <input
-                  onChange={(e) => this.handleChange(e)}
-                  className='input'
-                  type='email'
-                  name='email'
-                />
-              </div>
-            </div>
+          <div className='columns'>
+            <div className='column is-half'>
+              <h1>Login</h1>
+              <form className='form' onSubmit={(e) => this.handleSubmit(e)}>
 
-            <div className='field'>
-              <label htmlFor='password' className='label'>
-                Password
+                <div className='field'>
+                  <label htmlFor='email' className='label'>
+                    Email
               </label>
-              <div className='control'>
-                <input
-                  onChange={(e) => this.handleChange(e)}
-                  className='input'
-                  type='password'
-                  name='password'
-                />
-              </div>
-            </div>
-            {this.state.errors && <small className='help is-danger'>
-              {this.state.errors}
-            </small>}
-            <button className='button is-rounded'>
-              Login
+                  <div className='control'>
+                    <input
+                      onChange={(e) => this.handleChange(e)}
+                      className='input'
+                      type='email'
+                      name='email'
+                    />
+                  </div>
+                </div>
+
+                <div className='field'>
+                  <label htmlFor='password' className='label'>
+                    Password
+              </label>
+                  <div className='control'>
+                    <input
+                      onChange={(e) => this.handleChange(e)}
+                      className='input'
+                      type='password'
+                      name='password'
+                    />
+                  </div>
+                </div>
+                {this.state.errors && <small className='help is-danger'>
+                  {this.state.errors}
+                </small>}
+                <button className='button is-rounded'>
+                  Login
             </button>
 
-          </form>
+              </form>
+            </div>
+
+            <div className='columns is-half'>
+              <NoteCards />
+            </div>
+
+
+          </div>
         </div>
       </div>
     )
