@@ -56,16 +56,16 @@ const ProductShow = (props) => {
 
   const addItem = (e, listingId, store) => {
     const data = {
-      src : store,
-      id : listingId,
-      user_id : props.userId,
-      list_id : props.listId
-    }  
+      src: store,
+      id: listingId,
+      user_id: props.userId,
+      list_id: props.listId
+    }
     e.preventDefault()
     axios.post(`http://localhost:8000/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(()=>{
+      .then(() => {
         props.refreshFunction()
         etsyHook(cat)
       })
@@ -82,7 +82,7 @@ const ProductShow = (props) => {
     setCat(props.subcategory[0])
   }, [props])
 
-// console.log(cat)
+  // console.log(cat)
 
   if (data === {}) { return <div>Loading</div> }
   return (
@@ -99,8 +99,8 @@ const ProductShow = (props) => {
       </div>
 
       <div className='container'>
-        <h2>Suggested gifts</h2>
-        <div className='columns is-multiline'>
+        <h3>Suggested gifts</h3>
+        <div className='columns is-multiline suggested-gifts'>
           {etsy.map((ele, i) => {
             return (
               <div className='column is-one-third' key={i}>
@@ -108,13 +108,17 @@ const ProductShow = (props) => {
                   <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
                   <span className='background-icon interactive-icon'>{backgroundIcon}</span>
                   <div className="card-image">
-                    <figure className="image">
+                    <figure className="image is-4by3">
                       <img src={etsyListingID[i]} alt="product" />
                     </figure>
-                    <span className=''>{ele.title}</span>
                     <div className="card-content">
-                      <p>{ele.currency_code}{ele.price}</p>
-                      </div>
+                      <span className='truncate-card'>{ele.title}</span>
+
+                      <footer className="card-footer">
+                        <br></br>
+                        {ele.currency_code}  {ele.price}
+                      </footer>
+                    </div>
                   </div>
                 </div>
               </div>

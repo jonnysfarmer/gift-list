@@ -102,7 +102,7 @@ $logo-green: #9BB54A;
 }
 
 .card {
-  height: 100%;
+  // height: 18rem;
   position: relative;
 }
 .card {
@@ -123,7 +123,9 @@ $logo-green: #9BB54A;
     margin-top: 1%;
   }
 }
-
+.suggested-gifts{
+  margin-top: 1rem;
+}
 
 
 
@@ -192,7 +194,17 @@ h3 { /*list page*/
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.truncate-card{
+  display: block;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // max-width: 8rem;
+  height: 5rem;
+}
+// .card-content{
+//   height: 5rem
+// }
 
 
 
@@ -294,59 +306,117 @@ input[name='budget'] {
 // LOGO
 //===================================
 
-
+//PRESENT: BOX STRUCTURE
 .present {
-  border: 2px solid $logo-purple;
-  width: 3.5rem;
-  height: 3.5rem;
   display: flex;
   flex-wrap: wrap;
-  animation: bounce ease 5s infinite;
 }
 .logo-box {
   width: 50%;
   height: 50%;
 }
-.logo-box:nth-child(odd) {
-  border-right: 0.3em solid $logo-purple;
-}
-.logo-box:nth-child(even) {
-  border-left: 0.3em solid $logo-purple;
-}
-.logo-box:nth-child(1), .logo-box:nth-child(2) {
-  border-bottom: 0.3em solid $logo-purple;
-  background-color: white;
-}
-.logo-box:nth-child(3), .logo-box:nth-child(4) {
-  border-top: 0.3em solid $logo-purple;
-  background-image: linear-gradient(white, $logo-purple);
+
+//PRESENT: SIZE  
+//::HOMEPAGE base size is 50px
+.present.square { width: calc(1 * 50px); height: calc(1 * 50px)  }
+.present.tall { width: calc(1 * 50px); height: calc(1.5 * 50px)  }
+.present.wide { width: calc(1.5 * 50px); height: calc(0.7 * 50px)  }
+//::NAVBAR base size is 20px
+.navbar-item {
+  .present.square { width: calc(1 * 20px;); height: calc(1 * 20px;)  }
+  .present.tall { width: calc(1 * 20px;); height: calc(1.5 * 20px;)  }
+  .present.wide { width: calc(1.2 * 20px;); height: calc(0.7 * 20px;)  }
 }
 
-.present.tall {
-  border: 2px solid $logo-red;
-  width: 3.5rem;
-  height: 5.5rem;
-  animation: bounce2 ease 5s infinite;
+//PRESENT: POSITIONING
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
-.tall .logo-box {
-  border-color: $logo-red;
-}
-.tall .logo-box:nth-child(3), .tall .logo-box:nth-child(4) {
-  background-image: linear-gradient(white, $logo-red);
+//::HOMEPAGE
+.present.square { z-index: 3; }
+.present.tall { z-index: 1; margin-left: calc(-0.4 * 50px); }
+.present.wide { z-index: 2; margin-left: calc(-0.8 * 50px); }
+//::NAVBAR
+.navbar-item {
+  .present.square { z-index: 3; }
+  .present.tall { z-index: 1; margin-left: calc(-0.4 * 20px); }
+  .present.wide { z-index: 2; margin-left: calc(-0.8 * 20px); }
 }
 
-.present.wide {
-  border: 2px solid $logo-green;
-  width: 5.5rem;
-  height: 3.5rem;
-  animation: bounce3 ease 5s infinite;
-}
-.wide .logo-box {
-  border-color: $logo-green;
-}
-.wide .logo-box:nth-child(3), .wide .logo-box:nth-child(4) {
-  background-image: linear-gradient(white, $logo-green);
-}
+//PRESENT: ANIMATIONS
+.present.square { animation: bounce ease 5s infinite; }
+.present.tall { animation: bounce2 ease 5s infinite; }
+.present.wide { animation: bounce3 ease 5s infinite; }
+
+//PRESENT: RIBBONS
+//outside border
+.present.square { border: 1px solid $logo-purple; }
+.present.tall { border: 1px solid $logo-red; }
+.present.wide { border: 1px solid $logo-green; }
+
+//vertical line: boxes 1 and 3 border right
+.present.square .logo-box:nth-child(odd) { border-size: calc(); border-weight: solid; border-color: $logo-purple; }
+
+
+
+
+// .logo-box:nth-child(even) { border-left: 5px solid $logo-purple; }
+// .logo-box:nth-child(1), .logo-box:nth-child(2) { border-bottom: 5px solid $logo-purple; background-color: white; }
+// .logo-box:nth-child(3), .logo-box:nth-child(4) { border-top: 5px solid $logo-purple; }
+// //tall
+// .logo-box:nth-child(odd) { border-right: 5px solid $logo-red; }
+// .logo-box:nth-child(even) { border-left: 5px solid $logo-red; }
+// .logo-box:nth-child(1), .logo-box:nth-child(2) { border-bottom: 5px solid $logo-red; background-color: white; }
+// .logo-box:nth-child(3), .logo-box:nth-child(4) { border-top: 5px solid $logo-red; }
+// //wide
+// .logo-box:nth-child(odd) { border-right: 5px solid $logo-green; }
+// .logo-box:nth-child(even) { border-left: 5px solid $logo-green; }
+// .logo-box:nth-child(1), .logo-box:nth-child(2) { border-bottom: 5px solid $logo-green; background-color: white; }
+// .logo-box:nth-child(3), .logo-box:nth-child(4) { border-top: 5px solid $logo-green; }
+
+
+// .present.tall {
+//   border: 2px solid $logo-red;
+//   animation: bounce2 ease 5s infinite;
+// }
+// .tall .logo-box {
+//   border-color: $logo-red;
+// }
+// .tall .logo-box:nth-child(3), .tall .logo-box:nth-child(4) {
+//   background-image: linear-gradient(white, $logo-red);
+// }
+
+// .present.wide {
+//   border: 2px solid $logo-green;
+//   animation: bounce3 ease 5s infinite;
+// }
+// .wide .logo-box {
+//   border-color: $logo-green;
+// }
+// .wide .logo-box:nth-child(3), .wide .logo-box:nth-child(4) {
+//   background-image: linear-gradient(white, $logo-green);
+// }
+
+
+// // present-positions
+// .logo {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: flex-end;
+// }
+// .present {
+//   z-index: 3;
+// }
+// .tall {
+//   margin-left: -20px;
+//   z-index: 1;
+// }
+// .wide {
+//   margin-left: -50px;
+//   z-index: 2;
+// }
 
 
 //===================================
