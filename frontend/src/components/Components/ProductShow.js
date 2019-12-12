@@ -64,19 +64,24 @@ const ProductShow = (props) => {
     axios.post(`http://localhost:8000/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(etsyHook(cat))
+      .then(()=>{
+        props.refreshFunction()
+        etsyHook(cat)
+      })
       .catch((err) => {
-        setErrors(err.response.data.errors)
+        console.log(err)
+        setErrors(err.response)
       })
   }
 
 
   useEffect(() => {
     setDataFromProps(props)
-    etsyHook(props.subcategory[0][0])
+    etsyHook(props.subcategory[0][0].value)
     setCat(props.subcategory[0])
   }, [props])
 
+// console.log(cat)
 
   if (data === {}) { return <div>Loading</div> }
   return (
@@ -86,7 +91,7 @@ const ProductShow = (props) => {
         <ul>
           {cat.map((ele, i) => {
             return (
-              <li className='clickable truncate' key={i} onClick={() => etsyHook(ele)}>{ele}</li>
+              <li className='clickable' key={i} onClick={() => etsyHook(ele.value)}>{ele.name}</li>
             )
           })}
         </ul>
