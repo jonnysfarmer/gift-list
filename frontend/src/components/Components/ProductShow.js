@@ -5,7 +5,7 @@ import Auth from '../../lib/auth'
 import ListSinge from '../Pages/ListSingle'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { faPlusSquare, faCircle } from '@fortawesome/free-solid-svg-icons'
 import ListSingle from '../Pages/ListSingle'
 
 
@@ -13,6 +13,7 @@ import ListSingle from '../Pages/ListSingle'
 const ProductShow = (props) => {
   //===== ICONOGRAPHY =====
   const addIcon = <FontAwesomeIcon icon={faPlusSquare} />
+  const backgroundIcon = <FontAwesomeIcon icon={faCircle} />
 
   //===== VARIABLES =====
   const [data, setData] = useState({})
@@ -102,9 +103,10 @@ const ProductShow = (props) => {
         <div className='columns is-multiline'>
           {etsy.map((ele, i) => {
             return (
-              <div className='column' key={i}>
+              <div className='column is-one-third' key={i}>
                 <div className="card">
-                  <span onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
+                  <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
+                  <span className='background-icon interactive-icon'>{backgroundIcon}</span>
                   <div className="card-image">
                     <figure className="image">
                       <img src={etsyListingID[i]} alt="product" />

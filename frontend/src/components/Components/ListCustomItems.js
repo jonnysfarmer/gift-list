@@ -3,7 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faEdit, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faEdit, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 
 const ListCustomItems = (props) => {
@@ -12,7 +12,7 @@ const ListCustomItems = (props) => {
   // //===== ICONOGRAPHY =====
   const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
   const editIcon = <FontAwesomeIcon icon={faEdit} />
-  const newIcon = <FontAwesomeIcon icon={faPlusCircle} />
+  const newIcon = <FontAwesomeIcon icon={faPlusSquare} />
 
 
   // //===== VARIABLES =====
@@ -120,7 +120,7 @@ const ListCustomItems = (props) => {
 
           <div className="subtitle">Gift Ideas</div>
 
-            <p className={`${addCustomEdit ? '' : 'hide'}`}><span className='edit-link' onClick={addEditCustom}>{newIcon} New Gift</span></p>
+            <p className={`${addCustomEdit ? '' : 'hide'}`}><span className='edit-link interactive-icon clickable' onClick={addEditCustom}>{newIcon}</span>New Gift</p>
             <div className={`${addCustomEdit ? 'hide' : ''}`}>
               {<div>
                 <div className='control has-static-text'>
@@ -143,8 +143,8 @@ const ListCustomItems = (props) => {
                 <div className={`${editCustom[i] ? '' : 'hide'}`}>
                   <p>{ele.note}</p>
                   <p>{ele.url}</p>
-                  <span onClick={() => deleteCustomItem(ele._id)}>{trashIcon}</span>
-                  <span onClick={()=>editCustomItem(i)}>{editIcon}</span>
+                  <span  className='interactive-icon clickable' onClick={() => deleteCustomItem(ele._id)}>{trashIcon}</span>
+                  <span  className='interactive-icon clickable' onClick={()=>editCustomItem(i)}>{editIcon}</span>
                 </div>
                 <div className={`${editCustom[i] ? 'hide' : ''}`}>
                   {<div>

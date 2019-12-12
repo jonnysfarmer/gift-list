@@ -5,9 +5,9 @@
 // having problems with sass compiler, need to investigate
 
 //Fonts
-@import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto|Lobster+Two&display=swap');
 //Brand name and h1s only
-$font-title: 'Charmonman', cursive;
+$font-title: 'Lobster+Two', cursive;
 $font: 'Roboto', sans-serif;
 
 //Dark Brand Color #358270
@@ -37,12 +37,39 @@ $error: #b63c5a;
 //buttons
 $button:  #358270;
 $button-hover: #4AB59A;
+$button-secondary: #686868;
+$button-link: 290486px; /* replicating bulma's is-rounded class which won't work on this element via html */
 
 
 //Logo - colours used in the logo only
 $logo-purple: #654AB5;
 $logo-red: #B54A65;
 $logo-green: #9BB54A;
+
+
+.hide {
+  display: none;
+}
+
+
+//===================================
+// TESTING
+//===================================
+
+
+.section {
+  // background-color: green;
+}
+.container {
+  border: 1px solid red;
+}
+.navbar {
+  background-color: purple;
+}
+.breadcrumb-container {
+  background-color: blue;
+}
+
 
 
 
@@ -55,7 +82,9 @@ $logo-green: #9BB54A;
 }
 .hero{
   background-color: $background;
-  // font-family: $font-title;
+}
+.container {
+  padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
 }
 
 // Dashboard Page
@@ -72,7 +101,29 @@ $logo-green: #9BB54A;
   background-color: $link-hover;
 }
 
-//ListCustomItems Page
+.card {
+  height: 100%;
+  position: relative;
+}
+.card {
+
+  .interactive-icon {
+  font-size: 2.5rem;
+  position: absolute;
+  top: -5%;
+  left: 95%;
+  z-index: 2;
+  line-height: 0;
+  }
+
+  .background-icon {
+    color: white;
+    z-index: 1;
+    font-size: 2rem;
+    margin-top: 1%;
+  }
+}
+
 
 
 
@@ -84,32 +135,50 @@ $logo-green: #9BB54A;
 .edit {
   color: red;
 }
-.title {
-  color: $title;
+
+.hero h1 {
+  font-size: 7rem;
+  font-family: $font-title;
+  color: white;
+  text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+h1 {
+  font-size: 2rem;
+  font-family: $font-title;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
 }
 
-h1 {
-  font-weight: bold;
-}
+
 
 .breadcrumbs{
   display: flex;
   flex-direction: row;
-  li{
+  li {
     margin: 0.5em;
-    
   }
-  a{
+  a {
     color: $link;
   }
-  a:hover{
+  a:hover {
     color: $link-hover;
   }
 }
 
+.interactive-icon {
+  font-size: 1rem;
+  color: $link;
+  margin-right: 5px; /*setting hard pixels until can work out how to calc it properly */
+  margin-left: -25px; /* being .container padding + margin-right above */
+}
+
+
 .clickable {
   color: $link;
-  width: 30%;
   cursor: pointer;
 }
 .clickable:hover {
@@ -121,31 +190,34 @@ h1 {
   text-overflow: ellipsis;
 }
 
-// .breadcrumbs li:last-of-type a, .breadcrumbs li:last-of-type a:hover {
-//   cursor: default;
-//   text-decoration: none;
-//   color: $text;
-// } 
+
 
 
 //===================================
 // FORM & BUTTONS
 //===================================
 
+.form {
+  margin: 1.5rem 0;
+  width: 75%;
+}
+
+input[type='checkbox'] {
+  margin-right: 5px;
+}
 input[name='budget'] {
   max-width: 25%;
 }
+
 .has-static-text input {
   padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
-
 .has-static-text {
 	position:relative;
 }
 .has-static-text input {
   padding-left: 3.5rem; /* should refactor to calc this based on static text length */
 }
-
 .static-text {
 	position:absolute;
   left: 0.5rem;
@@ -153,19 +225,18 @@ input[name='budget'] {
 	font-weight:bold;
 }
 
-.hide {
-  display: none;
-}
-.button{
+.button {
   background-color: $button;
   color:$text-inverted;
   font-family: $font;
   font-weight: bold;
   letter-spacing: 0.05em;
-
 }
-.button:hover{
-  background-color: $button-hover
+.button.cancel {
+  background-color: $button-secondary;
+}
+.button:hover, .button:active, .button:focus {
+  background-color: $button-hover;
 }
 .navbar-item{
   color: $text;
@@ -173,21 +244,26 @@ input[name='budget'] {
 
 }
 .navbar-item{
-  a:focus{
+  a:focus {
     background-color: $button-hover;
     color: $text;
-    border-radius: 290486px;
-  }
+    border-radius: $button-link;
+   }
 }
-
 .navbar-item:hover{
-  a{
+  a {
     background-color: $button-hover;
     color: $text;
-    border-radius: 290486px;
+    border-radius: $button-link;
   }
 }
 
+
+//===================================
+// SWITCH ITERACTION
+//===================================
+
+/*turn checkbox into a switch*/
 
 //===================================
 // LOGO

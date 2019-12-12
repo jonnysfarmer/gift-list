@@ -48,7 +48,8 @@ const ListSingle = (props) => {
       </div>
 
       <section className='section columns'>
-        <div className='column'>
+        
+        <div className='column is-two-thirds'>
           <div className='container'>
             <ListName
               listName={data.listName} giftRecipient={data.giftRecipient}
@@ -69,10 +70,7 @@ const ListSingle = (props) => {
           </div>}
         </div>
 
-
-
-
-        <div className='column'>
+        <div className='column is-one-third'>
           <div className='container'>
             <ListSavedItems
               itemsSaved={data.itemsSaved}

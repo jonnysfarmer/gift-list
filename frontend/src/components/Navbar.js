@@ -24,8 +24,8 @@ const Navbar = (props) => {
     setState({ isOpen: !state.isOpen })
   }
 
-  return <div className="navbar">
-    <div className="container">
+  return (
+    <div className="navbar">
       <div className="navbar-brand">
         <Link className="navbar-item" to="/"
           onClick={() => setState({ isOpen: false })}
@@ -89,7 +89,7 @@ const Navbar = (props) => {
         </div>
       </div>
     </div>
-  </div>
+  )
 }
 
 export default Navbar

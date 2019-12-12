@@ -65,7 +65,7 @@ const ListSavedItems = (props) => {
         {Array.from(data).map((elem, i) => {
           return (
             <li key={i}>
-              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
+              <span className='interactive-icon clickable' onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
               <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer'>{elem.productName}</a>
               </li>
           )
