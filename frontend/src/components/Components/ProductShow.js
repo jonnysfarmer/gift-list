@@ -108,12 +108,17 @@ const ProductShow = (props) => {
                   <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
                   <span className='background-icon interactive-icon'>{backgroundIcon}</span>
                   <div className="card-image">
-                    <figure className="image">
+                    <figure className="image is-4by3">
                       <img src={etsyListingID[i]} alt="product" />
                     </figure>
-                    <span>{ele.title}</span>
+
                     <div className="card-content">
-                      <p>{ele.currency_code}{ele.price}</p>
+                    <span className='truncate-card'>{ele.title}</span>
+                    
+                    <footer className="card-footer">
+                    <br></br>
+                      {ele.currency_code}  {ele.price}
+                      </footer>
                       </div>
                   </div>
                 </div>
