@@ -77,11 +77,11 @@ const ProductShow = (props) => {
 
   useEffect(() => {
     setDataFromProps(props)
-    etsyHook(props.subcategory[0])
-    setCat(props.subcategory)
+    etsyHook(props.subcategory[0][0].value)
+    setCat(props.subcategory[0])
   }, [props])
 
-console.log(cat)
+// console.log(cat)
 
   if (data === {}) { return <div>Loading</div> }
   return (
@@ -91,7 +91,7 @@ console.log(cat)
         <ul>
           {cat.map((ele, i) => {
             return (
-              <li className='clickable truncate' key={i} onClick={() => etsyHook(ele)}>{ele}</li>
+              <li className='clickable' key={i} onClick={() => etsyHook(ele.value)}>{ele.name}</li>
             )
           })}
         </ul>
