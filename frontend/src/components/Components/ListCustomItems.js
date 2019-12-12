@@ -3,7 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faEdit, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 const ListCustomItems = (props) => {
@@ -13,7 +13,10 @@ const ListCustomItems = (props) => {
   // userId={userId} listId={listId}
 
   // //===== ICONOGRAPHY =====
-  // const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
+  const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
+  const editIcon = <FontAwesomeIcon icon={faEdit} />
+  const newIcon = <FontAwesomeIcon icon={faPlusCircle} />
+
 
   // //===== VARIABLES =====
   const customSchema = {
@@ -108,11 +111,14 @@ const ListCustomItems = (props) => {
     setCustomItems(data)
   }
 
-  // const saveCustomEditItem =(id, i) => {
-  //   axios.put(`http://localhost:8000/api/lists/${userID}/${listID}/customItems/${id}`, customItems[i])
-  //   .then(() => {customItemHookInitial()})
-  //   .catch(err => setErrors(err))
-  // }
+  const saveCustomEditItem =(id, i) => {
+    axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}/customItems/${id}`, customItems[i])
+    .then((response) => {
+      setCustomItems(response.data.customItem)
+      customItemIdArray(response.data.customItem)
+    })
+    // .catch(err => setErrors(err))
+  }
 
   useEffect(() => {
     setDataFromProps(props)
@@ -125,36 +131,14 @@ const ListCustomItems = (props) => {
   else {
     console.log('working')
     console.log(`my custom items ${customItems[0].note}`)
-    let list = customItems
+    // let list = customItems
     return (
       <div id='list-name' className='element'>
         <div className="container">
-          <div className="subtitle">Cutstom Gifts</div>
-          {customItems.map((ele, i) => {
-            return (
-              <div key={i}>
-                <div className={`edit ${editCustom[i] ? '' : 'hide'}`}>
-                  <p>{ele.note}</p>
-                  <p>{ele.url}</p>
-                  <button onClick={() => deleteCustomItem(ele._id)}>Delete</button>
-                  <button onClick={()=>editCustomItem(i)}>Edit</button>
-                </div>
-                <div className={`${editCustom[i] ? 'hide' : ''}`}>
-                  {<div>
-                          <input className='input' type='text' name='note' defaultValue={customItems[i].note} onChange={(e)=>editHandleChangeCustom(e, i)} />
-                          <input className='input' type='text' name='url' onChange={(e)=>editHandleChangeCustom(e, i)} title='url' defaultValue={ele.url}  />
-                                        
-                        {/* <button onClick={()=>saveCustomEditItem(ele._id, i)}>Save</button> */}
-                        <button onClick={()=>editCustomItem(i)}>Cancel</button>
-                      </div>}
 
-                </div>
-              </div>
+          <div className="subtitle">Gift Ideas</div>
 
-            )
-          })}
-          <div className='subtitle'>
-            <p className={`edit ${addCustomEdit ? '' : 'hide'}`}><span className='edit-link' onClick={addEditCustom}>+</span></p>
+            <p className={`${addCustomEdit ? '' : 'hide'}`}><span className='edit-link' onClick={addEditCustom}>{newIcon} New Gift</span></p>
             <div className={`${addCustomEdit ? 'hide' : ''}`}>
               {<div>
                 <div className='control has-static-text'>
@@ -170,7 +154,31 @@ const ListCustomItems = (props) => {
               </div>}
 
             </div>
-          </div>
+
+          {customItems.map((ele, i) => {
+            return (
+              <div key={i}>
+                <div className={`${editCustom[i] ? '' : 'hide'}`}>
+                  <p>{ele.note}</p>
+                  <p>{ele.url}</p>
+                  <span onClick={() => deleteCustomItem(ele._id)}>{trashIcon}</span>
+                  <span onClick={()=>editCustomItem(i)}>{editIcon}</span>
+                </div>
+                <div className={`${editCustom[i] ? 'hide' : ''}`}>
+                  {<div>
+                          <input className='input' type='text' name='note' defaultValue={customItems[i].note} onChange={(e)=>editHandleChangeCustom(e, i)} />
+                          <input className='input' type='text' name='url' onChange={(e)=>editHandleChangeCustom(e, i)} title='url' defaultValue={ele.url}  />
+                                        
+                        <button onClick={()=>saveCustomEditItem(ele._id, i)}>Save</button>
+                        {/* <button onClick={()=>editCustomItem(i)}>Cancel</button> */}
+                      </div>}
+
+                </div>
+              </div>
+
+            )
+          })}
+
         </div>
 
       </div>
