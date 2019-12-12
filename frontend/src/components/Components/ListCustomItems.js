@@ -130,7 +130,6 @@ const ListCustomItems = (props) => {
   if (customItems === undefined || customItems === [] || editCustom === []) { return <div>Loading</div> }
   else {
     console.log('working')
-    console.log(`my custom items ${customItems[0].note}`)
     // let list = customItems
     return (
       <div id='list-name' className='element'>

@@ -11,7 +11,7 @@ function getCategories() {
     // etsy API call to grab all top-level categories
     axios.get(`https://openapi.etsy.com/v2/taxonomy/categories/?api_key=${etsyKey}`)
       .then((res) => {
-        getSubCategories(res.data.results)
+        getSubcategories(res.data.results)
           .then(res => resolve(res))
           .catch(err => console.log(err))
       })
@@ -20,7 +20,7 @@ function getCategories() {
   return promise 
 }
 
-function getSubCategories(categories) {
+function getSubcategories(categories) {
   const promise = new Promise(function (resolve, reject) {
     categories.forEach((category, i) => {
       setTimeout(() => {
@@ -28,15 +28,15 @@ function getSubCategories(categories) {
         // grab all subcategories per category on etsy
         axios.get(`https://openapi.etsy.com/v2/taxonomy/categories/${category.name}?api_key=${etsyKey}`)
           .then(res => {
-            category.subCategories = []
+            category.subcategories = []
             results.push(category) // TODO remove this, and the results when refactoring to use promise.all
             res.data.results.forEach((result) => {
               //TODO destructure this
               const temp = {
-                name: result.name,
-                short_name: result.short_name
+                name: result.short_name,
+                category_name: result.category_name
               }
-              category.subCategories.push(temp)
+              category.subcategories.push(temp)
             })
             // TODO refactor to use promise.all instead of this rookie test!
             if (results.length === categories.length) {

@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 // this subschema will pair up capitalised names with names formatted for API calls in an object and store them in array
 const subcategorySchema = new mongoose.Schema({
-  short_name: { type: String, required: true },
   name: { type: String, required: true },
+  category_name: { type: String, required: true },
   id: { type: mongoose.Schema.ObjectId, ref: 'Category' }
 })
 
@@ -11,6 +11,7 @@ const subcategorySchema = new mongoose.Schema({
 const categorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   short_name: { type: String, required: true },
+  category_name: { type: String, required: true },
   subcategories: [subcategorySchema]
 })
 
