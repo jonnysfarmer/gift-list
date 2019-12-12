@@ -134,6 +134,9 @@ $logo-green: #9BB54A;
     justify-content: column;
     padding-left: 0.3rem;
   }
+  .custom-note{
+    display: block;
+  }
   img{
     padding: 1px;
     width: 2.5rem;
@@ -147,6 +150,27 @@ $logo-green: #9BB54A;
     color: $link-hover;
   }
 }
+.custom-item{
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0px;
+
+  .custom-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .custom-note{
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.3rem;
+  
+  }
+}
+// .list-title{
+//   display: inline-block;
+// }
 
 
 
@@ -179,6 +203,17 @@ h3 { /*list page*/
   padding-top: 0.5rem;
 }
 
+.custom-note{
+  a{
+    color: $link;
+  }
+  a:hover {
+    color: $link-hover;
+  }
+.custom-label{
+  // font-weight: bold;  
+  }
+}
 
 
 .breadcrumbs{
