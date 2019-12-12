@@ -8,9 +8,6 @@ import { faTrashAlt, faEdit, faPlusCircle } from '@fortawesome/free-solid-svg-ic
 
 const ListCustomItems = (props) => {
 
-  // <ListCustomItems
-  // customItem={data.customItem}
-  // userId={userId} listId={listId}
 
   // //===== ICONOGRAPHY =====
   const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
@@ -38,19 +35,7 @@ const ListCustomItems = (props) => {
     setCustomItems(props.customItem)
     customItemIdArray(props.customItem)
   }
-  // console.log(customItem)
-  // //===== FUNCTIONS FOR THIS PAGE =====
-  // //Set initial data from props
-
-  // const customItemHookInitial = () => {
-  //   axios.get(`http://localhost:8000/api/lists/${data.userId}/${data.listId}/customItems`)
-  //     .then(response => {
-  //       setCustomItem(response.data)
-  //       customItemIdArray(response.data)
-  //     }
-  //     )
-  //     .catch(err => setErrors(err))
-  // }
+ 
 
   //=============Add a new item
   function addEditCustom() {
@@ -59,8 +44,7 @@ const ListCustomItems = (props) => {
   //Handle change when in edit mode
   const handleChangeCustom = (e) => {
     setCustomItem({ ...customItem, [e.target.name]: e.target.value })
-    // console.log(customItem)
-    // setErrors({})
+
   }
   function saveCustomEdit(e) {
     e.preventDefault()
@@ -117,7 +101,6 @@ const ListCustomItems = (props) => {
       setCustomItems(response.data.customItem)
       customItemIdArray(response.data.customItem)
     })
-    // .catch(err => setErrors(err))
   }
 
   useEffect(() => {
@@ -169,7 +152,6 @@ const ListCustomItems = (props) => {
                           <input className='input' type='text' name='url' onChange={(e)=>editHandleChangeCustom(e, i)} title='url' defaultValue={ele.url}  />
                                         
                         <button onClick={()=>saveCustomEditItem(ele._id, i)}>Save</button>
-                        {/* <button onClick={()=>editCustomItem(i)}>Cancel</button> */}
                       </div>}
 
                 </div>
