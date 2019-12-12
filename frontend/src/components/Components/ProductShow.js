@@ -64,9 +64,13 @@ const ProductShow = (props) => {
     axios.post(`http://localhost:8000/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(etsyHook(cat))
+      .then(()=>{
+        props.refreshFunction()
+        etsyHook(cat)
+      })
       .catch((err) => {
-        setErrors(err.response.data.errors)
+        console.log(err)
+        setErrors(err.response)
       })
   }
 
@@ -77,6 +81,7 @@ const ProductShow = (props) => {
     setCat(props.subcategory)
   }, [props])
 
+console.log(cat)
 
   if (data === {}) { return <div>Loading</div> }
   return (

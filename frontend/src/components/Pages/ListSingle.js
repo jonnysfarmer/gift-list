@@ -23,9 +23,11 @@ const ListSingle = (props) => {
 
 
   const onMount = () => {
+    console.log('456')
     axios.get(`http://localhost:8000/api/lists/${userId}/${listId}`)
       .then(response => {
         setData(response.data)
+        console.log('123')
       })
   }
 
@@ -61,6 +63,8 @@ const ListSingle = (props) => {
             <ProductShow
               subcategory={data.subcategory} itemsSaved={data.itemsSaved}
               userId={userId} listId={listId}
+              refreshFunction={onMount}
+
             />
           </div>}
         </div>
@@ -73,14 +77,15 @@ const ListSingle = (props) => {
             <ListSavedItems
               itemsSaved={data.itemsSaved}
               userId={userId} listId={listId}
+              
             />
           </div>
-          {/* <div className='container'>
+          <div className='container'>
             <ListCustomItems
               customItem={data.customItem}
               userId={userId} listId={listId}
             />
-          </div> */}
+          </div>
         </div>
 
       </section>
