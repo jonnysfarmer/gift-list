@@ -111,7 +111,7 @@ const ProductShow = (props) => {
                     <figure className="image">
                       <img src={etsyListingID[i]} alt="product" />
                     </figure>
-                    <span>{ele.title}</span>
+                    <span className=''>{ele.title}</span>
                     <div className="card-content">
                       <p>{ele.currency_code}{ele.price}</p>
                       </div>
