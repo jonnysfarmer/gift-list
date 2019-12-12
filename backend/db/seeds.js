@@ -108,7 +108,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
         return getEtsyCategories()
       })
       .then(categoryResp => {
-        // console.log(categoryResp)
+        console.log('123 ', categoryResp[0])
         return Category.create(
           categoryResp
         )
