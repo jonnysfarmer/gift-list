@@ -73,8 +73,8 @@ const ProductShow = (props) => {
 
   useEffect(() => {
     setDataFromProps(props)
-    etsyHook(props.subcategory[0])
-    setCat(props.subcategory)
+    etsyHook(props.subcategory[0][0])
+    setCat(props.subcategory[0])
   }, [props])
 
 

@@ -1,13 +1,13 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import axios from 'axios'
-import moment from 'moment'
+// import moment from 'moment'
 // import ReactDOM from 'react-dom'
 // import { Link } from 'react-router-dom'
 
 import auth from '../lib/auth'
-import UseAxios from '../hooks/UseAxios'
+// import UseAxios from '../hooks/UseAxios'
 import Breadcrumbs from './Breadcrumbs'
 
 // animation for dropdown menu
@@ -87,7 +87,10 @@ function CreateList(props) {
   // store subcategories selected in state to post on submit
   function subCatsSelected(e) {
     const test = e.map((elem) => {
-      return elem.value
+      return {
+        value: elem.value,
+        name: elem.label
+      }
     })
     setSubcategoriesSelected(test)
   }
@@ -101,7 +104,7 @@ function CreateList(props) {
         subcategories: category.subcategories
       }
     })
-    console.log(temp)
+    // console.log(temp)
     setCategoriesList(temp)
   }
 

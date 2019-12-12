@@ -30,7 +30,7 @@ const Navbar = (props) => {
         <Link className="navbar-item" to="/"
           onClick={() => setState({ isOpen: false })}
         >
-          Gift List
+          GIFT LIST
           </Link>
         <a
           role="button"
