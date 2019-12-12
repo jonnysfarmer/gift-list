@@ -356,67 +356,50 @@ input[name='budget'] {
 .present.tall { border: 1px solid $logo-red; }
 .present.wide { border: 1px solid $logo-green; }
 
+//::HOMEPAGE
 //vertical line: boxes 1 and 3 border right
-.present.square .logo-box:nth-child(odd) { border-size: calc(); border-weight: solid; border-color: $logo-purple; }
+.present .logo-box:nth-child(odd) { border-right-width: calc((0.1 * 50px)); border-right-style: solid; }
+.present.square .logo-box:nth-child(odd) { border-right-color: $logo-purple; }
+.present.tall .logo-box:nth-child(odd) { border-right-color: $logo-red; }
+.present.wide .logo-box:nth-child(odd) { border-right-color: $logo-green; }
+//vertical line: boxes 2 and 4 border left
+.present .logo-box:nth-child(even) { border-left-width: calc((0.1 * 50px)); border-left-style: solid; }
+.present.square .logo-box:nth-child(even) { border-left-color: $logo-purple; }
+.present.tall .logo-box:nth-child(even) { border-left-color: $logo-red; }
+.present.wide .logo-box:nth-child(even) { border-left-color: $logo-green; }
+//horizontal line: boxes 1 and 2 border bottom
+.present .logo-box:nth-child(1), .present .logo-box:nth-child(2) { border-bottom-width: calc((0.1 * 50px)); border-bottom-style: solid;  background-color: white; }
+.present.square .logo-box:nth-child(1), .present.square .logo-box:nth-child(2) { border-bottom-color: $logo-purple; }
+.present.tall .logo-box:nth-child(1), .present.tall .logo-box:nth-child(2) { border-bottom-color: $logo-red; }
+.present.wide .logo-box:nth-child(1), .present.wide .logo-box:nth-child(2) { border-bottom-color: $logo-green; }
+//horizontal line: boxes 3 and 4 border top
+.present .logo-box:nth-child(3), .present .logo-box:nth-child(4) { border-top-width: calc((0.1 * 50px)); border-top-style: solid; }
+.present.square .logo-box:nth-child(3), .present.square .logo-box:nth-child(4) { border-top-color: $logo-purple; background-image: linear-gradient(white, $logo-purple)}
+.present.tall .logo-box:nth-child(3), .present.tall .logo-box:nth-child(4) { border-top-color: $logo-red; background-image: linear-gradient(white, $logo-red)}
+.present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
 
+//::NAVBAR
+//vertical line: boxes 1 and 3 border right
+.present .logo-box:nth-child(odd) { border-right-width: calc((0.1 * 50px)); border-right-style: solid; }
+.present.square .logo-box:nth-child(odd) { border-right-color: $logo-purple; }
+.present.tall .logo-box:nth-child(odd) { border-right-color: $logo-red; }
+.present.wide .logo-box:nth-child(odd) { border-right-color: $logo-green; }
+//vertical line: boxes 2 and 4 border left
+.present .logo-box:nth-child(even) { border-left-width: calc((0.1 * 50px)); border-left-style: solid; }
+.present.square .logo-box:nth-child(even) { border-left-color: $logo-purple; }
+.present.tall .logo-box:nth-child(even) { border-left-color: $logo-red; }
+.present.wide .logo-box:nth-child(even) { border-left-color: $logo-green; }
+//horizontal line: boxes 1 and 2 border bottom
+.present .logo-box:nth-child(1), .present .logo-box:nth-child(2) { border-bottom-width: calc((0.1 * 50px)); border-bottom-style: solid;  background-color: white; }
+.present.square .logo-box:nth-child(1), .present.square .logo-box:nth-child(2) { border-bottom-color: $logo-purple; }
+.present.tall .logo-box:nth-child(1), .present.tall .logo-box:nth-child(2) { border-bottom-color: $logo-red; }
+.present.wide .logo-box:nth-child(1), .present.wide .logo-box:nth-child(2) { border-bottom-color: $logo-green; }
+//horizontal line: boxes 3 and 4 border top
+.present .logo-box:nth-child(3), .present .logo-box:nth-child(4) { border-top-width: calc((0.1 * 50px)); border-top-style: solid; }
+.present.square .logo-box:nth-child(3), .present.square .logo-box:nth-child(4) { border-top-color: $logo-purple; background-image: linear-gradient(white, $logo-purple)}
+.present.tall .logo-box:nth-child(3), .present.tall .logo-box:nth-child(4) { border-top-color: $logo-red; background-image: linear-gradient(white, $logo-red)}
+.present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
 
-
-
-// .logo-box:nth-child(even) { border-left: 5px solid $logo-purple; }
-// .logo-box:nth-child(1), .logo-box:nth-child(2) { border-bottom: 5px solid $logo-purple; background-color: white; }
-// .logo-box:nth-child(3), .logo-box:nth-child(4) { border-top: 5px solid $logo-purple; }
-// //tall
-// .logo-box:nth-child(odd) { border-right: 5px solid $logo-red; }
-// .logo-box:nth-child(even) { border-left: 5px solid $logo-red; }
-// .logo-box:nth-child(1), .logo-box:nth-child(2) { border-bottom: 5px solid $logo-red; background-color: white; }
-// .logo-box:nth-child(3), .logo-box:nth-child(4) { border-top: 5px solid $logo-red; }
-// //wide
-// .logo-box:nth-child(odd) { border-right: 5px solid $logo-green; }
-// .logo-box:nth-child(even) { border-left: 5px solid $logo-green; }
-// .logo-box:nth-child(1), .logo-box:nth-child(2) { border-bottom: 5px solid $logo-green; background-color: white; }
-// .logo-box:nth-child(3), .logo-box:nth-child(4) { border-top: 5px solid $logo-green; }
-
-
-// .present.tall {
-//   border: 2px solid $logo-red;
-//   animation: bounce2 ease 5s infinite;
-// }
-// .tall .logo-box {
-//   border-color: $logo-red;
-// }
-// .tall .logo-box:nth-child(3), .tall .logo-box:nth-child(4) {
-//   background-image: linear-gradient(white, $logo-red);
-// }
-
-// .present.wide {
-//   border: 2px solid $logo-green;
-//   animation: bounce3 ease 5s infinite;
-// }
-// .wide .logo-box {
-//   border-color: $logo-green;
-// }
-// .wide .logo-box:nth-child(3), .wide .logo-box:nth-child(4) {
-//   background-image: linear-gradient(white, $logo-green);
-// }
-
-
-// // present-positions
-// .logo {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: flex-end;
-// }
-// .present {
-//   z-index: 3;
-// }
-// .tall {
-//   margin-left: -20px;
-//   z-index: 1;
-// }
-// .wide {
-//   margin-left: -50px;
-//   z-index: 2;
-// }
 
 
 //===================================

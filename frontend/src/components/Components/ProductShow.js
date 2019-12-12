@@ -56,16 +56,16 @@ const ProductShow = (props) => {
 
   const addItem = (e, listingId, store) => {
     const data = {
-      src: store,
-      id: listingId,
-      user_id: props.userId,
-      list_id: props.listId
-    }
+      src : store,
+      id : listingId,
+      user_id : props.userId,
+      list_id : props.listId
+    }  
     e.preventDefault()
     axios.post(`http://localhost:8000/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(() => {
+      .then(()=>{
         props.refreshFunction()
         etsyHook(cat)
       })
@@ -82,7 +82,7 @@ const ProductShow = (props) => {
     setCat(props.subcategory[0])
   }, [props])
 
-  // console.log(cat)
+// console.log(cat)
 
   if (data === {}) { return <div>Loading</div> }
   return (
@@ -112,13 +112,13 @@ const ProductShow = (props) => {
                       <img src={etsyListingID[i]} alt="product" />
                     </figure>
                     <div className="card-content">
-                      <span className='truncate-card'>{ele.title}</span>
-
-                      <footer className="card-footer">
-                        <br></br>
-                        {ele.currency_code}  {ele.price}
+                    <span className='truncate-card'>{ele.title}</span>
+                    
+                    <footer className="card-footer">
+                    <br></br>
+                      {ele.currency_code}  {ele.price}
                       </footer>
-                    </div>
+                      </div>
                   </div>
                 </div>
               </div>
