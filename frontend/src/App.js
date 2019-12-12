@@ -18,6 +18,7 @@ import ListSingle from './components/Pages/ListSingle'
 // import auth from './lib/auth'
 import CreateList from './components/CreateList'
 import SecureRoute from './lib/SecureRoute'
+import Breadcrumbs from './components/Breadcrumbs'
 
 function App() {
 

@@ -86,6 +86,9 @@ $logo-green: #9BB54A;
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
 }
+.navbar {
+  border-bottom: 1px solid $brand-light;
+}
 
 // Dashboard Page
 .lists{
@@ -106,7 +109,6 @@ $logo-green: #9BB54A;
   position: relative;
 }
 .card {
-
   .interactive-icon {
   font-size: 2.5rem;
   position: absolute;
@@ -115,7 +117,6 @@ $logo-green: #9BB54A;
   z-index: 2;
   line-height: 0;
   }
-
   .background-icon {
     color: white;
     z-index: 1;
@@ -159,19 +160,23 @@ h3 { /*list page*/
 }
 
 
-
-.breadcrumbs{
+.breadcrumbs {
   display: flex;
   flex-direction: row;
-  li {
-    margin: 0.5em;
-  }
-  a {
-    color: $link;
-  }
-  a:hover {
-    color: $link-hover;
-  }
+  padding: 0.5rem 1rem;
+}
+.breadcrumbs a {
+  color: $light-text;
+  margin: 0 5px;
+}
+.breadcrumbs li::after { 
+  content: ">>"; 
+  color: $light-text;
+  font-size: 0.75rem;
+  vertical-align: 10%;
+}
+.breadcrumbs li:last-of-type::after { 
+  content: ""; 
 }
 
 .interactive-icon {

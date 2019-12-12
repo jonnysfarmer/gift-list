@@ -40,7 +40,7 @@ function CreateList(props) {
   }
 
   // load categories for dropdown menu on page load
-  useEffect(addCategories,[])
+  useEffect(addCategories, [])
 
   //get userId
   const userId = auth.getUserId()
@@ -55,7 +55,7 @@ function CreateList(props) {
   const handleChange = (e) => {
     e.preventDefault()
     setData({ ...data, [e.target.name]: e.target.value })
-    setErrors({...errors, [e.target.name]: '' })
+    setErrors({ ...errors, [e.target.name]: '' })
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -109,11 +109,11 @@ function CreateList(props) {
   }
 
   return <>
-
+    <div className='breadcrumb-container'>
+      <Breadcrumbs />
+    </div>
     <section className='section'>
-      <div className='breadcrumb-container'>
-        <Breadcrumbs />
-      </div>
+
       <div className='container'>
         <h1>Create a list</h1>
         <div className='container columns'>
@@ -164,7 +164,7 @@ function CreateList(props) {
               </div>
               {errors.eventDate && <small className="help is-danger">{errors.eventDate}</small>}
             </div>
-            
+
 
             <h2>Would you like personalised suggestions?</h2>
 
@@ -178,7 +178,7 @@ function CreateList(props) {
                 <Select
                   options={categoriesList}
                   onChange={drillDown} />
-                  
+
                 <Select
                   closeMenuOnSelect={false}
                   components={animatedComponents}
@@ -186,8 +186,8 @@ function CreateList(props) {
                   isMulti
                   options={subcategoriesList}
                   onChange={subCatsSelected}
-                  // value={null}
-                  />
+                // value={null}
+                />
                 {/* <select className='select'>
                   <option>Select a category</option>
                   {
