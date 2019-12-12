@@ -13,7 +13,7 @@ const Home = () => (
 
 
           <h1 className='title'>
-            GIFT LIST
+            GIFTLIST
         </h1>
           <h2 className='subtitle'>
             For all your gift buying fun!

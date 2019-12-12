@@ -186,7 +186,7 @@ function CreateList(props) {
               {errors.subcategory && <small className="help is-danger">{errors.subcategory}</small>}
             </div>
 
-            <div className="field">
+            {/* <div className="field">
               <label htmlFor="budget" className="label">
                 Add a budget <span className='optional'>optional</span>
               </label>
@@ -195,7 +195,7 @@ function CreateList(props) {
                 <span className='static-text'>max &pound;</span>
               </div>
               {errors.budget && <small className="help is-danger">{errors.budget}</small>}
-            </div>
+            </div> */}
 
             <button className="button is-rounded">Create list</button>
           </form>
