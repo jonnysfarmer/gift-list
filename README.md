@@ -134,6 +134,8 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 
 - `Etsy Items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
 - `Browse Items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
+- `Hide Saved from Suggestions` : We would like to hide items from the suggested lists if you have already saved them
+- `Checked off` : We would like to provide a way to let you check off gifts you've purchased
 
 ----
 

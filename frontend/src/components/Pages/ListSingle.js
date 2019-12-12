@@ -25,7 +25,6 @@ const ListSingle = (props) => {
   const onMount = () => {
     axios.get(`http://localhost:8000/api/lists/${userId}/${listId}`)
       .then(response => {
-        console.log(response)
         setData(response.data)
       })
   }
@@ -35,6 +34,8 @@ const ListSingle = (props) => {
 
   useEffect(onMount, [])
 
+  //currently using the data.subcategory && for that component as without it it seems to load before the subcategory exists to pass
+  //not sure why, needs investigation
 
   return (
 
@@ -58,7 +59,7 @@ const ListSingle = (props) => {
           </div>
           {data.subcategory && <div className='container'>
             <ProductShow
-              subcategory={data.subcategory}
+              subcategory={data.subcategory} itemsSaved={data.itemsSaved}
               userId={userId} listId={listId}
             />
           </div>}
@@ -74,12 +75,12 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          <div className='container'>
+          {/* <div className='container'>
             <ListCustomItems
               customItem={data.customItem}
               userId={userId} listId={listId}
             />
-          </div>
+          </div> */}
         </div>
 
       </section>

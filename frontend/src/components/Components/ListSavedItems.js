@@ -6,12 +6,13 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 const ListSavedItems = (props) => {
-
+  // console.log('saved', props)
   //===== ICONOGRAPHY =====
   const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
 
   //===== VARIABLES =====
-  const [data, setData] = useState({})
+  let [data, setData] = useState({})
+  
 
   //===== FUNCTIONS FOR THIS PAGE =====
   function getSavedItems(items) {
@@ -46,7 +47,7 @@ const ListSavedItems = (props) => {
     })
     //remove from list data
     axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, { itemsSaved: updatedListingIds })
-    // .then(response => console.log(response))
+    .then(response => console.log(response))
     .catch(err => console.log('error', err))
   }
 
@@ -55,17 +56,16 @@ const ListSavedItems = (props) => {
     getSavedItems(props.itemsSaved)
   }, [props.itemsSaved])
 
-  // console.log(props)
 
   if (data === {}) { return <div>Loading</div> }
   return (
-    <div id='list-name' className='element'>
-      <h3>Your Etsy saved items</h3>
+    <div id='list-saved-items' className='element'>
+      <h3>Saved items</h3>
       <ul>
         {Array.from(data).map((elem, i) => {
           return (
             <li key={i}>
-              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon} </span> 
+              <span onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
               <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer'>{elem.productName}</a>
               </li>
           )
