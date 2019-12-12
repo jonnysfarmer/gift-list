@@ -59,14 +59,13 @@ const ListEvent = (props) => {
   }, [props])
 
 
-
+console.log('remind', data.eventReminder)
   return (
 
     <div id='list-event'>
       <div className={`element ${editState ? 'hide' : 'show'}`}>
         {data.eventName && <h2><span className='interactive-icon clickable' onClick={() => { canEdit(true) }}>{editIcon}</span>{data.eventName}</h2>}
         {data.eventDate && <p>on {moment(data.eventDate).format('DD-MM-YYYY')}</p>}
-        {!data.eventReminder && <p>We will send you a reminder</p>}
       </div>
 
       <form className={`form ${editState ? 'show' : 'hide'}`}>
@@ -87,15 +86,13 @@ const ListEvent = (props) => {
           </div>
         </div>}
         {data.eventReminder && <div className="field">
-          <label htmlFor="eventReminder" className="label">
-            Your event reminders are
-          </label>
-          <div className="control">
+          <label className="checkbox">
             <input className='checkbox' type='checkbox' defaultValue={data.eventReminder} name='eventReminder' onChange={((e) => handleChange(e))} />
-          </div>
+            Event reminders 
+            </label>
         </div>}
-        <button className='button save' onClick={((e) => handleSave(e))} >Save changes</button>
-        <button className='button cancel' onClick={((e) => handleCancel(e))}>Cancel changes</button>
+        <button className='button save is-rounded' onClick={((e) => handleSave(e))} >Save changes</button>
+        <button className='button cancel is-rounded' onClick={((e) => handleCancel(e))}>Cancel changes</button>
       </form>
 
     </div>

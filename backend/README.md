@@ -137,7 +137,7 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 - `Browse Items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
 - `Share a List` We would like users to have a shareable list link that they can send to others that just shows the items they've saved
 - `Show local currency` Based on Etsy's notes we need to use a currency converter, we deprioritised this for this project
-
+- `Send me a reminder` We'd like to allow the user to receive notifications via email or sms a few weeks before their event
 
 ----
 

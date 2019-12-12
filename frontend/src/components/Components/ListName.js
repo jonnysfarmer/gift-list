@@ -66,7 +66,7 @@ const ListName = (props) => {
 
       <div className={`element ${editState ? 'hide' : 'show'}`}>
         <h1><span className='interactive-icon clickable' onClick={() => { canEdit(true) }}>{editIcon}</span>{data.listName}</h1>
-        <h2>for {data.giftRecipient}</h2>
+        <h3>for {data.giftRecipient}</h3>
       </div>
 
 

@@ -115,16 +115,7 @@ function CreateList(props) {
               </div>
               {errors.eventDate && <small className="help is-danger">{errors.eventDate}</small>}
             </div>
-            <div className="field">
-              <label htmlFor="eventReminder" className="label">
-                Would you like an email reminder two weeks before? <span className='optional'>optional</span>
-              </label>
-              <div className="control">
-                <input onChange={handleChange} type="checkbox" className="checkbox" name="eventReminder">
-                </input>
-              </div>
-              {errors.eventReminder && <small className="help is-danger">{errors.eventReminder}</small>}
-            </div>
+            
 
             <h2>Would you like personalised suggestions?</h2>
 
