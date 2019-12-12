@@ -64,7 +64,7 @@ const ListEvent = (props) => {
 
     <div id='list-event'>
       <div className={`element ${editState ? 'hide' : 'show'}`}>
-        {data.eventName && <h2><span onClick={() => { canEdit(true) }}>{editIcon}</span> {data.eventName}</h2>}
+        {data.eventName && <h2><span className='interactive-icon clickable' onClick={() => { canEdit(true) }}>{editIcon}</span>{data.eventName}</h2>}
         {data.eventDate && <p>on {moment(data.eventDate).format('DD-MM-YYYY')}</p>}
         {!data.eventReminder && <p>We will send you a reminder</p>}
       </div>

@@ -99,7 +99,7 @@ const ProductShow = (props) => {
             return (
               <div className='column' key={i}>
                 <div className="card">
-                  <span onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
+                  <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
                   <div className="card-image">
                     <figure className="image">
                       <img src={etsyListingID[i]} alt="product" />

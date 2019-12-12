@@ -75,12 +75,12 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          {/* <div className='container'>
+          <div className='container'>
             <ListCustomItems
               customItem={data.customItem}
               userId={userId} listId={listId}
             />
-          </div> */}
+          </div>
         </div>
 
       </section>

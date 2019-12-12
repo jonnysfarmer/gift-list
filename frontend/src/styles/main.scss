@@ -45,6 +45,26 @@ $logo-red: #B54A65;
 $logo-green: #9BB54A;
 
 
+//===================================
+// TESTING
+//===================================
+
+
+.section {
+  // background-color: green;
+}
+.container {
+  border: 1px solid red;
+}
+.navbar {
+  background-color: purple;
+}
+.breadcrumb-container {
+  background-color: blue;
+}
+
+
+
 
 
 //===================================
@@ -90,7 +110,13 @@ $logo-green: #9BB54A;
 
 h1 {
   font-weight: bold;
+  color: $title;
+  font-size: 1.5rem;
 }
+h2 {
+
+}
+
 
 .breadcrumbs{
   display: flex;
@@ -107,9 +133,13 @@ h1 {
   }
 }
 
+.interactive-icon {
+  font-size: 1rem;
+  color: $link;
+}
+
 .clickable {
   color: $link;
-  width: 30%;
   cursor: pointer;
 }
 .clickable:hover {
@@ -121,11 +151,7 @@ h1 {
   text-overflow: ellipsis;
 }
 
-// .breadcrumbs li:last-of-type a, .breadcrumbs li:last-of-type a:hover {
-//   cursor: default;
-//   text-decoration: none;
-//   color: $text;
-// } 
+
 
 
 //===================================

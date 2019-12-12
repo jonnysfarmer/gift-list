@@ -50,6 +50,7 @@ You must:
 
 - Mongoose
 - Express
+- Mocha / Chai / Supertest
 
 **Additional Libraries**
 
@@ -67,6 +68,7 @@ You must:
 
 - Bulma : for foundation css
 - ReactRouter : for links
+- Axios : for API requests
 
 _add link to jump to installation_
 
@@ -125,15 +127,17 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 ### Bugs
 
 
-### These are items we wish to improve on
+### Unexpected hurdles that we deprioritised
 
-- `Suggested Lists` which is just 9 category names that are currently hard coded in the front end. We would like to move to our backend and let the frontend make an API call to populated them.
-- `Categories` currently we create a dataset which has a set of categories with an array of their subcategories and an array of their Etsy subcategory names for making API calls to Etsy. On reflection, we'd like to refactor this to be a set of objects that have subcategory name, Esty name, otherstore name, otherstore name. We've left that on the to do list as it doesn't impact the current features, and only comes into play when we add a second store.
+- `Show currency symbol` This turned out to be harder than expected and so we deprioritised this and will likely use a library to improve it in the future
 
 ### While we are not yet planning to build any of these, we did consider them in the architecture.
 
 - `Etsy Items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
 - `Browse Items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
+- `Share a List` We would like users to have a shareable list link that they can send to others that just shows the items they've saved
+- `Show local currency` Based on Etsy's notes we need to use a currency converter, we deprioritised this for this project
+
 
 ----
 
