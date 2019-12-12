@@ -9,7 +9,6 @@ const etsyKey = process.env.ETSY_KEY
 
 //===== CLIENT POSTS AN ITEM TO SAVE =====
 /*These functions work as follows
-
 1. user clicks 'save an item' & client sends post request
 2. function add(req,res) is triggered
   2b. this uses axios to make a GET call to our item database to see if the listingId exists already
@@ -49,7 +48,7 @@ function add(req, res) {
       // eslint-disable-next-line quotes
       console.log('erroring')
       axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
-        .then(getEtsyListing(req.body.id, 'fromCreateItem'))
+        .then(getEtsyListing(req.body.id, 'fromCreateItem', req.body.imgsrc))
          
         .catch(err => console.log('put to list error', err))
     })
@@ -71,7 +70,7 @@ function addItem(body, res) {
 //needs to call etsy and return the item info we want
 //the id here being that stores product/listing id for the item we want
 // eslint-disable-next-line no-unused-vars
-function getEtsyListing(id, reqFrom, req, res) {
+function getEtsyListing(id, reqFrom, imgsrc, req, res) {
 console.log(id)
   
   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
@@ -89,7 +88,7 @@ console.log(id)
         description: res.data.results[0].description,
         src: 'etsy',
         listingId: 'etsy-' + res.data.results[0].listing_id,
-        imgsrc: 'temp',
+        imgsrc: imgsrc,
         subcategories: res.data.results[0].category_path
       })
       //get the image url and add that to our results object

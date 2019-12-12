@@ -54,12 +54,13 @@ const ProductShow = (props) => {
     })
   }
 
-  const addItem = (e, listingId, store) => {
+  const addItem = (e, listingId, store, imgurl) => {
     const data = {
       src : store,
       id : listingId,
       user_id : props.userId,
-      list_id : props.listId
+      list_id : props.listId,
+      imgsrc: imgurl
     }  
     e.preventDefault()
     axios.post(`http://localhost:8000/api/items/`, data, {
@@ -70,7 +71,7 @@ const ProductShow = (props) => {
         etsyHook(cat)
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
         setErrors(err.response)
       })
   }
@@ -105,7 +106,7 @@ const ProductShow = (props) => {
             return (
               <div className='column is-one-third' key={i}>
                 <div className="card">
-                  <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
+                  <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy', etsyListingID[i]))}>{addIcon}</span>
                   <span className='background-icon interactive-icon'>{backgroundIcon}</span>
                   <div className="card-image">
                     <figure className="image is-4by3">

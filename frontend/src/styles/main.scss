@@ -126,6 +126,27 @@ $logo-green: #9BB54A;
 .suggested-gifts{
   margin-top: 1rem;
 }
+.saved-item{
+  display: flex;
+  align-items: center;
+  div{
+    display: flex;
+    justify-content: column;
+    padding-left: 0.3rem;
+  }
+  img{
+    padding: 1px;
+    width: 2.5rem;
+    margin: 2px
+  }
+  a{
+    max-width: 15rem;
+    color: $link;
+  }
+  a:hover{
+    color: $link-hover;
+  }
+}
 
 
 
@@ -251,14 +272,14 @@ input[name='budget'] {
   background-color: $button-secondary;
 }
 .button:hover, .button:active, .button:focus,
-.navbar-item:hover a, .navbar-item:active a, .navbar-item:focus a,
-.filter-option li:hover, .filter-option li:active, .filter-option li:focus
-/* adding nav-bar & filter-options as all need same styling */
-{
+.navbar-item:hover a, .navbar-menu:active, .navbar-item:active a, .navbar-item:focus a,
+.filter-option li:hover, .filter-option li:active, .filter-option li:focus {
   background-color: $button-hover;
   border-radius: $button-link;
   color: $text;
 }
+/* adding nav-bar & filter-options as all need same styling */
+
 .navbar-item a, .filter-option li {
   color: $text;
 }

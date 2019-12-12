@@ -116,23 +116,22 @@ const ListCustomItems = (props) => {
     // let list = customItems
     return (
       <div id='list-name' className='element'>
-        <div className="container">
 
-          <div className="subtitle">Gift Ideas</div>
+          <h3>Gift Ideas</h3>
 
-            <p className={`${addCustomEdit ? '' : 'hide'}`}><span className='edit-link interactive-icon clickable' onClick={addEditCustom}>{newIcon}</span>New Gift</p>
+            <p className={`${addCustomEdit ? '' : 'hide'}`}><span className='edit-link interactive-icon clickable' onClick={addEditCustom}>{newIcon}</span>Add gift</p>
             <div className={`${addCustomEdit ? 'hide' : ''}`}>
               {<div>
-                <div className='control has-static-text'>
+                <div className='control has-static-text field'>
                   <input className='input' type='text' name='note' onChange={handleChangeCustom} title='Note' value={customItem.note} />
                   <span className='static-text'>Note</span>
                 </div>
-                <div className='control has-static-text'>
+                <div className='control has-static-text field'>
                   <input className='input' type='text' name='url' onChange={handleChangeCustom} title='url' value={customItem.url} />
                   <span className='static-text'>URL</span>
                 </div>
-                <button onClick={saveCustomEdit}>Save</button>
-                <button onClick={addEditCustom}>Cancel</button>
+                <button className='button is-rounded' onClick={saveCustomEdit}>Save</button>
+                <button className='button cancel is-rounded' onClick={addEditCustom}>Cancel</button>
               </div>}
 
             </div>
@@ -160,7 +159,7 @@ const ListCustomItems = (props) => {
             )
           })}
 
-        </div>
+
 
       </div>
     )
