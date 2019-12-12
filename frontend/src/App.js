@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import ReactDOM from 'react-dom'
+import React  from 'react'
+// import axios from 'axios'
+// import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import 'bulma/css/bulma.css'
@@ -9,13 +9,15 @@ import './styles/main.scss'
 // import SecureRoute from './components/secureRoute'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import Browse from './components/Browse'
+// import Browse from './components/Browse'
 import Register from './components/Register'
 import Login from './components/Login'
 import Lists from './components/Lists'
-import SingleList from './components/SingleList'
-import auth from './lib/auth'
+// import SingleList from './components/SingleList'
+import ListSingle from './components/Pages/ListSingle'
+// import auth from './lib/auth'
 import CreateList from './components/CreateList'
+import SecureRoute from './lib/SecureRoute'
 
 function App() {
 
@@ -31,8 +33,8 @@ function App() {
           <Route exact path='/lists/create' component={CreateList} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/lists/:userId' component={Lists} />
-          <Route exact path='/lists/:userId/:listId' component={SingleList} />
+          <SecureRoute exact path='/lists/:userId' component={Lists} />
+          <SecureRoute exact path='/lists/:userId/:listId' component={ListSingle} />
         </Switch>
       </BrowserRouter>
 

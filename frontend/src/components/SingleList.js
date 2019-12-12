@@ -31,16 +31,17 @@ const SingleList = (props) => {
   const [addCustomEdit, setAddCustomEdit] = useState(true)
   const [customItem, setCustomItem] = useState({ customSchema })
   const [editCustom, setEditCustom] = useState([])
-  const [editCustomItem1, setEditCustomItem1] = useState({}) // this is for the Put
-  const editList = {
-    user: '',
-    listName: '',
-    giftRecipient: '',
-    eventName: '',
-    eventDate: '',
-    eventReminder: false,
-    budget: ''
-  }
+  const [etsyListingID, setEtsyListingID]= useState([])
+
+  // const editList = {
+  //   user: '',
+  //   listName: '',
+  //   giftRecipient: '',
+  //   eventName: '',
+  //   eventDate: '',
+  //   eventReminder: false,
+  //   budget: ''
+  // }
 
 
   const userID = props.match.params.userId
@@ -76,27 +77,44 @@ const SingleList = (props) => {
     axios.get(`http://localhost:8000/api/etsy/${cat}`)
       .then(response => {
         setEtsy(response.data.data)
+        getListingIds(response.data.data)
+        console.log(response.data.data)
       })
       .catch(err => setErrors(err))
   }
 
-  //variables for editing
-
-
-
-
-
-  const savedItemsHook = (items) => {
-    let totalItems = []
-    items.forEach((ele, i) => {
-      axios.get(`http://localhost:8000/api/items/${ele}`)
-        .then(response => {
-          let newArray = totalItems.push(response.data)
-          // console.log(totalItems)
-          setSavedItems(totalItems)
-        })
+  const getListingIds = (data)=> {
+    const ListingID = data.map((ele, i) => {
+      return ele.listing_id
+    })
+    console.log(ListingID)
+    let newArr = []
+    ListingID.map((ele, i)=> {
+      axios.get(`http://localhost:8000/api/image/${ele}`)
+      .then(response => {
+        newArr = [...newArr]
+        newArr.push(response.data.image)
+        setEtsyListingID(newArr)
+      })
     })
   }
+
+  // router.route('/image/:id')
+
+
+
+
+  // const savedItemsHook = (items) => {
+  //   let totalItems = []
+  //   items.forEach((ele, i) => {
+  //     axios.get(`http://localhost:8000/api/items/${ele}`)
+  //       .then(response => {
+  //         totalItems = [...totalItems]
+  //         totalItems.push(response.data)
+  //         setSavedItems(totalItems)
+  //       })
+  //   })
+  // }
   //Inital also refreshes all the individual hiding data
   const customItemHookInitial = () => {
     axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
@@ -234,7 +252,10 @@ const SingleList = (props) => {
       return ele !== ItemID
     })
     axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { itemsSaved: newItems })
-      .then(response => savedItemsHook(response.data.itemsSaved))
+      .then(response => {
+        // listHook()
+        savedItemsHook(response.data.itemsSaved)})
+      .catch(err=> console.log(err))
 
   }
 
@@ -248,7 +269,9 @@ const SingleList = (props) => {
 
   // show 5 
 
-  // console.log(etsy)
+  console.log(etsyListingID)
+  console.log(etsyListingID.length)
+  console.log(etsy.length)
   // console.log(cat)
   useEffect(listHookOnMount, [])
   useEffect(customItemHookInitial, [])
@@ -256,9 +279,9 @@ const SingleList = (props) => {
   if (data === {} || etsy === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
   return (
     <section className='section'>
-      <div className='breadcrumb-container'>
+      {/* <div className='breadcrumb-container'>
         <Breadcrumbs />
-      </div>
+      </div> */}
       <div className='container'>
         <div className='columns'>
           <div className='column'>
@@ -310,7 +333,10 @@ const SingleList = (props) => {
               <div className='subtitle'>Suggested Gifts</div>
               {etsy.map((ele, i) => {
                 return (
-                  <p key={i}>{ele.title}</p>
+                  <div key={i}>
+                    <img src={etsyListingID[i]} alt="product"/>
+                  <p>{ele.title}</p>
+                  </div>
                 )
               })}
             </div>

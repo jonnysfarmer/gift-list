@@ -53,8 +53,9 @@ function CreateList(props) {
   const [subcategoriesSelected, setSubcategoriesSelected] = useState([])
 
   const handleChange = (e) => {
+    e.preventDefault()
     setData({ ...data, [e.target.name]: e.target.value })
-    setErrors({})
+    setErrors({...errors, [e.target.name]: '' })
   }
   const handleSubmit = (e) => {
     e.preventDefault()
