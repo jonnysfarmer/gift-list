@@ -16,6 +16,7 @@ $test-font-title: 'Fredericka the Great', cursive;
 
 $brand-dark: #358270;
 $brand-light: #4AB59A;
+$brand-grey: #686868;
 
 //used for hero images, coloured boxes/borders
 $background: #4AB59A;
@@ -81,7 +82,7 @@ body, html {
 }
 .navbar {
   background-color: $background-page;
-  border-bottom: 1px solid $brand-light;
+  border-bottom: 1px solid $brand-grey;
 }
 .breadcrumbs-container+section {
   padding-top: 0; //lets breadcrumbs handle the spacing
