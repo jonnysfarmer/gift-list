@@ -7,29 +7,28 @@
 //Fonts
 @import url('https://fonts.googleapis.com/css?family=Bad+Script|Crafty+Girls|Patrick+Hand+SC&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto|Lobster+Two&display=swap');
 //Brand name and h1s only
 $font-title: 'Patrick Hand SC', cursive;
 $font: 'Roboto', sans-serif;
 $test-font-title: 'Fredericka the Great', cursive;
 
 
-// font-family: 'Bad Script', cursive;
-// font-family: 'Crafty Girls', cursive;
-// font-family: 'Patrick Hand SC', cursive;
 
 $brand-dark: #358270;
 $brand-light: #4AB59A;
+$brand-grey: #686868;
 
 //used for hero images, coloured boxes/borders
 $background: #4AB59A;
+//used for page background
+$background-page: rgb(249,249,249);
 
 //used when we want to color a title something other than the text color
 $title: #358270;
 
 //standard for all text
 //thoughts on this being v.dark grey / v.light white
-$text: #000000;
+$text: #353535;
 $text-inverted: #ffffff;
 
 //used for placeholders and supporting text
@@ -68,40 +67,57 @@ $logo-green: #9BB54A;
 
 
 
-
-
 //===================================
 // LAYOUT
 //===================================
 * {
   box-sizing: border-box; 
 }
-html {
-  background-color: rgb(249,249,249);
+body, html {
+  background-color: $background-page;
+  color: $text;
 }
 .hero {
   background-image: url(../img/hero.jpg);
 }
 .navbar {
-  background-color: rgb(249,249,249);
-  // border-bottom: 1px solid $brand-light;
+  background-color: $background-page;
+  border-bottom: 1px solid $brand-grey;
+}
+.breadcrumbs-container+section {
+  padding-top: 0; //lets breadcrumbs handle the spacing
 }
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
 }
 // Dashboard Page
-.lists{
-  border: 1px solid $link-hover;
-  border-radius: 3px;
-  color:$text;
-  margin: 0.5em 0;
-  background-color: white;
-  .column{
-    margin: 0.5em;
-  }
+
+.list-container {
+  display: flex;
 }
-.lists:hover{
-  background-color: $link-hover;
+.list-container span {
+  width: 25px;
+}
+.list-container .lists {
+  width: calc(100% - 25px);
+}
+.lists {
+  display: flex;
+  border-bottom: 1px solid $brand-light;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+.lists .list-col {
+  width: 33%;
+}
+.lists strong {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.lists:hover {
+  background-image: linear-gradient(to bottom, white, $brand-light);
+  border-radius: $button-link;
   cursor: pointer;
 }
 
@@ -250,6 +266,7 @@ h3 { /*list page*/
 .breadcrumbs a {
   color: $light-text;
   margin: 0 5px;
+  cursor: pointer;
 }
 .breadcrumbs li::after { 
   content: ">>"; 
@@ -369,7 +386,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   display: flex;
 }
 .filter-option li {
-  max-width: 20%;
+  max-width: 30%;
   margin: 0.5rem 10px 0 0;
   padding: 0.2rem 0.5rem;
   border: 1px solid $button;
@@ -431,6 +448,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   font-size: 1.75rem; //this is sized for navbar sized logo
   margin-left: 5px;
   color: $brand-dark;
+  font-style: normal;
 }
 
 //PRESENT: BOX STRUCTURE
@@ -595,3 +613,16 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
       display: none;
     }
   }
+// MOBILE SPECIFIC
+//===================================
+
+//for the dashboard
+@media only screen and (max-width: 600px) {
+  .lists {
+    display: block;
+  }
+  .lists .list-col {
+    width: calc(100% - 25px);
+  }
+}
+

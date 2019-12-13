@@ -3,7 +3,7 @@ import HomeImages from './HomeImages'
 import Logo from './Components/Logo'
 
 const Home = () => (
-  <section>
+  <>
     <section className="hero is-medium has-text-centered">
 
       <div className="hero-body">
@@ -20,7 +20,7 @@ const Home = () => (
       </div>
     </section>
     <HomeImages />
-  </section>
+  </>
 )
 
 export default Home

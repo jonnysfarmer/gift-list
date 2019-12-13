@@ -43,38 +43,36 @@ const AllLists = (props) => {
     axios.put(`http://localhost:8000/api/lists/${userId}/${listId}`, { listStatus: 'Archived' }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(()=>{
+      .then(() => {
         props.refreshFunction()
         setStatus('Archived')
       })
       .catch(err => console.log(err))
   }
 
-  if (props.data === undefined ) return <div>loading</div>
+  if (props.data === undefined) return <div>loading</div>
   return (
-    <div>
-
+    <>
       {props.data.map((ele, i) => {
         return (
-          <> {ele.listStatus === 'Active' && 
-          <div className='container lists' key={i}>
-            <div className='columns'>
-              <div className='column' onClick={() => handleClick(ele)}>
-                <p className="subtitle is-5">{ele.listName}</p>
-                {ele.eventDate && <p>{moment(ele.eventDate).format('DD-MM-YYYY')}</p>}
-              </div>
-              <div className='column' onClick={() => handleClick(ele)}>
-                <p>Number of gifts saved: {ele.itemsSaved.length + ele.customItem.length}</p>
-              </div>
-              <div className='column'>
-                <p onClick={((e) => archiveList(e, ele._id))}>{trashIcon}</p>
-              </div>
-            </div>
-          </div>}
+          <>
+            {ele.listStatus === 'Active' &&
+              <div className='container list-container' key={i}>
+                <span className='clickable interactive-icon' onClick={((e) => archiveList(e, ele._id))}>{trashIcon}</span>
+                <div className='lists' onClick={() => handleClick(ele)}>
+                  <div className='list-col'>
+                    <p><strong>{ele.listName}</strong></p>
+                    {ele.eventDate && <p>{moment(ele.eventDate).format('DD-MM-YYYY')}</p>}
+                  </div>
+                  <div className='list-col' onClick={() => handleClick(ele)}>
+                    <p>Number of gifts saved: {ele.itemsSaved.length + ele.customItem.length}</p>
+                  </div>
+                </div>
+              </div>}
           </>
         )
       })}
-    </div>
+    </>
   )
 }
 
