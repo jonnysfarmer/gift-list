@@ -11,6 +11,7 @@
 //Brand name and h1s only
 $font-title: 'Patrick Hand SC', cursive;
 $font: 'Roboto', sans-serif;
+$test-font-title: 'Fredericka the Great', cursive;
 
 
 // font-family: 'Bad Script', cursive;
@@ -60,13 +61,41 @@ $logo-green: #9BB54A;
 
 
 //===================================
+// TESTING
+//===================================
+
+.section {
+  // background-color: green;
+}
+// .container {
+//   border: 1px solid red;
+// }
+.navbar-is-transparent {
+  background-color: rgba(200, 200, 200, 0);
+  color: white;
+}
+.navbar-is-off-white {
+  background-color: rgb(249,249,249);
+}
+// .breadcrumb-container {
+//   background-color: blue;
+// }
+
+
+
+
+
+//===================================
 // LAYOUT
 //===================================
 * {
   box-sizing: border-box; 
 }
-.hero{
-  background-color: $background;
+body {
+  background-color: rgb(249,249,249);
+}
+.hero {
+  background-image: url(../img/hero.jpg);
 }
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
@@ -77,7 +106,8 @@ $logo-green: #9BB54A;
 
 // Dashboard Page
 .lists{
-  border-left: 3px solid $link-hover;
+  border: 1px solid $link-hover;
+  border-radius: 3px;
   color:$text;
   margin: 0.5em 0;
   background-color: white;
@@ -87,6 +117,7 @@ $logo-green: #9BB54A;
 }
 .lists:hover{
   background-color: $link-hover;
+  cursor: pointer;
 }
 
 .card {
@@ -173,11 +204,18 @@ $logo-green: #9BB54A;
   color: red;
 }
 
-.hero h1 {
+.hero {
+  h1 {
   font-size: 7rem;
-  font-family: $font-title;
+  // font-family: $font-title;
+  font-family: $test-font-title;
+  font-weight: 500;
   color: white;
   text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+  h2 {
+    color: white;
+  }
 }
 h1 {
   font-size: 2rem;
@@ -253,6 +291,11 @@ h3 { /*list page*/
   height: 5rem;
 }
 
+.optional {
+  font-size: 0.75rem;
+  color: $light-text;
+}
+
 //===================================
 // FORM & BUTTONS & Loader
 //===================================
@@ -301,7 +344,7 @@ input[name='budget'] {
   background-color: $button-secondary;
 }
 .button:hover, .button:active, .button:focus,
-.navbar-item:hover a, .navbar-menu:active, .navbar-item:active a, .navbar-item:focus a,
+.navbar-item:hover a, .navbar-item:active, .navbar-item:active a, .navbar-item:focus a,
 .filter-option li:hover, .filter-option li:active, .filter-option li:focus {
   background-color: $button-hover;
   border-radius: $button-link;
@@ -311,6 +354,7 @@ input[name='budget'] {
 
 .navbar-item a, .filter-option li {
   color: $text;
+  font-family: $font;
 }
 
 

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import axios from 'axios'
 import moment from 'moment'
 
 import auth from '../lib/auth'
-import UseAxios from '../hooks/UseAxios'
+// import UseAxios from '../hooks/UseAxios'
 import Breadcrumbs from './Breadcrumbs'
 import NoteCards from './Components/NoteCards'
 
@@ -58,8 +58,19 @@ function CreateList(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    data.subcategory = [subcategoriesSelected]
-    console.log(data)
+
+    if ( subcategoriesSelected.length === 0 ) {
+      console.log('im empty')
+      data.subcategory = [[{
+        name: 'Custom',
+        value: 'everything_else/custom'
+      }]]
+    } else {
+      console.log('im no empty')
+      data.subcategory = [subcategoriesSelected]
+    }
+    // console.log(data)
+
     axios.post(`http://localhost:8000/api/lists/${userId}`, data, {
       headers: { Authorization: `Bearer ${auth.getToken()}` }
     })
@@ -85,6 +96,7 @@ function CreateList(props) {
 
   // store subcategories selected in state to post on submit
   function subCatsSelected(e) {
+    if (e === null) return null
     const test = e.map((elem) => {
       return {
         value: elem.value,

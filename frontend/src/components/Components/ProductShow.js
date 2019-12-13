@@ -29,6 +29,8 @@ const ProductShow = (props) => {
     setData(props)
   }
 
+  console.log(props)
+
   //===== FUNCTIONS FOR THIS PAGE =====
   //This displays 6 of the first category
   //when the other categories are clicked, it then does those
