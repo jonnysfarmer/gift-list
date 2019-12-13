@@ -1,13 +1,16 @@
 # GiftList
 
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/logo.gif''>
+
 by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://github.com/jennikate), [Johnny Farmer](https://github.com/jonnysfarmer)
 
 ## The product
 
 [View the app]()
+
 [View the code](https://github.com/georgmp/gift-list)
 
-GIF GOES HERE
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/giftlist.gif' width='50%;'>
 
 ### Overview
 
@@ -91,10 +94,6 @@ _wireframes, sketches, architecture, etc go here too_
 
 ## The development
 
-
-
-### Config and middleware
-
 ### Schema creation
 
 We have 4 schema's
@@ -107,7 +106,7 @@ For
 
 <img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-user.png' width='45%;'>
 
-** Category **
+**Category**
 
 For
 - mapping store category name/API call name to our category names
@@ -199,10 +198,13 @@ After building the frontend, we realised this was over complicated and did not n
 
 ### Bugs
 
-If you find any bugs let us know!
+If you find any other bugs let us know!
+
+- If you enter a long url as a custom item it doesn't look good, we want to fix that
 
 
-### Unexpected hurdles that we deprioritised
+
+### Unexpected feature hurdles that we deprioritised
 
 - `Show currency symbol` This turned out to be harder than expected and so we deprioritised this and will likely use a library to improve it in the future
 
