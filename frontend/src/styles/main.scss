@@ -6,17 +6,13 @@
 
 //Fonts
 @import url('https://fonts.googleapis.com/css?family=Bad+Script|Crafty+Girls|Patrick+Hand+SC&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Roboto|Lobster+Two&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Roboto&display=swap');
 //Brand name and h1s only
 $font-title: 'Patrick Hand SC', cursive;
 $font: 'Roboto', sans-serif;
 $test-font-title: 'Fredericka the Great', cursive;
 
 
-// font-family: 'Bad Script', cursive;
-// font-family: 'Crafty Girls', cursive;
-// font-family: 'Patrick Hand SC', cursive;
 
 $brand-dark: #358270;
 $brand-light: #4AB59A;
@@ -83,25 +79,13 @@ body, html {
 .hero {
   background-image: url(../img/hero.jpg);
 }
+.navbar {
+  background-color: rgb(249,249,249);
+  // border-bottom: 1px solid $brand-light;
+}
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
 }
-.navbar {
-  border-bottom: 1px solid $brand-light;
-}
-.navbar-is-transparent {
-  background-color: rgba(200, 200, 200, 0);
-  color: white;
-}
-.navbar-is-off-white {
-  background-color: rgb(249,249,249);
-}
-
-.breadcrumbs-container + section {
-  padding-top: 0;
-}
-
-
 // Dashboard Page
 
 .list-container {
@@ -137,6 +121,17 @@ body, html {
   // height: 18rem;
   position: relative;
 }
+.column-home{
+  display: flex;
+  justify-content: center;
+
+  .card-home {
+    width: 15rem;
+    background-color: white;
+
+  }
+}
+
 .card {
   .interactive-icon {
   font-size: 2.5rem;
@@ -213,10 +208,13 @@ body, html {
 .edit {
   color: red;
 }
+.title{
+  font-family: $font-title;
+}
 
 .hero {
   h1 {
-  font-size: 7rem;
+  font-size: 7.8rem;
   // font-family: $font-title;
   font-family: $test-font-title;
   font-weight: 500;
@@ -224,7 +222,10 @@ body, html {
   text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
   h2 {
+    font-size: 2.3rem;
     color: white;
+    letter-spacing: 0.15rem;
+    
   }
 }
 h1 {
@@ -436,7 +437,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 //TEXT: FOR WHEN SHOWN AS A LOGO
 //present image can be used independently
 .logo-text {
-  font-family: $font-title;
+  font-family: $test-font-title;
   font-size: 1.75rem; //this is sized for navbar sized logo
   margin-left: 5px;
   color: $brand-dark;

@@ -123,7 +123,7 @@ function CreateList(props) {
     <section className=''>
 
       <div className='container'>
-        <h1>Create a list</h1>
+        <h1 className='title'>Create a list</h1>
         <div className='columns'>
           <div className='column is-half'>
           <form className='form' onSubmit={handleSubmit}>
