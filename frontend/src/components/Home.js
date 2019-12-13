@@ -9,17 +9,12 @@ const Home = () => (
       <div className="hero-body">
         <div className="container">
 
-          <Logo />
-
-
           <h1 className='title'>
             GiftList
         </h1>
           <h2 className='subtitle'>
             For all your gift buying fun!
         </h2>
-
-
 
         </div>
       </div>
