@@ -3,7 +3,7 @@ import React from 'react'
 
 const NoteCards = () => (
 
-  <div className='column is-half'>
+  <div className='column is-half mobile-hide'>
 
     <div className='note-card'>
       <p>Create a GiftList</p>

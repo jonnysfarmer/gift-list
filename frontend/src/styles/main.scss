@@ -288,6 +288,8 @@ h3 { /*list page*/
   text-overflow: ellipsis;
   // max-width: 8rem;
   height: 5rem;
+  font-size: 16px;
+  color: #358270;
 }
 
 .optional {
@@ -583,3 +585,13 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
      15% { transform: translate3d(0,-4px,0);
     }
   } 
+
+
+//===================================
+// MOBILE
+//===================================
+  @media only screen and (max-width: 400px) {
+    .mobile-hide {
+      display: none;
+    }
+  }
