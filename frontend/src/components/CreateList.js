@@ -58,8 +58,19 @@ function CreateList(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    data.subcategory = [subcategoriesSelected]
-    console.log(data)
+
+    if ( subcategoriesSelected.length === 0 ) {
+      console.log('im empty')
+      data.subcategory = [[{
+        name: 'Custom',
+        value: 'everything_else/custom'
+      }]]
+    } else {
+      console.log('im no empty')
+      data.subcategory = [subcategoriesSelected]
+    }
+    // console.log(data)
+
     axios.post(`http://localhost:8000/api/lists/${userId}`, data, {
       headers: { Authorization: `Bearer ${auth.getToken()}` }
     })
@@ -108,13 +119,11 @@ function CreateList(props) {
   }
 
   return <>
-    <div className='breadcrumb-container'>
-      <Breadcrumbs />
-    </div>
+    <Breadcrumbs />
     <section className=''>
 
       <div className='container'>
-        <h1>Create a list</h1>
+        <h1 className='title'>Create a list</h1>
         <div className='columns'>
           <div className='column is-half'>
           <form className='form' onSubmit={handleSubmit}>

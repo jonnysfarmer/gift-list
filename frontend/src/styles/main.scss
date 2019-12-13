@@ -5,12 +5,18 @@
 // having problems with sass compiler, need to investigate
 
 //Fonts
-// @import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto|Lobster+Two&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bad+Script|Crafty+Girls|Patrick+Hand+SC&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto|Lobster+Two&display=swap');
 //Brand name and h1s only
-$font-title: 'Lobster+Two', cursive;
+$font-title: 'Patrick Hand SC', cursive;
 $font: 'Roboto', sans-serif;
 $test-font-title: 'Fredericka the Great', cursive;
+
+
+// font-family: 'Bad Script', cursive;
+// font-family: 'Crafty Girls', cursive;
+// font-family: 'Patrick Hand SC', cursive;
 
 $brand-dark: #358270;
 $brand-light: #4AB59A;
@@ -59,6 +65,11 @@ $logo-green: #9BB54A;
 //===================================
 
 
+
+
+
+
+
 //===================================
 // LAYOUT
 //===================================
@@ -78,7 +89,6 @@ html {
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
 }
-
 // Dashboard Page
 .lists{
   border: 1px solid $link-hover;
@@ -99,6 +109,17 @@ html {
   // height: 18rem;
   position: relative;
 }
+.column-home{
+  display: flex;
+  justify-content: center;
+
+  .card-home {
+    width: 15rem;
+    background-color: white;
+
+  }
+}
+
 .card {
   .interactive-icon {
   font-size: 2.5rem;
@@ -131,15 +152,19 @@ html {
   }
   img{
     padding: 1px;
-    width: 2.5rem;
+    width: 4rem;
     margin: 2px
   }
   a{
-    max-width: 15rem;
+    max-width: 20rem;
     color: $link;
   }
   a:hover{
     color: $link-hover;
+  }
+  .saved-item-detail{
+    display:flex;
+    flex-direction: column;
   }
 }
 .custom-item{
@@ -160,9 +185,6 @@ html {
   
   }
 }
-// .list-title{
-//   display: inline-block;
-// }
 
 
 
@@ -174,10 +196,13 @@ html {
 .edit {
   color: red;
 }
+.title{
+  font-family: $font-title;
+}
 
 .hero {
   h1 {
-  font-size: 7rem;
+  font-size: 7.8rem;
   // font-family: $font-title;
   font-family: $test-font-title;
   font-weight: 500;
@@ -185,7 +210,10 @@ html {
   text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
   h2 {
+    font-size: 2.3rem;
     color: white;
+    letter-spacing: 0.15rem;
+    
   }
 }
 h1 {
@@ -262,6 +290,11 @@ h3 { /*list page*/
   height: 5rem;
 }
 
+.optional {
+  font-size: 0.75rem;
+  color: $light-text;
+}
+
 //===================================
 // FORM & BUTTONS & Loader
 //===================================
@@ -310,17 +343,21 @@ input[name='budget'] {
   background-color: $button-secondary;
 }
 .button:hover, .button:active, .button:focus,
-.navbar-item:hover a, .navbar-menu:active, .navbar-item:active a, .navbar-item:focus a,
+.navbar-item a:hover, 
 .filter-option li:hover, .filter-option li:active, .filter-option li:focus {
   background-color: $button-hover;
   border-radius: $button-link;
   color: $text;
 }
-/* adding nav-bar & filter-options as all need same styling */
 
 .navbar-item a, .filter-option li {
   color: $text;
   font-family: $font;
+}
+
+//force all Bulma blue text to not be blue in our navbar!
+a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+  color: $text;
 }
 
 

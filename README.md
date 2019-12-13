@@ -7,6 +7,8 @@ by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://githu
 [View the app]()
 [View the code](https://github.com/georgmp/gift-list)
 
+GIF GOES HERE
+
 ### Overview
 
 GiftList is an app where you can 
@@ -22,8 +24,6 @@ GiftList is an app where you can
 - you can save items from the suggestion list or from browsing all categories
 
 _add link to jump to installation_
-
-### Screenshots
 
 ----
 
@@ -50,13 +50,14 @@ You must:
 
 - Mongoose
 - Express
+- Mocha / Chai / Supertest
 
 **Additional Libraries**
 
 - Mongoose Unique Validator : for data type validation
 - Bcrypt : for user encryption
 - JsonWebToken : for user login
-- Cors : for 
+- body-parser : for better handling of body
 
 #### Frontend : technologies used to create our interface and interactions
 
@@ -67,6 +68,10 @@ You must:
 
 - Bulma : for foundation css
 - ReactRouter : for links
+- Axios : for API requests
+- Moment : for nicer date formatting
+- Font Awesome : for icons
+- React Select : for nice select dropdown
 
 _add link to jump to installation_
 
@@ -86,17 +91,85 @@ _wireframes, sketches, architecture, etc go here too_
 
 ## The development
 
+
+
 ### Config and middleware
 
 ### Schema creation
 
+We have 4 schema's
+
+** User **
+
+For 
+- user registration and login
+- identifying logged in user
+
+_img_ /readme-images/schema-user.png
+
+** Category **
+
+For
+- mapping store category name/API call name to our category names
+- allowing the user to select a category
+- determining which category's products to suggest to a user
+
+_img_ /readme-images/schema-category.png
+
+** Item **
+
+For
+- holding a local store of saved item details to enable faster loading (should be refreshed every [x])
+- showing saved items on GiftLists
+
+_img_ /readme-images/schema-item.png
+
+** List **
+
+For
+- storing a users saved list data with related Id's to get data from the other schemas
+- showing GiftLists to logged in users
+- [future] showing a GiftList to a non-logged in user if they have the specific URL
+
+_img_ /readme-images/schema-list.png
+
+
+
 ### CRUD
+
+** GiftList **
+
+- User can create a list
+``` POST '/lists/:userId' ```
+- User can retrieve all their list
+``` GET '/lists/:userId' ```
+- User can retrieve one of their lists
+``` GET '/lists/:userId/:listId ```
+- User can update their list details (but not categories yet)
+``` PUT '/lists/:userId/:listId' ```
+- User can archive a list (we don't want to ever fully delete data)
+``` PUT '/lists/:userId/:listId' ``` with a status change
+
+** Saved Items (store & custom) **
+
+- Create a saved item for a store item
+``` PUT '/lists/:userId/:listId/<storename>' ```
+- Create a saved item for a custom item
+``` PUT '/lists/:userId/:listId/customItems' ```
+- Get all saved store items for this user
+``` GET '/lists/:userId/:listId ```
+- Get all saved custom items for this user
+``` GET '/lists/:userId/:listId/customItems' ```
+- User can delete a saved store item
+``` PUT '/lists/:userId/:listId' ```
+- User can delete a saved custom item
+``` DELETE '/lists/:userId/:listId/customItems/:itemId' ```
 
 ----
 
 ## Hurdles Overcome & Problems to Solve
 
-### Creating multiple schemas
+### Testing schemas
 
 _**not solved**_
 We designed 4 schemas, of which two had subschemas, we were fairly confident of our schema types. When it came to seeding our data, we tried to generate an output from User, Category, and Item, then use that in our List seeds. We started seeing cannot read property 0 of undefined. We worked through our data movement and realised that Category and Item were not intrinsically linked to List, List just holds some words/numbers to let the frontend find the right category information. 
@@ -115,7 +188,9 @@ We wanted to store a copy of any item a user saved to our database so we could t
 
 Once the basis of that worked, the next challenge was to create success and error messages. After some investigation determined where to add success responses, and while creating tests determined how to handle errors to client.
 
-It utilises multiple API calls both within our backend and out to the Etsy API.
+It utilised multiple API calls both within our backend and out to the Etsy API.
+
+After building the frontend, we realised this was over complicated and did not need to make the call to Etsy as we already had the item data.
 
 
 ----
@@ -124,18 +199,23 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 
 ### Bugs
 
+If you find any bugs let us know!
 
-### These are items we wish to improve on
 
-- `Suggested Lists` which is just 9 category names that are currently hard coded in the front end. We would like to move to our backend and let the frontend make an API call to populated them.
-- `Categories` currently we create a dataset which has a set of categories with an array of their subcategories and an array of their Etsy subcategory names for making API calls to Etsy. On reflection, we'd like to refactor this to be a set of objects that have subcategory name, Esty name, otherstore name, otherstore name. We've left that on the to do list as it doesn't impact the current features, and only comes into play when we add a second store.
+### Unexpected hurdles that we deprioritised
+
+- `Show currency symbol` This turned out to be harder than expected and so we deprioritised this and will likely use a library to improve it in the future
 
 ### While we are not yet planning to build any of these, we did consider them in the architecture.
 
-- `Etsy Items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
-- `Browse Items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
-- `Hide Saved from Suggestions` : We would like to hide items from the suggested lists if you have already saved them
-- `Checked off` : We would like to provide a way to let you check off gifts you've purchased
+- `Show more items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
+- `Browse items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
+- `Share a GiftList` We would like users to have a shareable list link that they can send to others that just shows the items they've saved
+- `Show local currency` Based on Etsy's notes we need to use a currency converter, we deprioritised this for this project
+- `Send me a reminder` We'd like to allow the user to receive notifications via email or sms a few weeks before their event
+- `Change categories in my filters` We'd like to give you the option to add or remove categories from your list
+- `Show trending items` In a few areas we'd like to show a list of trending items, or just a list of various items. 
+
 
 ----
 

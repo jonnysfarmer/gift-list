@@ -29,6 +29,8 @@ const ProductShow = (props) => {
     setData(props)
   }
 
+  console.log(props)
+
   //===== FUNCTIONS FOR THIS PAGE =====
   //This displays 6 of the first category
   //when the other categories are clicked, it then does those
@@ -37,6 +39,7 @@ const ProductShow = (props) => {
       .then(response => {
         setEtsy(response.data.data)
         getListingIds(response.data.data)
+        
       })
       .catch(err => setErrors(err))
   }
@@ -45,12 +48,14 @@ const ProductShow = (props) => {
     const ListingID = data.map((ele, i) => {
       return ele.listing_id
     })
+    // console.log(ListingID)
     let newArr = []
-    ListingID.map((ele, i) => {
+    ListingID.forEach((ele, i) => {
       axios.get(`http://localhost:8000/api/image/${ele}`)
         .then(response => {
           newArr = [...newArr]
-          newArr.push(response.data.image)
+          //the [i] prevents any async 
+          newArr[i] = response.data.image
           setEtsyListingID(newArr)
         })
     })
