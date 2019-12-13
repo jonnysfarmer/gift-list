@@ -10,7 +10,7 @@ const etsyProducts = require('./controllers/etsyProducts')
 //-----ITEMS routes
 router.route('/items/')
   //client requests an item be saved for a list
-  .post(items.add)
+  .post(items.add2)
   //get all items so we can check if new item exists
   .get(items.index)
 

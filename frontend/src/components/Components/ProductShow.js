@@ -4,9 +4,11 @@ import Auth from '../../lib/auth'
 // import getSymbol from '../../lib/currencyCodes'
 import ListSinge from '../Pages/ListSingle'
 
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare, faCircle } from '@fortawesome/free-solid-svg-icons'
 import ListSingle from '../Pages/ListSingle'
+import Loader from '../Loader'
 
 
 
@@ -54,23 +56,33 @@ const ProductShow = (props) => {
     })
   }
 
-  const addItem = (e, listingId, store) => {
+
+
+  const addItem = (e, ele, store, imgurl) => {
     const data = {
       src : store,
-      id : listingId,
+      id : store + '-' + ele.listing_id,
       user_id : props.userId,
-      list_id : props.listId
+      list_id : props.listId,
+      imgsrc: imgurl,
+      productName: ele.title,
+      listingId: store + '-' + ele.listing_id,
+      price: ele.price,
+      currencyCode: ele.currency_code
+      
+
     }  
+    setEtsyListingID('')
     e.preventDefault()
     axios.post(`http://localhost:8000/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(()=>{
         props.refreshFunction()
-        etsyHook(cat)
+
+        etsyHook(cat[0])
       })
       .catch((err) => {
-        console.log(err)
         setErrors(err.response)
       })
   }
@@ -84,36 +96,40 @@ const ProductShow = (props) => {
 
 // console.log(cat)
 
-  if (data === {}) { return <div>Loading</div> }
+  if (data === {} || (etsyListingID.length !== etsy.length) ) { return <div className='has-text-centered'><div className='loader-margin'><Loader  /></div></div>}
   return (
     <div id='list-products' className='element'>
       <div className='container'>
         <h3>Your categories</h3>
-        <ul>
+        <ul className='filter-option'>
           {cat.map((ele, i) => {
             return (
-              <li className='clickable' key={i} onClick={() => etsyHook(ele.value)}>{ele.name}</li>
+              <li className='clickable truncate' key={i} onClick={() => etsyHook(ele.value)}>{ele.name}</li>
             )
           })}
         </ul>
       </div>
 
       <div className='container'>
-        <h2>Suggested gifts</h2>
-        <div className='columns is-multiline'>
+        <h3>Suggested gifts</h3>
+        <div className='columns is-multiline suggested-gifts'>
           {etsy.map((ele, i) => {
             return (
               <div className='column is-one-third' key={i}>
                 <div className="card">
-                  <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele.listing_id, 'etsy'))}>{addIcon}</span>
+                  <span className='interactive-icon clickable' onClick={((e) => addItem(e, ele, 'etsy', etsyListingID[i]))}>{addIcon}</span>
                   <span className='background-icon interactive-icon'>{backgroundIcon}</span>
                   <div className="card-image">
-                    <figure className="image">
+                    <figure className="image is-4by3">
                       <img src={etsyListingID[i]} alt="product" />
                     </figure>
-                    <span>{ele.title}</span>
                     <div className="card-content">
-                      <p>{ele.currency_code}{ele.price}</p>
+                    <span className='truncate-card'>{ele.title}</span>
+                    
+                    <footer className="card-footer">
+                    <br></br>
+                      {ele.currency_code}  {ele.price}
+                      </footer>
                       </div>
                   </div>
                 </div>

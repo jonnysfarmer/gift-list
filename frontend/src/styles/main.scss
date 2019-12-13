@@ -10,8 +10,8 @@
 $font-title: 'Lobster+Two', cursive;
 $font: 'Roboto', sans-serif;
 
-//Dark Brand Color #358270
-//Light Brand Color #4AB59A
+$brand-dark: #358270;
+$brand-light: #4AB59A;
 
 //used for hero images, coloured boxes/borders
 $background: #4AB59A;
@@ -53,28 +53,6 @@ $logo-green: #9BB54A;
 
 
 //===================================
-// TESTING
-//===================================
-
-
-.section {
-  // background-color: green;
-}
-.container {
-  border: 1px solid red;
-}
-.navbar {
-  background-color: purple;
-}
-.breadcrumb-container {
-  background-color: blue;
-}
-
-
-
-
-
-//===================================
 // LAYOUT
 //===================================
 * {
@@ -85,6 +63,9 @@ $logo-green: #9BB54A;
 }
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
+}
+.navbar {
+  border-bottom: 1px solid $brand-light;
 }
 
 // Dashboard Page
@@ -102,11 +83,10 @@ $logo-green: #9BB54A;
 }
 
 .card {
-  height: 100%;
+  // height: 18rem;
   position: relative;
 }
 .card {
-
   .interactive-icon {
   font-size: 2.5rem;
   position: absolute;
@@ -115,7 +95,6 @@ $logo-green: #9BB54A;
   z-index: 2;
   line-height: 0;
   }
-
   .background-icon {
     color: white;
     z-index: 1;
@@ -123,7 +102,54 @@ $logo-green: #9BB54A;
     margin-top: 1%;
   }
 }
+.suggested-gifts{
+  margin-top: 1rem;
+}
+.saved-item{
+  display: flex;
+  align-items: center;
+  div{
+    display: flex;
+    justify-content: column;
+    padding-left: 0.3rem;
+  }
+  .custom-note{
+    display: block;
+  }
+  img{
+    padding: 1px;
+    width: 2.5rem;
+    margin: 2px
+  }
+  a{
+    max-width: 15rem;
+    color: $link;
+  }
+  a:hover{
+    color: $link-hover;
+  }
+}
+.custom-item{
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0px;
 
+  .custom-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .custom-note{
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.3rem;
+  
+  }
+}
+// .list-title{
+//   display: inline-block;
+// }
 
 
 
@@ -149,24 +175,42 @@ h1 {
 h2 {
   font-size: 1.5rem;
 }
-h3 {
+h3 { /*list page*/
   font-size: 1.25rem;
+  border-bottom: 1px solid $brand-light;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
-
-
-.breadcrumbs{
-  display: flex;
-  flex-direction: row;
-  li {
-    margin: 0.5em;
-  }
-  a {
+.custom-note{
+  a{
     color: $link;
   }
   a:hover {
     color: $link-hover;
   }
+.custom-label{
+  // font-weight: bold;  
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 1rem;
+}
+.breadcrumbs a {
+  color: $light-text;
+  margin: 0 5px;
+}
+.breadcrumbs li::after { 
+  content: ">>"; 
+  color: $light-text;
+  font-size: 0.75rem;
+  vertical-align: 10%;
+}
+.breadcrumbs li:last-of-type::after { 
+  content: ""; 
 }
 
 .interactive-icon {
@@ -189,19 +233,30 @@ h3 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-
-
+.truncate-card{
+  display: block;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // max-width: 8rem;
+  height: 5rem;
+}
 
 //===================================
-// FORM & BUTTONS
+// FORM & BUTTONS & Loader
 //===================================
 
 .form {
   margin: 1.5rem 0;
   width: 75%;
 }
+.loader-margin{
+  margin: 10rem 0;
+}
 
+.input, .select-input {
+  width: 75%;
+}
 input[type='checkbox'] {
   margin-right: 5px;
 }
@@ -222,7 +277,6 @@ input[name='budget'] {
 	position:absolute;
   left: 0.5rem;
   top: 0.5rem;
-	font-weight:bold;
 }
 
 .button {
@@ -235,32 +289,73 @@ input[name='budget'] {
 .button.cancel {
   background-color: $button-secondary;
 }
-.button:hover, .button:active, .button:focus {
+.button:hover, .button:active, .button:focus,
+.navbar-item:hover a, .navbar-menu:active, .navbar-item:active a, .navbar-item:focus a,
+.filter-option li:hover, .filter-option li:active, .filter-option li:focus {
   background-color: $button-hover;
-}
-.navbar-item{
+  border-radius: $button-link;
   color: $text;
-  font-family: $font;
+}
+/* adding nav-bar & filter-options as all need same styling */
 
+.navbar-item a, .filter-option li {
+  color: $text;
 }
-.navbar-item{
-  a:focus {
-    background-color: $button-hover;
-    color: $text;
-    border-radius: $button-link;
-   }
+
+
+
+/* for category section */
+.filter-option {
+  display: flex;
 }
-.navbar-item:hover{
-  a {
-    background-color: $button-hover;
-    color: $text;
-    border-radius: $button-link;
-  }
+.filter-option li {
+  max-width: 20%;
+  margin: 0.5rem 10px 0 0;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid $button;
+  border-radius: $button-link;
+}
+
+
+
+//===================================
+// NOTE CARDS
+//===================================
+
+.note-card {
+  height: 5rem;
+  width: 15rem;
+  display: flex;    
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  border: 1px solid $brand-light;
+  border-radius: 20px 0 20px 0;
+  margin: 2rem 0;
+  font-family: $font-title;
+}
+
+.note-card:first-of-type {
+  margin-top: 4rem; //being standard 2rem + 2rem which is size of h1
+  background-image: linear-gradient(to bottom right, white, white, $logo-purple);
+}
+.note-card:nth-child(2) {
+  margin-left: 2rem;
+  background-image: linear-gradient(to bottom right, white, white, $logo-red);
+}
+.note-card:nth-child(3) {
+  margin-left: 4rem;
+  background-image: linear-gradient(to bottom right, white, white, $logo-green);
+}
+
+.note-card p:last-of-type {
+  font-weight: bold;
 }
 
 
 //===================================
-// SWITCH ITERACTION
+// SWITCH INTERACTION
 //===================================
 
 /*turn checkbox into a switch*/
@@ -269,58 +364,110 @@ input[name='budget'] {
 // LOGO
 //===================================
 
+//TEXT: FOR WHEN SHOWN AS A LOGO
+//present image can be used independently
+.logo-text {
+  font-family: $font-title;
+  font-size: 1.75rem; //this is sized for navbar sized logo
+  margin-left: 5px;
+  color: $brand-dark;
+}
 
+//PRESENT: BOX STRUCTURE
 .present {
-  border: 2px solid $logo-purple;
-  width: 3.5rem;
-  height: 3.5rem;
   display: flex;
   flex-wrap: wrap;
-  animation: bounce ease 5s infinite;
 }
 .logo-box {
   width: 50%;
   height: 50%;
 }
-.logo-box:nth-child(odd) {
-  border-right: 0.3em solid $logo-purple;
-}
-.logo-box:nth-child(even) {
-  border-left: 0.3em solid $logo-purple;
-}
-.logo-box:nth-child(1), .logo-box:nth-child(2) {
-  border-bottom: 0.3em solid $logo-purple;
-  background-color: white;
-}
-.logo-box:nth-child(3), .logo-box:nth-child(4) {
-  border-top: 0.3em solid $logo-purple;
-  background-image: linear-gradient(white, $logo-purple);
+
+//PRESENT: SIZE  
+//::HOMEPAGE base size is 50px
+.present.square { width: calc(1 * 50px); height: calc(1 * 50px)  }
+.present.tall { width: calc(1 * 50px); height: calc(1.5 * 50px)  }
+.present.wide { width: calc(1.5 * 50px); height: calc(0.7 * 50px)  }
+//::NAVBAR base size is 20px
+.navbar-item {
+  .present.square { width: calc(1 * 20px;); height: calc(1 * 20px;)  }
+  .present.tall { width: calc(1 * 20px;); height: calc(1.5 * 20px;)  }
+  .present.wide { width: calc(1.2 * 20px;); height: calc(0.7 * 20px;)  }
 }
 
-.present.tall {
-  border: 2px solid $logo-red;
-  width: 3.5rem;
-  height: 5.5rem;
-  animation: bounce2 ease 5s infinite;
+//PRESENT: POSITIONING
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
-.tall .logo-box {
-  border-color: $logo-red;
-}
-.tall .logo-box:nth-child(3), .tall .logo-box:nth-child(4) {
-  background-image: linear-gradient(white, $logo-red);
+//::HOMEPAGE
+.present.square { z-index: 3; }
+.present.tall { z-index: 1; margin-left: calc(-0.4 * 50px); }
+.present.wide { z-index: 2; margin-left: calc(-0.8 * 50px); }
+//::NAVBAR
+.navbar-item {
+  .present.square { z-index: 3; }
+  .present.tall { z-index: 1; margin-left: calc(-0.4 * 20px); }
+  .present.wide { z-index: 2; margin-left: calc(-0.8 * 20px); }
 }
 
-.present.wide {
-  border: 2px solid $logo-green;
-  width: 5.5rem;
-  height: 3.5rem;
-  animation: bounce3 ease 5s infinite;
-}
-.wide .logo-box {
-  border-color: $logo-green;
-}
-.wide .logo-box:nth-child(3), .wide .logo-box:nth-child(4) {
-  background-image: linear-gradient(white, $logo-green);
+//PRESENT: ANIMATIONS
+.present.square { animation: bounce ease 5s infinite; }
+.present.tall { animation: bounce2 ease 5s infinite; }
+.present.wide { animation: bounce3 ease 5s infinite; }
+
+//PRESENT: RIBBONS
+//outside border
+.present { box-shadow: 2px 1px 10px rgba(0,0,0,0.5); }
+.present.square { border: 1px solid $logo-purple; }
+.present.tall { border: 1px solid $logo-red; }
+.present.wide { border: 1px solid $logo-green; }
+
+//::HOMEPAGE
+//vertical line: boxes 1 and 3 border right
+.present .logo-box:nth-child(odd) { border-right-width: calc((0.1 * 50px)); border-right-style: solid; }
+.present.square .logo-box:nth-child(odd) { border-right-color: $logo-purple; }
+.present.tall .logo-box:nth-child(odd) { border-right-color: $logo-red; }
+.present.wide .logo-box:nth-child(odd) { border-right-color: $logo-green; }
+//vertical line: boxes 2 and 4 border left
+.present .logo-box:nth-child(even) { border-left-width: calc((0.1 * 50px)); border-left-style: solid; }
+.present.square .logo-box:nth-child(even) { border-left-color: $logo-purple; }
+.present.tall .logo-box:nth-child(even) { border-left-color: $logo-red; }
+.present.wide .logo-box:nth-child(even) { border-left-color: $logo-green; }
+//horizontal line: boxes 1 and 2 border bottom
+.present .logo-box:nth-child(1), .present .logo-box:nth-child(2) { border-bottom-width: calc((0.1 * 50px)); border-bottom-style: solid;  background-color: white; }
+.present.square .logo-box:nth-child(1), .present.square .logo-box:nth-child(2) { border-bottom-color: $logo-purple; }
+.present.tall .logo-box:nth-child(1), .present.tall .logo-box:nth-child(2) { border-bottom-color: $logo-red; }
+.present.wide .logo-box:nth-child(1), .present.wide .logo-box:nth-child(2) { border-bottom-color: $logo-green; }
+//horizontal line: boxes 3 and 4 border top
+.present .logo-box:nth-child(3), .present .logo-box:nth-child(4) { border-top-width: calc((0.1 * 50px)); border-top-style: solid; }
+.present.square .logo-box:nth-child(3), .present.square .logo-box:nth-child(4) { border-top-color: $logo-purple; background-image: linear-gradient(white, $logo-purple)}
+.present.tall .logo-box:nth-child(3), .present.tall .logo-box:nth-child(4) { border-top-color: $logo-red; background-image: linear-gradient(white, $logo-red)}
+.present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
+
+//::NAVBAR
+.navbar-item{
+  //vertical line: boxes 1 and 3 border right
+  .present .logo-box:nth-child(odd) { border-right-width: calc((0.1 * 20px)); border-right-style: solid; }
+  .present.square .logo-box:nth-child(odd) { border-right-color: $logo-purple; }
+  .present.tall .logo-box:nth-child(odd) { border-right-color: $logo-red; }
+  .present.wide .logo-box:nth-child(odd) { border-right-color: $logo-green; }
+  //vertical line: boxes 2 and 4 border left
+  .present .logo-box:nth-child(even) { border-left-width: calc((0.1 * 20px)); border-left-style: solid; }
+  .present.square .logo-box:nth-child(even) { border-left-color: $logo-purple; }
+  .present.tall .logo-box:nth-child(even) { border-left-color: $logo-red; }
+  .present.wide .logo-box:nth-child(even) { border-left-color: $logo-green; }
+  //horizontal line: boxes 1 and 2 border bottom
+  .present .logo-box:nth-child(1), .present .logo-box:nth-child(2) { border-bottom-width: calc((0.1 * 20px)); border-bottom-style: solid;  background-color: white; }
+  .present.square .logo-box:nth-child(1), .present.square .logo-box:nth-child(2) { border-bottom-color: $logo-purple; }
+  .present.tall .logo-box:nth-child(1), .present.tall .logo-box:nth-child(2) { border-bottom-color: $logo-red; }
+  .present.wide .logo-box:nth-child(1), .present.wide .logo-box:nth-child(2) { border-bottom-color: $logo-green; }
+  //horizontal line: boxes 3 and 4 border top
+  .present .logo-box:nth-child(3), .present .logo-box:nth-child(4) { border-top-width: calc((0.1 * 20px)); border-top-style: solid; }
+  .present.square .logo-box:nth-child(3), .present.square .logo-box:nth-child(4) { border-top-color: $logo-purple; background-image: linear-gradient(white, $logo-purple)}
+  .present.tall .logo-box:nth-child(3), .present.tall .logo-box:nth-child(4) { border-top-color: $logo-red; background-image: linear-gradient(white, $logo-red)}
+  .present.wide .logo-box:nth-child(3), .present.wide .logo-box:nth-child(4) { border-top-color: $logo-green; background-image: linear-gradient(white, $logo-green)}
 }
 
 

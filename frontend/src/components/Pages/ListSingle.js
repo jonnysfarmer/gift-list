@@ -31,8 +31,8 @@ const ListSingle = (props) => {
       })
   }
 
-  
-  
+
+
 
   useEffect(onMount, [])
 
@@ -43,12 +43,9 @@ const ListSingle = (props) => {
 
     <div className='page'>
 
-      <div className='breadcrumb-container'>
-        <Breadcrumbs />
-      </div>
-
+      <Breadcrumbs />
       <section className='section columns'>
-        
+
         <div className='column is-two-thirds'>
           <div className='container'>
             <ListName
@@ -60,12 +57,11 @@ const ListSingle = (props) => {
               userId={userId} listId={listId}
             />
           </div>
-          {data.subcategory && <div className='container'>
+          {data.subcategory && <div>
             <ProductShow
               subcategory={data.subcategory} itemsSaved={data.itemsSaved}
               userId={userId} listId={listId}
               refreshFunction={onMount}
-
             />
           </div>}
         </div>
@@ -75,7 +71,7 @@ const ListSingle = (props) => {
             <ListSavedItems
               itemsSaved={data.itemsSaved}
               userId={userId} listId={listId}
-              
+
             />
           </div>
           <div className='container'>

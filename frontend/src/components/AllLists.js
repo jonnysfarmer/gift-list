@@ -41,7 +41,7 @@ const AllLists = (props) => {
             <div className='columns'>
               <div className='column' onClick={() => handleClick(ele)}>
                 <p className="subtitle is-5">{ele.listName}</p>
-                <p>{moment(ele.eventDate).format('DD-MM-YYYY')}</p>
+                {ele.eventDate && <p>{moment(ele.eventDate).format('DD-MM-YYYY')}</p>}
               </div>
               <div className='column' onClick={() => handleClick(ele)}>
                 <p>Number of gifts saved: {ele.itemsSaved.length + ele.customItem.length}</p>
