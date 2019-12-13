@@ -26,7 +26,7 @@ const Navbar = (props) => {
   }
 
   return (
-    <div className="navbar">
+    <div className={`navbar is-fixed-top ${history.location.pathname === '/' ? 'navbar-is-transparent' : 'navbar-is-off-white'}`}>
       <div className="navbar-brand">
         <Link className="navbar-item" to="/"
           onClick={() => setState({ isOpen: false })}
@@ -46,7 +46,7 @@ const Navbar = (props) => {
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div className={`navbar-menu ${state.isOpen ? 'is-active' : ''}`}>
+      <div className={`navbar-menu ${state.isOpen ? 'is-active' : ''} ${history.location.pathname === '/' ? 'navbar-is-transparent' : 'navbar-is-off-white'}`}>
         <div className="navbar-end">
           {/* <div className="navbar-item">
             <Link className="navbar-item" to="/browse"
@@ -84,10 +84,10 @@ const Navbar = (props) => {
             </Link>
           </div>}
           {Auth.isAuthorized() && <div className="navbar-item">
-              <Link className="navbar-item" onClick={() => handleLogout()}>
-                Logout
+            <Link className="navbar-item" onClick={() => handleLogout()}>
+              Logout
               </Link>
-            </div>}
+          </div>}
         </div>
       </div>
     </div>

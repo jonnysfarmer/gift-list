@@ -3,9 +3,29 @@ import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
 import Auth from '../lib/auth'
-
+// import posed from 'react-pose'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+
+// // popmotion orchestrate setup
+// const config = {
+//     opacity: 1,
+//     scale: 2
+// }
+// const childConfig = {
+//     opacity: 1,
+//     scale: 2
+// }
+// const Parent = posed.ul(config)
+// const Child = posed.li(childConfig)
+
+// const items = [1,2,3,4,5]
+
+// ({ items }) => (
+//   <Parent pose="open">
+//     {items.map(item => <Child />)}
+//   </Parent>
+// )
 
 const AllLists = (props) => {
   let history = useHistory()

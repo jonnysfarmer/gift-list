@@ -8,7 +8,7 @@ const itemSchema = new mongoose.Schema({
   productName: { type: String, required: true },
   price: { type: String, required: true },
   currencyCode: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String },
   src: { type: String, required: true },
   listingId: { type: String, required: true, unique: true },
   imgsrc: { type: String, required: true }

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import axios from 'axios'
 import moment from 'moment'
 
 import auth from '../lib/auth'
-import UseAxios from '../hooks/UseAxios'
+// import UseAxios from '../hooks/UseAxios'
 import Breadcrumbs from './Breadcrumbs'
 import NoteCards from './Components/NoteCards'
 
@@ -96,7 +96,7 @@ function CreateList(props) {
 
   // store subcategories selected in state to post on submit
   function subCatsSelected(e) {
-
+    if (e === null) return null
     const test = e.map((elem) => {
       return {
         value: elem.value,
