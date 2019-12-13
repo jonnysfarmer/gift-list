@@ -60,10 +60,8 @@ const Lists = (props) => {
   if (listInfo === [] || userInfo === {}) return <div>Loading</div>
   return (
     <>
-      <div className='breadcrumb-container'>
-        <Breadcrumbs />
-      </div>
-      <section className="section">
+      <Breadcrumbs />
+      <section className="">
 
 
         <section className="section">

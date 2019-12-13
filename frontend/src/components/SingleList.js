@@ -278,10 +278,9 @@ const SingleList = (props) => {
   // console.log(customItems)
   if (data === {} || etsy === {} || savedItems === [] || editCustom === []) return <div>Loading</div>
   return (
-    <section className='section'>
-      {/* <div className='breadcrumb-container'>
-        <Breadcrumbs />
-      </div> */}
+    <>
+    <Breadcrumbs />
+    <section className=''>
       <div className='container'>
         <div className='columns'>
           <div className='column'>
@@ -401,6 +400,7 @@ const SingleList = (props) => {
         </div>
       </div>
     </section>
+    </>
   )
 }
 
