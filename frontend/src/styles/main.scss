@@ -6,7 +6,7 @@
 
 //Fonts
 @import url('https://fonts.googleapis.com/css?family=Bad+Script|Crafty+Girls|Patrick+Hand+SC&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto|Lobster+Two&display=swap');
 //Brand name and h1s only
 $font-title: 'Patrick Hand SC', cursive;
@@ -124,6 +124,17 @@ body {
   // height: 18rem;
   position: relative;
 }
+.column-home{
+  display: flex;
+  justify-content: center;
+
+  .card-home {
+    width: 15rem;
+    background-color: white;
+
+  }
+}
+
 .card {
   .interactive-icon {
   font-size: 2.5rem;
@@ -203,10 +214,13 @@ body {
 .edit {
   color: red;
 }
+.title{
+  font-family: $font-title;
+}
 
 .hero {
   h1 {
-  font-size: 7rem;
+  font-size: 7.8rem;
   // font-family: $font-title;
   font-family: $test-font-title;
   font-weight: 500;
@@ -214,7 +228,10 @@ body {
   text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
   h2 {
+    font-size: 2.3rem;
     color: white;
+    letter-spacing: 0.15rem;
+    
   }
 }
 h1 {

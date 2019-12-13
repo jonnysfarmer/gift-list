@@ -44,7 +44,7 @@ const HomeImages = () => {
       .then(response => {
         // console.log(newArr)
         newArr = [...newArr]
-        newArr.push(response.data.image)
+        newArr[i] = response.data.image
         setEtsyImage(newArr)
       })
       .catch(err => console.log(err))
@@ -59,19 +59,19 @@ const HomeImages = () => {
   return (
     <section className='section'>
       <div className='container'>
-        <div className='subtitle has-text-centered'>Currently trending in {randomCatName}</div>
+        <div className='title has-text-centered'>Currently trending in {randomCatName}</div>
         <div className='columns'>
         {data.map((ele, i)=> {
           return (
-            <div key={i} className="column">
-          <div className="card">
+            <div key={i} className="column column-home">
+          <div className="card-home">
             <div className="card-image">
               <figure className="image is-3by2">
-                <img src={etsyImage[i]} alt="" />
+                <img src={etsyImage[i]} alt="Product" />
               </figure>
             </div>
             <div className="card-content">
-              <p>{ele.title.substring(0,25)}...</p>
+              <p>{ele.title.substring(0,40)}...</p>
             </div>
           </div>
         </div>

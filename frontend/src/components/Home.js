@@ -15,7 +15,7 @@ const Home = () => (
           <h1 className='title'>
             GiftList
         </h1>
-          <h2 className='subtitle'>
+          <h2 className='title'>
             For all your gift buying fun!
         </h2>
 
