@@ -80,8 +80,11 @@ body, html {
   background-image: url(../img/hero.jpg);
 }
 .navbar {
-  background-color: rgb(249,249,249);
-  // border-bottom: 1px solid $brand-light;
+  background-color: $background-page;
+  border-bottom: 1px solid $brand-light;
+}
+.breadcrumbs-container+section {
+  padding-top: 0; //lets breadcrumbs handle the spacing
 }
 .container {
   padding: 20px; /*setting hard pixels until can work out how to calc the icon offset properly */
@@ -262,6 +265,7 @@ h3 { /*list page*/
 .breadcrumbs a {
   color: $light-text;
   margin: 0 5px;
+  cursor: pointer;
 }
 .breadcrumbs li::after { 
   content: ">>"; 
@@ -379,7 +383,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   display: flex;
 }
 .filter-option li {
-  max-width: 20%;
+  max-width: 30%;
   margin: 0.5rem 10px 0 0;
   padding: 0.2rem 0.5rem;
   border: 1px solid $button;
@@ -441,6 +445,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   font-size: 1.75rem; //this is sized for navbar sized logo
   margin-left: 5px;
   color: $brand-dark;
+  font-style: normal;
 }
 
 //PRESENT: BOX STRUCTURE
@@ -595,3 +600,19 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
      15% { transform: translate3d(0,-4px,0);
     }
   } 
+
+
+//===================================
+// MOBILE SPECIFIC
+//===================================
+
+//for the dashboard
+@media only screen and (max-width: 600px) {
+  .lists {
+    display: block;
+  }
+  .lists .list-col {
+    width: calc(100% - 25px);
+  }
+}
+
