@@ -243,12 +243,15 @@ h3 { /*list page*/
 }
 
 //===================================
-// FORM & BUTTONS
+// FORM & BUTTONS & Loader
 //===================================
 
 .form {
   margin: 1.5rem 0;
   width: 75%;
+}
+.loader-margin{
+  margin: 10rem 0;
 }
 
 .input, .select-input {

@@ -7,6 +7,62 @@ require('dotenv').config()
 const etsyKey = process.env.ETSY_KEY
 
 
+//NEW ADD FUNCTION
+function addItem(body, res) {
+  Item
+    .create(body)
+
+}
+
+//WE PASS THROUGH THE DATA, PUT THE ETSY ID TO OUR LIST,
+//TRY AND CREATE THE DATA IN OUR DATABASE, IF ITS ALREADY THERE, ITS FINE!
+function add2(req, res) {
+  console.log(req.body)
+  if (!req.body.src || !req.body.user_id || !req.body.list_id) {
+    return res.send({ status: 400, message: 'missing data, check you are sending src, id, user_id, list_id' })
+  }
+  const listingId = req.body.listingId
+
+  axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
+    .then(() =>
+      res.send({ status: 200, message: 'item saved' })
+    )
+    .then(addItem(req.body))
+    .catch(() => res.send(200).json({ message: 'alread in our database' }))
+
+}
+
+//===== GET ALL ITEMS =====
+function index(req, res) {
+  Item
+    .find()
+    .then(items => res.status(200).json(items))
+    .catch(err => console.log(err))
+}
+
+//===== GET SPECIFIC ITEM FROM OUR ITEMdB =====
+function show(req, res) {
+  // console.log(listingId)
+  //turn listing id into an obj so we can use find
+  const listingId = req.params.listingId
+  const json = '{"listingId" : "' + listingId + '"}'
+  const itemListingId = JSON.parse(json)
+
+  //get item by listingId
+  Item
+    .findOne(itemListingId)
+    //return error if missing or success if success
+    .then(item => {
+      //check record exists and respond with error if it doesn't
+      if (!item) res.status(404).json({ status: 404, message: 'Not found', error: 'Not found' })
+      else (res.status(200).json(item))
+    })
+    .catch(err => console.log(err))
+}
+
+
+//=================BELOW IS LEGACY CODE.
+
 //===== CLIENT POSTS AN ITEM TO SAVE =====
 /*These functions work as follows
 1. user clicks 'save an item' & client sends post request
@@ -19,6 +75,10 @@ const etsyKey = process.env.ETSY_KEY
 */
 
 //client needs to pass us the userId, listId, the store, and the itemId - which should all be available already for them
+//Once we have details from Etsy, post it to our item database :: need to pass userid and listid to this somehow
+
+
+
 
 
 //CHECK IF ITEM IN OUR DB
@@ -52,18 +112,12 @@ function add(req, res) {
         .then(getEtsyListing(req.body.id, 'fromCreateItem', req.body.imgsrc))
 
 
-         
+
         .catch(err => console.log('put to list error', err))
     })
 }
 
-//Once we have details from Etsy, post it to our item database :: need to pass userid and listid to this somehow
-// eslint-disable-next-line no-unused-vars
-function addItem(body, res) {
-  Item
-    .create(body)
-    
-}
+
 
 //somehow tell user this is done *thinking*
 
@@ -75,8 +129,8 @@ function addItem(body, res) {
 //the id here being that stores product/listing id for the item we want
 // eslint-disable-next-line no-unused-vars
 function getEtsyListing(id, reqFrom, imgsrc, req, res) {
-console.log(id)
-  
+  console.log(id)
+
   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
 
   //create our result variable so we can send this data back
@@ -120,7 +174,7 @@ console.log(id)
 // // eslint-disable-next-line no-unused-vars
 // function getEtsyListing(id, reqFrom, req, res) {
 // console.log(id)
-  
+
 //   const etsyURL = 'https://openapi.etsy.com/v2/' //needs to be move to config
 
 //   //create our result variable so we can send this data back
@@ -162,33 +216,7 @@ console.log(id)
 
 
 
-//===== GET ALL ITEMS =====
-function index(req, res) {
-  Item
-    .find()
-    .then(items => res.status(200).json(items))
-    .catch(err => console.log(err))
-}
 
-//===== GET SPECIFIC ITEM FROM OUR ITEMdB =====
-function show(req, res) {
-  // console.log(listingId)
-  //turn listing id into an obj so we can use find
-  const listingId = req.params.listingId
-  const json = '{"listingId" : "' + listingId + '"}'
-  const itemListingId = JSON.parse(json)
-
-  //get item by listingId
-  Item
-    .findOne(itemListingId)
-    //return error if missing or success if success
-    .then(item => {
-      //check record exists and respond with error if it doesn't
-      if (!item) res.status(404).json({ status: 404, message: 'Not found', error: 'Not found' })
-      else (res.status(200).json(item))
-    })
-    .catch(err => console.log(err))
-}
 
 
 
@@ -198,5 +226,6 @@ module.exports = {
   add,
   index,
   show,
-  addItem
+  addItem,
+  add2
 }
