@@ -148,7 +148,7 @@ const ListCustomItems = (props) => {
                   </div>
                   <div className='custom-note'>
                     <p className='custom-label'>{ele.note}</p>
-                    <a href={ele.url}>{ele.url}</a>
+                    <a href={`https://${ele.url}`} target='_blank' rel='noopener noreferrer'>{ele.url}</a>
                   </div>
                 </div>
 
