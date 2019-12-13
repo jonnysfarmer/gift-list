@@ -99,13 +99,13 @@ _wireframes, sketches, architecture, etc go here too_
 
 We have 4 schema's
 
-** User **
+**User**
 
 For 
 - user registration and login
 - identifying logged in user
 
-_img_ /readme-images/schema-user.png
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-user.png' width='45%;'>
 
 ** Category **
 
@@ -114,15 +114,15 @@ For
 - allowing the user to select a category
 - determining which category's products to suggest to a user
 
-_img_ /readme-images/schema-category.png
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-category.png' width='45%;'>
 
 ** Item **
 
 For
-- holding a local store of saved item details to enable faster loading (should be refreshed every [x])
+- holding a local store of saved item details to enable faster loading (should be refreshed every [x]' width='45%;'>
 - showing saved items on GiftLists
 
-_img_ /readme-images/schema-item.png
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-item.png' width='45%;'>
 
 ** List **
 
@@ -131,7 +131,7 @@ For
 - showing GiftLists to logged in users
 - [future] showing a GiftList to a non-logged in user if they have the specific URL
 
-_img_ /readme-images/schema-list.png
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-list.png' width='45%;'>
 
 
 
