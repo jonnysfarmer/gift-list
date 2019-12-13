@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import axios from 'axios'
-<<<<<<< HEAD
-// import moment from 'moment'
-// import ReactDOM from 'react-dom'
-// import { Link } from 'react-router-dom'
-=======
 import moment from 'moment'
->>>>>>> 1415daaa3f37de239d2acb7b0253c5ded1e45b07
 
 import auth from '../lib/auth'
 // import UseAxios from '../hooks/UseAxios'
@@ -110,10 +104,6 @@ function CreateList(props) {
         subcategories: category.subcategories
       }
     })
-<<<<<<< HEAD
-    // console.log(temp)
-=======
->>>>>>> 1415daaa3f37de239d2acb7b0253c5ded1e45b07
     setCategoriesList(temp)
   }
 
