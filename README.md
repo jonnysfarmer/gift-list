@@ -1,6 +1,6 @@
 # GiftList
 
-<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/logo.gif''>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/logo.gif'>
 
 by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://github.com/jennikate), [Johnny Farmer](https://github.com/jonnysfarmer)
 
