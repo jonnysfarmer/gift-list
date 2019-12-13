@@ -5,10 +5,17 @@
 // having problems with sass compiler, need to investigate
 
 //Fonts
+@import url('https://fonts.googleapis.com/css?family=Bad+Script|Crafty+Girls|Patrick+Hand+SC&display=swap');
+
 @import url('https://fonts.googleapis.com/css?family=Charmonman|Roboto|Lobster+Two&display=swap');
 //Brand name and h1s only
-$font-title: 'Lobster+Two', cursive;
+$font-title: 'Patrick Hand SC', cursive;
 $font: 'Roboto', sans-serif;
+
+
+// font-family: 'Bad Script', cursive;
+// font-family: 'Crafty Girls', cursive;
+// font-family: 'Patrick Hand SC', cursive;
 
 $brand-dark: #358270;
 $brand-light: #4AB59A;
@@ -118,15 +125,19 @@ $logo-green: #9BB54A;
   }
   img{
     padding: 1px;
-    width: 2.5rem;
+    width: 4rem;
     margin: 2px
   }
   a{
-    max-width: 15rem;
+    max-width: 20rem;
     color: $link;
   }
   a:hover{
     color: $link-hover;
+  }
+  .saved-item-detail{
+    display:flex;
+    flex-direction: column;
   }
 }
 .custom-item{

@@ -46,7 +46,7 @@ const ListSingle = (props) => {
       <Breadcrumbs />
       <section className='section columns'>
 
-        <div className='column is-two-thirds'>
+        <div className='column '>
           <div className='container'>
             <ListName
               listName={data.listName} giftRecipient={data.giftRecipient}
@@ -66,7 +66,7 @@ const ListSingle = (props) => {
           </div>}
         </div>
 
-        <div className='column is-one-third'>
+        <div className='column '>
           <div className='container'>
             <ListSavedItems
               itemsSaved={data.itemsSaved}

@@ -12,7 +12,7 @@ const ListSavedItems = (props) => {
 
   //===== VARIABLES =====
   let [data, setData] = useState([])
-  
+
 
   //===== FUNCTIONS FOR THIS PAGE =====
   function getSavedItems(items) {
@@ -27,7 +27,7 @@ const ListSavedItems = (props) => {
             itemDetail.push(response.data)
             setData(itemDetail)
           })
-        .catch(err => console.log('error', err))
+          .catch(err => console.log('error', err))
       })
     }
   }
@@ -35,8 +35,8 @@ const ListSavedItems = (props) => {
   function deleteSavedItem(itemId) {
     //remove from this page
     const newArray = [...data]
-    const updatedArray = newArray.filter((elem => { 
-      return elem.listingId !== itemId 
+    const updatedArray = newArray.filter((elem => {
+      return elem.listingId !== itemId
     }))
     setData(updatedArray)
     //get just the listingId from the newArray
@@ -47,8 +47,8 @@ const ListSavedItems = (props) => {
     })
     //remove from list data
     axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, { itemsSaved: updatedListingIds })
-    .then(response => console.log(response))
-    .catch(err => console.log('error', err))
+      .then(response => console.log(response))
+      .catch(err => console.log('error', err))
   }
 
 
@@ -65,12 +65,15 @@ const ListSavedItems = (props) => {
         {data.map((elem, i) => {
           return (
             <div className='saved-item' key={i}>
-              <span className='interactive-icon clickable' onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
+              <span className='interactive-icon clickable' onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span>
               <div>
-              <img className='saved-item' src={elem.imgsrc}></img>
-              <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer' className='truncate'>{elem.productName}</a>
+                <img className='saved-item' src={elem.imgsrc}></img>
+                <div className='saved-item-detail'>
+                  <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer' className='truncate'>{elem.productName}</a>
+                  <p>{elem.currencyCode}: {elem.price}</p>
+                </div>
               </div>
-              </div>
+            </div>
           )
         })}
       </ul>
