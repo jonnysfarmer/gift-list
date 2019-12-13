@@ -57,7 +57,7 @@ You must:
 - Mongoose Unique Validator : for data type validation
 - Bcrypt : for user encryption
 - JsonWebToken : for user login
-- Cors : for 
+- body-parser : for better handling of body
 
 #### Frontend : technologies used to create our interface and interactions
 
@@ -69,6 +69,9 @@ You must:
 - Bulma : for foundation css
 - ReactRouter : for links
 - Axios : for API requests
+- Moment : for nicer date formatting
+- Font Awesome : for icons
+- React Select : for nice select dropdown
 
 _add link to jump to installation_
 
@@ -92,7 +95,55 @@ _wireframes, sketches, architecture, etc go here too_
 
 ### Schema creation
 
+We have 4 schema's
+
+** User **
+
+For 
+- user registration and login
+- identifying logged in user
+
+** Category **
+
+For
+- mapping store category name/API call name to our category names
+- allowing the user to select a category
+- determining which category's products to suggest to a user
+
+** Item **
+
+For
+- holding a local store of saved item details to enable faster loading (should be refreshed every [x])
+- showing saved items on GiftLists
+
+** List **
+
+For
+- storing a users saved list data with related Id's to get data from the other schemas
+- showing GiftLists to logged in users
+- [future] showing a GiftList to a non-logged in user if they have the specific URL
+
+
+
+
 ### CRUD
+
+
+** GiftList **
+
+- User can create a list
+``` POST '/lists/:userId' ```
+- User can retrieve all their list
+``` GET '/lists/:userId' ```
+- User can update their list details (but not categories yet)
+``` '/lists/:userId/:listId'
+- User can archive a list (we don't want to ever fully delete data)
+
+** Saved Items (store & custom) **
+
+- User can create a saved item
+- GiftList page can retrieve a saved item
+- User can delete a saved item
 
 ----
 
@@ -133,12 +184,14 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 
 ### While we are not yet planning to build any of these, we did consider them in the architecture.
 
-- `Etsy Items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
-- `Browse Items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
-- `Share a List` We would like users to have a shareable list link that they can send to others that just shows the items they've saved
+- `Show more items` : _show more on load and a show more button_ Currently we show a set of products available from Etsy is currently restricted to no more than 6 items at a time due to restrictions on how many calls we can make per second while on a developer account. Full accounts would allow us to extend this.
+- `Browse items` : We would like to have an area of the site where you can browse through categories and add to any of your lists without being on your list page. 
+- `Share a GiftList` We would like users to have a shareable list link that they can send to others that just shows the items they've saved
 - `Show local currency` Based on Etsy's notes we need to use a currency converter, we deprioritised this for this project
 - `Send me a reminder` We'd like to allow the user to receive notifications via email or sms a few weeks before their event
-- `Remove category from my filters` We'd like to give you the option to remove a category from your list
+- `Change categories in my filters` We'd like to give you the option to add or remove categories from your list
+- `Show trending items` In a few areas we'd like to show a list of trending items, or just a list of various items. 
+
 
 ----
 

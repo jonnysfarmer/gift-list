@@ -242,6 +242,11 @@ h3 { /*list page*/
   height: 5rem;
 }
 
+.optional {
+  font-size: 0.75rem;
+  color: $light-text;
+}
+
 //===================================
 // FORM & BUTTONS
 //===================================
@@ -287,7 +292,7 @@ input[name='budget'] {
   background-color: $button-secondary;
 }
 .button:hover, .button:active, .button:focus,
-.navbar-item:hover a, .navbar-menu:active, .navbar-item:active a, .navbar-item:focus a,
+.navbar-item:hover a, .navbar-item:active, .navbar-item:active a, .navbar-item:focus a,
 .filter-option li:hover, .filter-option li:active, .filter-option li:focus {
   background-color: $button-hover;
   border-radius: $button-link;
