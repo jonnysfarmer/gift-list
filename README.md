@@ -116,7 +116,7 @@ For
 
 <img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-category.png' width='45%;'>
 
-** Item **
+**Item**
 
 For
 - holding a local store of saved item details to enable faster loading (should be refreshed every [x]' width='45%;'>
@@ -124,7 +124,7 @@ For
 
 <img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/schema-item.png' width='45%;'>
 
-** List **
+**List**
 
 For
 - storing a users saved list data with related Id's to get data from the other schemas
@@ -137,7 +137,7 @@ For
 
 ### CRUD
 
-** GiftList **
+**GiftList**
 
 - User can create a list
 ``` POST '/lists/:userId' ```
@@ -150,7 +150,7 @@ For
 - User can archive a list (we don't want to ever fully delete data)
 ``` PUT '/lists/:userId/:listId' ``` with a status change
 
-** Saved Items (store & custom) **
+**Saved Items (store & custom)**
 
 - Create a saved item for a store item
 ``` PUT '/lists/:userId/:listId/<storename>' ```
