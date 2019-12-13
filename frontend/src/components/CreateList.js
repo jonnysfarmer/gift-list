@@ -86,6 +86,7 @@ function CreateList(props) {
 
   // store subcategories selected in state to post on submit
   function subCatsSelected(e) {
+    if (e === null) return null
     const test = e.map((elem) => {
       return {
         value: elem.value,

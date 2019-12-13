@@ -8,7 +8,7 @@ const Home = () => (
       <div className="hero-body">
         <div className="container">
 
-          <div className='logo'>
+          {/* <div className='logo'>
             <div className='present'>
               <div className='logo-box'></div>
               <div className='logo-box'></div>
@@ -29,11 +29,11 @@ const Home = () => (
               <div className='logo-box'></div>
               <div className='logo-box'></div>
             </div>
-          </div>
+          </div> */}
 
 
           <h1 className='title'>
-            GIFT LIST
+            Gift List
         </h1>
           <h2 className='subtitle'>
             For all your gift buying fun!
