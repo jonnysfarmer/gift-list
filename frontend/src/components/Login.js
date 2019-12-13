@@ -38,9 +38,7 @@ class Login extends React.Component {
     console.log(this.state.errors)
     return (
       <>
-        <div className='breadcrumb-container'>
-          <Breadcrumbs />
-        </div>
+      <Breadcrumbs />
       <div className=''>
         <div className='container'>
           <div className='columns'>

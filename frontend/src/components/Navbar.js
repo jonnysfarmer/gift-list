@@ -26,7 +26,7 @@ const Navbar = (props) => {
   }
 
   return (
-    <div className={`navbar is-fixed-top ${history.location.pathname === '/' ? 'navbar-is-transparent' : 'navbar-is-off-white'}`}>
+    <div className={`navbar ${history.location.pathname === '/' ? 'navbar-is-transparent' : 'navbar-is-off-white'}`}>
       <div className="navbar-brand">
         <Link className="navbar-item" to="/"
           onClick={() => setState({ isOpen: false })}

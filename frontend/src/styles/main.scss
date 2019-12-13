@@ -64,22 +64,7 @@ $logo-green: #9BB54A;
 // TESTING
 //===================================
 
-.section {
-  // background-color: green;
-}
-// .container {
-//   border: 1px solid red;
-// }
-.navbar-is-transparent {
-  background-color: rgba(200, 200, 200, 0);
-  color: white;
-}
-.navbar-is-off-white {
-  background-color: rgb(249,249,249);
-}
-// .breadcrumb-container {
-//   background-color: blue;
-// }
+
 
 
 
@@ -103,6 +88,18 @@ body {
 .navbar {
   border-bottom: 1px solid $brand-light;
 }
+.navbar-is-transparent {
+  background-color: rgba(200, 200, 200, 0);
+  color: white;
+}
+.navbar-is-off-white {
+  background-color: rgb(249,249,249);
+}
+
+.breadcrumbs-container + section {
+  padding-top: 0;
+}
+
 
 // Dashboard Page
 .lists{
@@ -200,9 +197,6 @@ body {
   
   }
 }
-// .list-title{
-//   display: inline-block;
-// }
 
 
 
@@ -361,17 +355,21 @@ input[name='budget'] {
   background-color: $button-secondary;
 }
 .button:hover, .button:active, .button:focus,
-.navbar-item:hover a, .navbar-item:active, .navbar-item:active a, .navbar-item:focus a,
+.navbar-item a:hover, 
 .filter-option li:hover, .filter-option li:active, .filter-option li:focus {
   background-color: $button-hover;
   border-radius: $button-link;
   color: $text;
 }
-/* adding nav-bar & filter-options as all need same styling */
 
 .navbar-item a, .filter-option li {
   color: $text;
   font-family: $font;
+}
+
+//force all Bulma blue text to not be blue in our navbar!
+a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+  color: $text;
 }
 
 

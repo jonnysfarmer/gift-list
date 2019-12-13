@@ -119,9 +119,7 @@ function CreateList(props) {
   }
 
   return <>
-    <div className='breadcrumb-container'>
-      <Breadcrumbs />
-    </div>
+    <Breadcrumbs />
     <section className=''>
 
       <div className='container'>
