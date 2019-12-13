@@ -62,19 +62,16 @@ const Lists = (props) => {
     <>
       <Breadcrumbs />
       <section className="">
-
-
-        <section className="section">
           <div className="container">
-            <div className='title'>Welcome back, {userInfo.firstname}</div>
-            <p className='subtitle'>You are currently working on {listLength()} lists</p>
+            <h1>Welcome back, {userInfo.firstname}</h1>
+            <p>You are currently working on {listLength()} lists</p>
           </div>
         </section>
-        <section className="section list-map">
+
+        <section className="list-map">
           <div className="container">
             <AllLists data={listInfo} refreshFunction={userlistHook} />
           </div>
-        </section>
       </section>
     </>
   )

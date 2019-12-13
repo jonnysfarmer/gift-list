@@ -23,13 +23,15 @@ $brand-light: #4AB59A;
 
 //used for hero images, coloured boxes/borders
 $background: #4AB59A;
+//used for page background
+$background-page: rgb(249,249,249);
 
 //used when we want to color a title something other than the text color
 $title: #358270;
 
 //standard for all text
 //thoughts on this being v.dark grey / v.light white
-$text: #000000;
+$text: #353535;
 $text-inverted: #ffffff;
 
 //used for placeholders and supporting text
@@ -68,16 +70,15 @@ $logo-green: #9BB54A;
 
 
 
-
-
 //===================================
 // LAYOUT
 //===================================
 * {
   box-sizing: border-box; 
 }
-body {
-  background-color: rgb(249,249,249);
+body, html {
+  background-color: $background-page;
+  color: $text;
 }
 .hero {
   background-image: url(../img/hero.jpg);
@@ -102,18 +103,33 @@ body {
 
 
 // Dashboard Page
-.lists{
-  border: 1px solid $link-hover;
-  border-radius: 3px;
-  color:$text;
-  margin: 0.5em 0;
-  background-color: white;
-  .column{
-    margin: 0.5em;
-  }
+
+.list-container {
+  display: flex;
 }
-.lists:hover{
-  background-color: $link-hover;
+.list-container span {
+  width: 25px;
+}
+.list-container .lists {
+  width: calc(100% - 25px);
+}
+.lists {
+  display: flex;
+  border-bottom: 1px solid $brand-light;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+.lists .list-col {
+  width: 33%;
+}
+.lists strong {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.lists:hover {
+  background-image: linear-gradient(to bottom, white, $brand-light);
+  border-radius: $button-link;
   cursor: pointer;
 }
 
