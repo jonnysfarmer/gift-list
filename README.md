@@ -7,6 +7,8 @@ by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://githu
 [View the app]()
 [View the code](https://github.com/georgmp/gift-list)
 
+GIF GOES HERE
+
 ### Overview
 
 GiftList is an app where you can 
@@ -22,8 +24,6 @@ GiftList is an app where you can
 - you can save items from the suggestion list or from browsing all categories
 
 _add link to jump to installation_
-
-### Screenshots
 
 ----
 
@@ -91,6 +91,8 @@ _wireframes, sketches, architecture, etc go here too_
 
 ## The development
 
+
+
 ### Config and middleware
 
 ### Schema creation
@@ -103,6 +105,8 @@ For
 - user registration and login
 - identifying logged in user
 
+_img_ /readme-images/schema-user.png
+
 ** Category **
 
 For
@@ -110,11 +114,15 @@ For
 - allowing the user to select a category
 - determining which category's products to suggest to a user
 
+_img_ /readme-images/schema-category.png
+
 ** Item **
 
 For
 - holding a local store of saved item details to enable faster loading (should be refreshed every [x])
 - showing saved items on GiftLists
+
+_img_ /readme-images/schema-item.png
 
 ** List **
 
@@ -123,11 +131,11 @@ For
 - showing GiftLists to logged in users
 - [future] showing a GiftList to a non-logged in user if they have the specific URL
 
+_img_ /readme-images/schema-list.png
 
 
 
 ### CRUD
-
 
 ** GiftList **
 
@@ -135,21 +143,33 @@ For
 ``` POST '/lists/:userId' ```
 - User can retrieve all their list
 ``` GET '/lists/:userId' ```
+- User can retrieve one of their lists
+``` GET '/lists/:userId/:listId ```
 - User can update their list details (but not categories yet)
-``` '/lists/:userId/:listId'
+``` PUT '/lists/:userId/:listId' ```
 - User can archive a list (we don't want to ever fully delete data)
+``` PUT '/lists/:userId/:listId' ``` with a status change
 
 ** Saved Items (store & custom) **
 
-- User can create a saved item
-- GiftList page can retrieve a saved item
-- User can delete a saved item
+- Create a saved item for a store item
+``` PUT '/lists/:userId/:listId/<storename>' ```
+- Create a saved item for a custom item
+``` PUT '/lists/:userId/:listId/customItems' ```
+- Get all saved store items for this user
+``` GET '/lists/:userId/:listId ```
+- Get all saved custom items for this user
+``` GET '/lists/:userId/:listId/customItems' ```
+- User can delete a saved store item
+``` PUT '/lists/:userId/:listId' ```
+- User can delete a saved custom item
+``` DELETE '/lists/:userId/:listId/customItems/:itemId' ```
 
 ----
 
 ## Hurdles Overcome & Problems to Solve
 
-### Creating multiple schemas
+### Testing schemas
 
 _**not solved**_
 We designed 4 schemas, of which two had subschemas, we were fairly confident of our schema types. When it came to seeding our data, we tried to generate an output from User, Category, and Item, then use that in our List seeds. We started seeing cannot read property 0 of undefined. We worked through our data movement and realised that Category and Item were not intrinsically linked to List, List just holds some words/numbers to let the frontend find the right category information. 
@@ -168,7 +188,9 @@ We wanted to store a copy of any item a user saved to our database so we could t
 
 Once the basis of that worked, the next challenge was to create success and error messages. After some investigation determined where to add success responses, and while creating tests determined how to handle errors to client.
 
-It utilises multiple API calls both within our backend and out to the Etsy API.
+It utilised multiple API calls both within our backend and out to the Etsy API.
+
+After building the frontend, we realised this was over complicated and did not need to make the call to Etsy as we already had the item data.
 
 
 ----
@@ -176,6 +198,8 @@ It utilises multiple API calls both within our backend and out to the Etsy API.
 ## Future
 
 ### Bugs
+
+If you find any bugs let us know!
 
 
 ### Unexpected hurdles that we deprioritised
