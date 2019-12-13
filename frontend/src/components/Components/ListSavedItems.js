@@ -11,7 +11,7 @@ const ListSavedItems = (props) => {
   const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />
 
   //===== VARIABLES =====
-  let [data, setData] = useState({})
+  let [data, setData] = useState([])
   
 
   //===== FUNCTIONS FOR THIS PAGE =====
@@ -55,19 +55,22 @@ const ListSavedItems = (props) => {
   useEffect(() => {
     getSavedItems(props.itemsSaved)
   }, [props.itemsSaved])
+  console.log(data)
 
-
-  if (data === {}) { return <div>Loading</div> }
+  if (data === []) { return <div>Loading</div> }
   return (
     <div id='list-saved-items' className='element'>
       <h3>Saved items</h3>
       <ul>
-        {Array.from(data).map((elem, i) => {
+        {data.map((elem, i) => {
           return (
-            <li key={i}>
+            <div className='saved-item' key={i}>
               <span className='interactive-icon clickable' onClick={() => deleteSavedItem(elem.listingId)}>{trashIcon}</span> 
-              <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer'>{elem.productName}</a>
-              </li>
+              <div>
+              <img className='saved-item' src={elem.imgsrc}></img>
+              <a href={`https://www.etsy.com/listing/${elem.listingId.split('-')[1]}`} target='_blank' rel='noopener noreferrer' className='truncate'>{elem.productName}</a>
+              </div>
+              </div>
           )
         })}
       </ul>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Auth from '../lib/auth'
+import Logo from './Components/Logo'
 
 const Navbar = (props) => {
   let history = useHistory()
@@ -30,7 +31,8 @@ const Navbar = (props) => {
         <Link className="navbar-item" to="/"
           onClick={() => setState({ isOpen: false })}
         >
-          GIFT LIST
+          <Logo /> 
+          <em className='logo-text'>GiftList</em>
           </Link>
         <a
           role="button"

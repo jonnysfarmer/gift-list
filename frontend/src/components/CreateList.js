@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import axios from 'axios'
+<<<<<<< HEAD
 // import moment from 'moment'
 // import ReactDOM from 'react-dom'
 // import { Link } from 'react-router-dom'
+=======
+import moment from 'moment'
+>>>>>>> 1415daaa3f37de239d2acb7b0253c5ded1e45b07
 
 import auth from '../lib/auth'
 // import UseAxios from '../hooks/UseAxios'
 import Breadcrumbs from './Breadcrumbs'
+import NoteCards from './Components/NoteCards'
 
 // animation for dropdown menu
 const animatedComponents = makeAnimated()
@@ -40,7 +45,7 @@ function CreateList(props) {
   }
 
   // load categories for dropdown menu on page load
-  useEffect(addCategories,[])
+  useEffect(addCategories, [])
 
   //get userId
   const userId = auth.getUserId()
@@ -55,7 +60,7 @@ function CreateList(props) {
   const handleChange = (e) => {
     e.preventDefault()
     setData({ ...data, [e.target.name]: e.target.value })
-    setErrors({...errors, [e.target.name]: '' })
+    setErrors({ ...errors, [e.target.name]: '' })
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -105,21 +110,24 @@ function CreateList(props) {
         subcategories: category.subcategories
       }
     })
+<<<<<<< HEAD
     // console.log(temp)
+=======
+>>>>>>> 1415daaa3f37de239d2acb7b0253c5ded1e45b07
     setCategoriesList(temp)
   }
 
   return <>
+    <div className='breadcrumb-container'>
+      <Breadcrumbs />
+    </div>
+    <section className=''>
 
-    <section className='section'>
-      <div className='breadcrumb-container'>
-        <Breadcrumbs />
-      </div>
       <div className='container'>
         <h1>Create a list</h1>
-        <div className='container columns'>
-
-          <form className='form column' onSubmit={handleSubmit}>
+        <div className='columns'>
+          <div className='column is-half'>
+          <form className='form' onSubmit={handleSubmit}>
 
             <div className="field">
               <label htmlFor="listName" className="label">
@@ -132,7 +140,7 @@ function CreateList(props) {
               {errors.listName && <small className="help is-danger">{errors.listName}</small>}
             </div>
 
-            <h2>Who are you saving gifts for?</h2>
+            <h3>Who are you saving gifts for?</h3>
             <div className="field">
               <label htmlFor="giftRecipient" className="label">
                 Enter a name, or even yourself!
@@ -144,7 +152,7 @@ function CreateList(props) {
               {errors.giftRecipient && <small className="help is-danger">{errors.giftRecipient}</small>}
             </div>
 
-            <h2>Is it for a special event?</h2>
+            <h3>Is it for a special event?</h3>
             <div className="field">
               <label htmlFor="eventName" className="label">
                 Event name <span className='optional'>optional</span>
@@ -165,44 +173,31 @@ function CreateList(props) {
               </div>
               {errors.eventDate && <small className="help is-danger">{errors.eventDate}</small>}
             </div>
-            
 
-            <h2>Would you like personalised suggestions?</h2>
 
+            <h3>Would you like personalised suggestions?</h3>
 
             <div className="field">
               <label htmlFor="subcategory" className="label">
                 Select a category <span className='optional'>optional</span>
               </label>
-              <div className="control">
-
+              <div className="control select-input">
                 <Select
                   options={categoriesList}
                   onChange={drillDown} />
-                  
+
                 <Select
                   closeMenuOnSelect={false}
                   components={animatedComponents}
-                  //  defaultValue={['red', 'green']}
                   isMulti
                   options={subcategoriesList}
                   onChange={subCatsSelected}
-                  // value={null}
-                  />
-                {/* <select className='select'>
-                  <option>Select a category</option>
-                  {
-                    addCategories().map((category, i) =>
-                      <option key={i} value={category.categoryName}>{category.categoryName}</option>
-                    )}
-                </select> */}
-
+                />
               </div>
               {errors.subcategory && <small className="help is-danger">{errors.subcategory}</small>}
             </div>
 
-
-            <div className="field">
+            {/* <div className="field">
               <label htmlFor="budget" className="label">
                 Add a budget <span className='optional'>optional</span>
               </label>
@@ -211,53 +206,15 @@ function CreateList(props) {
                 <span className='static-text'>max &pound;</span>
               </div>
               {errors.budget && <small className="help is-danger">{errors.budget}</small>}
-            </div>
+            </div> */}
 
-
-
-            <button className="button">Create list</button>
-
+            <button className="button is-rounded">Create list</button>
           </form>
+          </div>
 
-          {/* <aside className='aside column columns'>
-            <h2>Start with one of our lists</h2>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-            <div className='column'>
-              <img alt='imageName' />
-              <span>img above, text over img</span>
-            </div>
-          </aside> */}
+          <div className='column is-half'>
+            <NoteCards />
+          </div>
 
         </div>
       </div>
