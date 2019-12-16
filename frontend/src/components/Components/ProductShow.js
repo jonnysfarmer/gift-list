@@ -29,7 +29,7 @@ const ProductShow = (props) => {
     setData(props)
   }
 
-  console.log(props)
+  // console.log(props)
 
   //===== FUNCTIONS FOR THIS PAGE =====
   //This displays 6 of the first category
@@ -79,15 +79,16 @@ const ProductShow = (props) => {
     }  
     setEtsyListingID('')
     e.preventDefault()
-    axios.post(`/api/items/`, data, {
-      headers: { Authorization: `Bearer ${Auth.getToken()}` }
-    })
+    console.log('working')
+    axios.post(`/api/items/`, data )
       .then(()=>{
         props.refreshFunction()
+        console.log('completed')
 
         etsyHook(cat[0])
       })
       .catch((err) => {
+        console.log('error')
         setErrors(err.response)
       })
   }
