@@ -2,7 +2,7 @@
 
 <img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/logo-noshadow.gif'>
 
-by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://github.com/jennikate), [Johnny Farmer](https://github.com/jonnysfarmer)
+by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://github.com/jennikate), [Jonny Farmer](https://github.com/jonnysfarmer)
 
 ## The product
 
@@ -88,6 +88,23 @@ _add link to jump to installation_
 ## The planning
 
 _wireframes, sketches, architecture, etc go here too_
+
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/datastructure-1.png' width='30%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/planning-2.png' width='30%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/planning-3.png' width='30%;'>
+
+
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-1.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-2.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-3.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-4.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-5.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-6.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-7.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-8.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-9.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-10.png' width='10%;'>
+<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/wireframe-11.png' width='10%;'>
 
 ----
 
