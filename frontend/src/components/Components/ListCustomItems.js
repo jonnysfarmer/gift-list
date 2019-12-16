@@ -48,7 +48,7 @@ const ListCustomItems = (props) => {
   }
   function saveCustomEdit(e) {
     e.preventDefault()
-    axios.post(`http://localhost:8000/api/lists/${props.userId}/${props.listId}/customItems`, customItem, {
+    axios.post(`/api/lists/${props.userId}/${props.listId}/customItems`, customItem, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then((response) => {
@@ -62,7 +62,7 @@ const ListCustomItems = (props) => {
   }
   //Deletes item, then reruns get Custom Item hook
   const deleteCustomItem = (id) => {
-    axios.delete(`http://localhost:8000/api/lists/${props.userId}/${props.listId}/customItems/${id}`)
+    axios.delete(`/api/lists/${props.userId}/${props.listId}/customItems/${id}`)
       .then((response) => {
         setCustomItems(response.data.customItem)
         customItemIdArray(response.data.customItem)
@@ -96,7 +96,7 @@ const ListCustomItems = (props) => {
   }
 
   const saveCustomEditItem = (id, i) => {
-    axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}/customItems/${id}`, customItems[i])
+    axios.put(`/api/lists/${props.userId}/${props.listId}/customItems/${id}`, customItems[i])
       .then((response) => {
         setCustomItems(response.data.customItem)
         customItemIdArray(response.data.customItem)

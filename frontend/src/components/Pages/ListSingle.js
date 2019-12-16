@@ -24,7 +24,7 @@ const ListSingle = (props) => {
 
   const onMount = () => {
     console.log('456')
-    axios.get(`http://localhost:8000/api/lists/${userId}/${listId}`)
+    axios.get(`/api/lists/${userId}/${listId}`)
       .then(response => {
         setData(response.data)
         console.log('123')

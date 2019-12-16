@@ -33,7 +33,7 @@ function CreateList(props) {
 
   // get all category and subcategory data
   function addCategories() {
-    axios.get('http://localhost:8000/api/categories')
+    axios.get('/api/categories')
       .then(res => manipulateResponseData(res.data))
       .catch(err => console.log(err))
   }
@@ -71,7 +71,7 @@ function CreateList(props) {
     }
     // console.log(data)
 
-    axios.post(`http://localhost:8000/api/lists/${userId}`, data, {
+    axios.post(`/api/lists/${userId}`, data, {
       headers: { Authorization: `Bearer ${auth.getToken()}` }
     })
       .then((resp) => props.history.push(`/lists/${userId}/${resp.data._id}`))

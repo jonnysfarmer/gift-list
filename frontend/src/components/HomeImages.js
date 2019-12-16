@@ -18,7 +18,7 @@ const HomeImages = () => {
     let ListingID = []
     //selects a random category to show on the come page
     setRandomCatName(randomCat)
-    axios.get(`http://localhost:8000/api/etsy/${randomCat}`)
+    axios.get(`/api/etsy/${randomCat}`)
     .then(response => {
       dataArray = [response.data.data[0], response.data.data[1], response.data.data[2], response.data.data[3]]
       // console.log(dataArray)
@@ -40,7 +40,7 @@ const HomeImages = () => {
     // console.log(data)
     let newArr = []
     data.forEach((ele, i)=> {
-      axios.get(`http://localhost:8000/api/image/${ele}`)
+      axios.get(`/api/image/${ele}`)
       .then(response => {
         // console.log(newArr)
         newArr = [...newArr]

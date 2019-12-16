@@ -20,7 +20,7 @@ const ListSavedItems = (props) => {
 
     if (props.itemsSaved) {
       items.map((elem, i) => {
-        axios.get(`http://localhost:8000/api/items/${elem}`)
+        axios.get(`/api/items/${elem}`)
           .then(response => {
             itemDetail = [...itemDetail]
             // console.log(itemDetail)
@@ -46,7 +46,7 @@ const ListSavedItems = (props) => {
       updatedListingIds.push(elem.listingId)
     })
     //remove from list data
-    axios.put(`http://localhost:8000/api/lists/${props.userId}/${props.listId}`, { itemsSaved: updatedListingIds })
+    axios.put(`/api/lists/${props.userId}/${props.listId}`, { itemsSaved: updatedListingIds })
       .then(response => console.log(response))
       .catch(err => console.log('error', err))
   }

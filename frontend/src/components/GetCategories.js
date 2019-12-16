@@ -34,7 +34,7 @@ function CreateCategoryDropDown() {
   }
 
   function addCategories() {
-    axios.get('http://localhost:8000/api/categories')
+    axios.get('/api/categories')
       .then(res => manipulateResponseData(res.data))
       .catch(err => console.log(err))
   }

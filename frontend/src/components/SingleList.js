@@ -48,7 +48,7 @@ const SingleList = (props) => {
   const listID = props.match.params.listId
   //this one also pulls from Etsy, pulled out to only on Mount to restrict calls
   const listHookOnMount = () => {
-    axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
+    axios.get(`/api/lists/${userID}/${listID}`)
       .then(response => {
         setData(response.data)
         setCat(response.data.subcategory)
@@ -60,7 +60,7 @@ const SingleList = (props) => {
       .catch(err => setErrors(err))
   }
   const listHook = () => {
-    axios.get(`http://localhost:8000/api/lists/${userID}/${listID}`)
+    axios.get(`/api/lists/${userID}/${listID}`)
       .then(response => {
         setData(response.data)
         setCat(response.data.subcategory)
@@ -74,7 +74,7 @@ const SingleList = (props) => {
   //This displays 6 of the first category
   //when the other categories are clicked, it then does those
   const etsyHook = (cat) => {
-    axios.get(`http://localhost:8000/api/etsy/${cat}`)
+    axios.get(`/api/etsy/${cat}`)
       .then(response => {
         setEtsy(response.data.data)
         getListingIds(response.data.data)
@@ -90,7 +90,7 @@ const SingleList = (props) => {
     console.log(ListingID)
     let newArr = []
     ListingID.map((ele, i)=> {
-      axios.get(`http://localhost:8000/api/image/${ele}`)
+      axios.get(`/api/image/${ele}`)
       .then(response => {
         newArr = [...newArr]
         newArr.push(response.data.image)
@@ -107,7 +107,7 @@ const SingleList = (props) => {
   // const savedItemsHook = (items) => {
   //   let totalItems = []
   //   items.forEach((ele, i) => {
-  //     axios.get(`http://localhost:8000/api/items/${ele}`)
+  //     axios.get(`/api/items/${ele}`)
   //       .then(response => {
   //         totalItems = [...totalItems]
   //         totalItems.push(response.data)
@@ -117,7 +117,7 @@ const SingleList = (props) => {
   // }
   //Inital also refreshes all the individual hiding data
   const customItemHookInitial = () => {
-    axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
+    axios.get(`/api/lists/${userID}/${listID}/customItems`)
       .then(response => {
         setCustomItems(response.data)
         customItemIdArray(response.data)
@@ -127,7 +127,7 @@ const SingleList = (props) => {
   }
   //this does not reset the hiding data
   const customItemHook = () => {
-    axios.get(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`)
+    axios.get(`/api/lists/${userID}/${listID}/customItems`)
       .then(response => {
         setCustomItems(response.data)
       }
@@ -155,7 +155,7 @@ const SingleList = (props) => {
   //for putting the edited field back to our database
   function saveEdit(e) {
     e.preventDefault()
-    axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, data, {
+    axios.put(`/api/lists/${userID}/${listID}`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(setEditState(!editOff))
@@ -184,7 +184,7 @@ const SingleList = (props) => {
   }
   function saveCustomEdit(e) {
     e.preventDefault()
-    axios.post(`http://localhost:8000/api/lists/${userID}/${listID}/customItems`, customItem, {
+    axios.post(`/api/lists/${userID}/${listID}/customItems`, customItem, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(() => {
@@ -197,7 +197,7 @@ const SingleList = (props) => {
   }
   //Deletes item, then reruns get Custom Item hook
   const deleteCustomItem = (id) => {
-    axios.delete(`http://localhost:8000/api/lists/${userID}/${listID}/customItems/${id}`)
+    axios.delete(`/api/lists/${userID}/${listID}/customItems/${id}`)
       .then(() => customItemHookInitial())
       .catch(err => setErrors(err))
   }
@@ -224,7 +224,7 @@ const SingleList = (props) => {
   }
   
   const saveCustomEditItem =(id, i) => {
-    axios.put(`http://localhost:8000/api/lists/${userID}/${listID}/customItems/${id}`, customItems[i])
+    axios.put(`/api/lists/${userID}/${listID}/customItems/${id}`, customItems[i])
     .then(() => {customItemHookInitial()})
     .catch(err => setErrors(err))
   }
@@ -238,7 +238,7 @@ const SingleList = (props) => {
   function archiveList(e) {
     e.preventDefault()
     console.log('archive called')
-    axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { listStatus: 'Archived' }, {
+    axios.put(`/api/lists/${userID}/${listID}`, { listStatus: 'Archived' }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(setStatusState('Archived'))
@@ -251,7 +251,7 @@ const SingleList = (props) => {
     const newItems = items.filter((ele, i) => {
       return ele !== ItemID
     })
-    axios.put(`http://localhost:8000/api/lists/${userID}/${listID}`, { itemsSaved: newItems })
+    axios.put(`/api/lists/${userID}/${listID}`, { itemsSaved: newItems })
       .then(response => {
         // listHook()
         savedItemsHook(response.data.itemsSaved)})

@@ -40,7 +40,7 @@ const AllLists = (props) => {
 
   function archiveList(e, listId) {
     e.preventDefault()
-    axios.put(`http://localhost:8000/api/lists/${userId}/${listId}`, { listStatus: 'Archived' }, {
+    axios.put(`/api/lists/${userId}/${listId}`, { listStatus: 'Archived' }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(() => {

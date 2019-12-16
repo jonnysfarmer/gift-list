@@ -25,7 +25,7 @@ const Lists = (props) => {
   //this hook gets the list Info
   const userlistHook = () => {
     const userID = props.match.params.userId
-    axios.get(`http://localhost:8000/api/lists/${userID}`)
+    axios.get(`/api/lists/${userID}`)
       .then(response => setListInfo(response.data)) //this will only return list with a status of active
       .catch(err => setErrors(err))
   }
@@ -33,7 +33,7 @@ const Lists = (props) => {
   //this is a hook for the User info
   const userInfoHook = () => {
     const userID = props.match.params.userId
-    axios.get(`http://localhost:8000/api/user/${userID}`)
+    axios.get(`/api/user/${userID}`)
       .then(response => {
         setUserInfo(response.data)
       })

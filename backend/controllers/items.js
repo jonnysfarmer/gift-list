@@ -1,7 +1,7 @@
 const Item = require('../models/Item')
 // const { getEtsyListing } = require('./stores') :: aim to extract this out but the call to addItem from stores isn't working
 const axios = require('axios')
-axios.defaults.baseURL = 'http://localhost:8000/api'
+axios.defaults.baseURL = '/api'
 
 require('dotenv').config()
 const etsyKey = process.env.ETSY_KEY

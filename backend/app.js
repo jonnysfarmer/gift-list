@@ -6,6 +6,9 @@ const router = require('./router')
 const cors = require('cors')
 const errorHandler = require('./lib/errorHandler')
 
+const path = require('path')
+const dist = path.join(__dirname, 'build')
+
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -28,6 +31,13 @@ app.use(cors())
 app.use('/api', router)
 
 app.use(errorHandler)
+
+app.use('/', express.static(dist))
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(dist, 'index.html'))
+})
+
 
 
 app.listen(port, () => console.log(`Green light on port ${port}`))

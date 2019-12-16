@@ -35,7 +35,7 @@ const ProductShow = (props) => {
   //This displays 6 of the first category
   //when the other categories are clicked, it then does those
   function etsyHook(cat) {
-    axios.get(`http://localhost:8000/api/etsy/${cat}`)
+    axios.get(`/api/etsy/${cat}`)
       .then(response => {
         setEtsy(response.data.data)
         getListingIds(response.data.data)
@@ -51,7 +51,7 @@ const ProductShow = (props) => {
     // console.log(ListingID)
     let newArr = []
     ListingID.forEach((ele, i) => {
-      axios.get(`http://localhost:8000/api/image/${ele}`)
+      axios.get(`/api/image/${ele}`)
         .then(response => {
           newArr = [...newArr]
           //the [i] prevents any async 
@@ -79,7 +79,7 @@ const ProductShow = (props) => {
     }  
     setEtsyListingID('')
     e.preventDefault()
-    axios.post(`http://localhost:8000/api/items/`, data, {
+    axios.post(`/api/items/`, data, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(()=>{

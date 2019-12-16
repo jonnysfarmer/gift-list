@@ -32,10 +32,10 @@ const etsyKey = process.env.ETSY_KEY
 const Browse = () => {
   // get productCat from link user presses on homepage --> how??
   // pass that value into axios get
-  // axios.get(`http://localhost:8000/api/browse/${}`)
+  // axios.get(`/api/browse/${}`)
   // hard code for now for testing/understanding
   const productCat = 'trending'
-  axios.get(`http://localhost:8000/api/browse/${productCat}`)
+  axios.get(`/api/browse/${productCat}`)
   .then(response => console.log(response.data))
   .catch(err => console.log(err))
   return <h1>test</h1>
