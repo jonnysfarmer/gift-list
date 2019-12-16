@@ -23,8 +23,8 @@ function add2(req, res) {
     return res.send({ status: 400, message: 'missing data, check you are sending src, id, user_id, list_id' })
   }
   const listingId = req.body.listingId
-
-  axios.put(`/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
+  // console.log(`/api/lists/${req.body.user_id}/${req.body.list_id}/etsy`)
+  axios.put(`http://localhost:8000/api/lists/${req.body.user_id}/${req.body.list_id}/etsy`, { "item": listingId })
     .then(() =>
       res.send({ status: 200, message: 'item saved' })
     )
