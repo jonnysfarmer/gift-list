@@ -79,16 +79,16 @@ const ProductShow = (props) => {
     }  
     setEtsyListingID('')
     e.preventDefault()
-    console.log('working')
+    // console.log('working')
     axios.post(`/api/items/`, data )
       .then(()=>{
         props.refreshFunction()
-        console.log('completed')
+        // console.log('completed')
 
         etsyHook(cat[0])
       })
       .catch((err) => {
-        console.log('error')
+        // console.log('error')
         setErrors(err.response)
       })
   }

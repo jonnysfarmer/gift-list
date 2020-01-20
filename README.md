@@ -8,7 +8,7 @@ by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://githu
 
 [View the app]()
 
-[View the code](https://github.com/georgmp/gift-list)
+[View the code](https://github.com/jonnysfarmer/gift-list)
 
 <img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/giftlist.gif' width='50%;'>
 

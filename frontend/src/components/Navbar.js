@@ -59,7 +59,7 @@ const Navbar = (props) => {
             <Link className="navbar-item" to="/lists/create"
               onClick={() => toggleNavbar()}
             >
-              Create new list112
+              Create new list
               </Link>
           </div>}
           {!Auth.isAuthorized() && <div className="navbar-item">
