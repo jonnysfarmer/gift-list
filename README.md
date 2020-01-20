@@ -25,8 +25,6 @@ GiftList is an app where you can
 - you can browse through all available items by category/subcategory, even if you're not logged in
 - you can save items from the suggestion list or from browsing all categories
 
-_add link to jump to installation_
-
 ----
 
 ## The brief
