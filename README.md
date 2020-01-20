@@ -73,8 +73,6 @@ You must:
 - Font Awesome : for icons
 - React Select : for nice select dropdown
 
-_add link to jump to installation_
-
 #### Management : tools used for planning and delivery management
 
 - Trello : for task management
