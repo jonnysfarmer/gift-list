@@ -1,12 +1,11 @@
 # GiftList
 
-<img src='https://raw.githubusercontent.com/georgmp/gift-list/development/readme-images/logo-noshadow.gif'>
 
-by [Georg Preuss](https://github.com/georgmp), [JenniKate Wallace](https://github.com/jennikate), [Jonny Farmer](https://github.com/jonnysfarmer)
+by [Georg Preuss](https://github.com/georgpreuss), [JenniKate Wallace](https://github.com/jennikate), [Jonny Farmer](https://github.com/jonnysfarmer)
 
 ## The product
 
-[View the app]()
+[View the app](https://gift-list-1-jf.herokuapp.com/)
 
 [View the code](https://github.com/jonnysfarmer/gift-list)
 
@@ -223,8 +222,4 @@ If you find any other bugs let us know!
 - `Show trending items` In a few areas we'd like to show a list of trending items, or just a list of various items. 
 
 
-----
 
-## Installation
-
-----
